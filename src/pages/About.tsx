@@ -1,11 +1,6 @@
 import { profile } from "../data/profile";
 import { useReveal } from "../hooks/useReveal";
 
-const initials = profile.name
-  .split(" ")
-  .map((part) => part[0])
-  .join("");
-
 export default function About() {
   const expRef = useReveal<HTMLDivElement>();
   const certRef = useReveal<HTMLDivElement>();
@@ -20,9 +15,12 @@ export default function About() {
           style={{ background: "var(--orb)" }}
         />
         <div className="relative flex flex-col items-start gap-6 md:flex-row md:items-center">
-          <span className="glow-strong flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sap-blue to-sap-blue-light font-display text-3xl font-extrabold text-white">
-            {initials}
-          </span>
+          <img
+            src={profile.photo}
+            alt={`Foto de ${profile.name}`}
+            className="glow-strong h-28 w-28 shrink-0 rounded-full border-2 border-sap-blue/50 object-cover object-top"
+          />
+
           <div>
             <h1 className="text-3xl font-extrabold text-strong md:text-4xl">
               {profile.name}

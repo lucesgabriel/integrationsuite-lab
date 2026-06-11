@@ -6,10 +6,11 @@
 
 export const profile = {
   name: "Gabriel Luces",
+  photo: "/images/gabriel-luces.jpg",
   headline:
     "SAP MM | PM | Integration Suite (BTP/CPI) Consultant — Passionate about AI, ML & Automation",
   location: "Santiago, Chile",
-  email: "lucesgabriel@gmail.com",
+  email: "LucesLab@gmail.com",
   linkedin: "https://www.linkedin.com/in/lucesgabriel",
   about: [
     "Consultor SAP Senior con más de 12 años de experiencia entregando soluciones empresariales SAP en los módulos MM y PM, y soportando operaciones de organizaciones de gran escala como Walmart Chile.",
