@@ -72,7 +72,7 @@ Estas keys están diseñadas para ser públicas en el front-end (no son secretos
 - [ ] Foto de perfil y assets de marca personal
 - [x] Sección de recursos/descargas (`/recursos`: Postman, XSDs, plantillas Groovy, diagramas)
 - [x] Resaltado de sintaxis en bloques de código (rehype-prism-plus, paleta por tema, botón copiar)
-- [ ] SEO por página (react-helmet o meta tags dinámicos) + sitemap
+- [x] SEO por página (meta tags nativos de React 19 + HTML estático por ruta vía `scripts/seo-postbuild.mjs`) + sitemap.xml + robots.txt + JSON-LD
 - [x] Versión en inglés (i18n) — UI y perfil bilingües; los artículos siguen en español (soporte para traducirlos pendiente)
 - [x] Newsletter (Kit) / formulario de contacto (Web3Forms) — ver "Activar contacto y newsletter"
 - [x] Deploy automático (GitHub Pages + Actions)

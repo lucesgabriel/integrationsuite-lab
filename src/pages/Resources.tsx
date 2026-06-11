@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { resources, type ResourceCategory } from "../data/resources";
+import Seo from "../components/Seo";
 import { useLang } from "../i18n";
 import { trackSpotlight } from "../lib/spotlight";
 
@@ -31,6 +32,11 @@ export default function Resources() {
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-16">
+      <Seo
+        title={t.seo.resourcesTitle}
+        description={t.resources.description}
+        path="/recursos/"
+      />
       <h1 className="text-4xl font-extrabold text-strong">
         {t.resources.title}
       </h1>

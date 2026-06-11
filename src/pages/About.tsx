@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { profile } from "../data/profile";
+import Seo from "../components/Seo";
 import { useReveal } from "../hooks/useReveal";
 import { useLang } from "../i18n";
 
@@ -11,6 +12,11 @@ export default function About() {
 
   return (
     <section className="mx-auto max-w-4xl px-4 py-16">
+      <Seo
+        title={t.seo.aboutTitle}
+        description={t.seo.aboutDesc}
+        path="/sobre-mi/"
+      />
       {/* Header con foto */}
       <div className="relative overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-raised to-card p-8 md:p-10">
         <div

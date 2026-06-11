@@ -155,6 +155,17 @@ const es = {
     description: "La ruta que buscas no existe o fue movida.",
     backHome: "Volver al inicio",
   },
+  seo: {
+    homeTitle: "SAPIntegrationLab | SAP Integration Suite en la práctica",
+    homeDesc:
+      "Casos reales de SAP Integration Suite: Cloud Integration (CPI), API Management y SAP BTP, documentados pantalla a pantalla por Gabriel Luces.",
+    blogTitle: "Artículos | SAPIntegrationLab",
+    resourcesTitle: "Recursos | SAPIntegrationLab",
+    aboutTitle: "Sobre mí | SAPIntegrationLab",
+    aboutDesc:
+      "Gabriel Luces — consultor SAP con +12 años de experiencia en MM, PM e Integration Suite (BTP/CPI). Experiencia, certificaciones y especialidades.",
+    contactTitle: "Contacto | SAPIntegrationLab",
+  },
 };
 
 const en: Translation = {
@@ -308,6 +319,17 @@ const en: Translation = {
     title: "Page not found",
     description: "The route you're looking for doesn't exist or was moved.",
     backHome: "Back to home",
+  },
+  seo: {
+    homeTitle: "SAPIntegrationLab | Hands-on SAP Integration Suite",
+    homeDesc:
+      "Real SAP Integration Suite cases: Cloud Integration (CPI), API Management and SAP BTP, documented screen by screen by Gabriel Luces.",
+    blogTitle: "Articles | SAPIntegrationLab",
+    resourcesTitle: "Resources | SAPIntegrationLab",
+    aboutTitle: "About | SAPIntegrationLab",
+    aboutDesc:
+      "Gabriel Luces — SAP consultant with 12+ years of experience in MM, PM and Integration Suite (BTP/CPI). Experience, certifications and specialties.",
+    contactTitle: "Contact | SAPIntegrationLab",
   },
 };
 

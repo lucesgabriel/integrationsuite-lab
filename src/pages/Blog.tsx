@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { posts } from "../lib/posts";
 import PostCard from "../components/PostCard";
+import Seo from "../components/Seo";
 import { useLang } from "../i18n";
 
 export default function Blog() {
@@ -18,6 +19,7 @@ export default function Blog() {
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-16">
+      <Seo title={t.seo.blogTitle} description={t.blog.description} path="/blog/" />
       <h1 className="text-4xl font-extrabold text-strong">{t.blog.title}</h1>
       <p className="mt-3 max-w-2xl text-muted">{t.blog.description}</p>
 

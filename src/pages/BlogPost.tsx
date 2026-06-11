@@ -6,6 +6,7 @@ import { rehypePrism } from "../lib/highlight";
 import Lightbox from "../components/Lightbox";
 import CodeBlock from "../components/CodeBlock";
 import NewsletterSignup from "../components/NewsletterSignup";
+import Seo from "../components/Seo";
 import { useLang } from "../i18n";
 
 export default function BlogPost() {
@@ -28,8 +29,33 @@ export default function BlogPost() {
     );
   }
 
+  const firstImage = /!\[[^\]]*\]\(([^)]+)\)/.exec(post.content)?.[1];
+
   return (
     <article className="mx-auto max-w-3xl px-4 py-16">
+      <Seo
+        title={`${post.title} | SAPIntegrationLab`}
+        description={post.description}
+        path={`/blog/${post.slug}/`}
+        image={firstImage}
+        type="article"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: post.title,
+          description: post.description,
+          datePublished: post.date,
+          inLanguage: "es",
+          image: firstImage
+            ? `https://sapintegrationlab.com${firstImage}`
+            : undefined,
+          author: {
+            "@type": "Person",
+            name: "Gabriel Luces",
+            url: "https://sapintegrationlab.com/sobre-mi/",
+          },
+        }}
+      />
       <Link
         to="/blog"
         className="text-sm text-accent-text hover:text-sap-blue"

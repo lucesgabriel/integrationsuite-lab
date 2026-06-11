@@ -5,6 +5,7 @@ import PostCard from "../components/PostCard";
 import PipelineGraphic from "../components/PipelineGraphic";
 import TechTicker from "../components/TechTicker";
 import NewsletterSignup from "../components/NewsletterSignup";
+import Seo from "../components/Seo";
 import { useReveal } from "../hooks/useReveal";
 import { trackSpotlight } from "../lib/spotlight";
 import { useLang } from "../i18n";
@@ -54,6 +55,23 @@ export default function Home() {
 
   return (
     <>
+      <Seo
+        title={t.seo.homeTitle}
+        description={t.seo.homeDesc}
+        path="/"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "SAPIntegrationLab",
+          url: "https://sapintegrationlab.com",
+          author: {
+            "@type": "Person",
+            name: profile.name,
+            jobTitle: "SAP Integration Suite Consultant",
+            sameAs: [profile.linkedin],
+          },
+        }}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="hero-bg pointer-events-none absolute inset-0" />

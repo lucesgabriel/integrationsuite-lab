@@ -1,5 +1,6 @@
 import { profile } from "../data/profile";
 import ContactForm from "../components/ContactForm";
+import Seo from "../components/Seo";
 import { useLang } from "../i18n";
 
 export default function Contact() {
@@ -7,6 +8,11 @@ export default function Contact() {
 
   return (
     <section className="mx-auto max-w-5xl px-4 py-16">
+      <Seo
+        title={t.seo.contactTitle}
+        description={t.contact.description}
+        path="/contacto/"
+      />
       <h1 className="text-4xl font-extrabold text-strong">{t.contact.title}</h1>
       <p className="mt-3 max-w-2xl text-muted">{t.contact.description}</p>
 
