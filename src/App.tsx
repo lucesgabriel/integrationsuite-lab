@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import About from "./pages/About";
+import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -14,6 +15,7 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:slug" element={<BlogPost />} />
+        <Route path="recursos" element={<Resources />} />
         <Route path="sobre-mi" element={<About />} />
         <Route path="contacto" element={<Contact />} />
         <Route path="*" element={<NotFound />} />

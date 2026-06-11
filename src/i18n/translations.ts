@@ -8,8 +8,23 @@ const es = {
   nav: {
     home: "Inicio",
     blog: "Artículos",
+    resources: "Recursos",
     about: "Sobre mí",
     contact: "Contacto",
+  },
+  resources: {
+    title: "Recursos",
+    description:
+      "Colecciones Postman, esquemas, plantillas y diagramas listos para descargar — los mismos artefactos de los casos resueltos del laboratorio.",
+    note: "Todos los archivos usan placeholders (<tenant>, <TU_APIKEY>…) — sin credenciales ni datos de sistemas reales.",
+    download: "Descargar",
+    fromCase: "Ver el caso →",
+    categories: {
+      postman: "Colecciones Postman",
+      schemas: "Esquemas XSD",
+      groovy: "Plantillas Groovy",
+      diagrams: "Diagramas editables",
+    },
   },
   hero: {
     badge: "SAP Integration Suite · BTP/CPI Consultant",
@@ -144,8 +159,23 @@ const en: Translation = {
   nav: {
     home: "Home",
     blog: "Articles",
+    resources: "Resources",
     about: "About",
     contact: "Contact",
+  },
+  resources: {
+    title: "Resources",
+    description:
+      "Postman collections, schemas, templates and diagrams ready to download — the same artifacts from the lab's solved cases.",
+    note: "All files use placeholders (<tenant>, <YOUR_APIKEY>…) — no credentials or real system data.",
+    download: "Download",
+    fromCase: "Read the case →",
+    categories: {
+      postman: "Postman Collections",
+      schemas: "XSD Schemas",
+      groovy: "Groovy Templates",
+      diagrams: "Editable Diagrams",
+    },
   },
   hero: {
     badge: "SAP Integration Suite · BTP/CPI Consultant",

@@ -70,7 +70,7 @@ Estas keys están diseñadas para ser públicas en el front-end (no son secretos
 ## Roadmap (ideas para futuras iteraciones)
 
 - [ ] Foto de perfil y assets de marca personal
-- [ ] Sección de recursos/descargas (cheatsheets, colecciones Postman)
+- [x] Sección de recursos/descargas (`/recursos`: Postman, XSDs, plantillas Groovy, diagramas)
 - [ ] Resaltado de sintaxis en bloques de código (shiki / prism)
 - [ ] SEO por página (react-helmet o meta tags dinámicos) + sitemap
 - [x] Versión en inglés (i18n) — UI y perfil bilingües; los artículos siguen en español (soporte para traducirlos pendiente)

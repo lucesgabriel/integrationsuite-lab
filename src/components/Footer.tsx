@@ -11,6 +11,7 @@ export default function Footer() {
   const navLinks = [
     { to: "/", label: t.nav.home },
     { to: "/blog", label: t.nav.blog },
+    { to: "/recursos", label: t.nav.resources },
     { to: "/sobre-mi", label: t.nav.about },
     { to: "/contacto", label: t.nav.contact },
   ];
