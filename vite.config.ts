@@ -2,9 +2,9 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
-// En producción el sitio se sirve desde GitHub Pages bajo /integrationsuite-lab/.
-// Si algún día se usa un dominio propio, cambiar base a "/".
-export default defineConfig(({ mode }) => ({
-  base: mode === "production" ? "/integrationsuite-lab/" : "/",
+// El sitio se sirve desde el dominio propio https://sapintegrationlab.com
+// (GitHub Pages con custom domain), por eso base "/".
+export default defineConfig({
+  base: "/",
   plugins: [react(), tailwindcss()],
-}));
+});

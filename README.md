@@ -1,6 +1,6 @@
 # IntegrationSuite LAB
 
-🌐 **En línea:** https://lucesgabriel.github.io/integrationsuite-lab/
+🌐 **En línea:** https://sapintegrationlab.com
 
 Página personal de **Gabriel Luces** — contenido práctico sobre **SAP Integration Suite** (Cloud Integration, API Management, Event Mesh): casos reales resueltos, errores documentados y patrones de integración.
 
