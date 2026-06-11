@@ -1,9 +1,11 @@
 import { useMemo, useState } from "react";
 import { posts } from "../lib/posts";
 import PostCard from "../components/PostCard";
+import { useLang } from "../i18n";
 
 export default function Blog() {
   const [activeTag, setActiveTag] = useState<string | null>(null);
+  const { t, lang } = useLang();
 
   const tags = useMemo(
     () => [...new Set(posts.flatMap((p) => p.tags))].sort(),
@@ -16,11 +18,14 @@ export default function Blog() {
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-16">
-      <h1 className="text-4xl font-extrabold text-strong">Artículos</h1>
-      <p className="mt-3 max-w-2xl text-muted">
-        Guías prácticas y notas técnicas sobre SAP Integration Suite, escritas
-        desde proyectos de integración reales.
-      </p>
+      <h1 className="text-4xl font-extrabold text-strong">{t.blog.title}</h1>
+      <p className="mt-3 max-w-2xl text-muted">{t.blog.description}</p>
+
+      {lang === "en" && (
+        <p className="mt-4 max-w-2xl rounded-xl border border-sap-blue/30 bg-sap-blue/10 px-4 py-3 text-sm text-accent-text">
+          {t.blog.spanishOnly}
+        </p>
+      )}
 
       <div className="mt-8 flex flex-wrap gap-2">
         <button
@@ -31,7 +36,7 @@ export default function Blog() {
               : "bg-raised text-muted hover:text-strong"
           }`}
         >
-          Todos
+          {t.blog.all}
         </button>
         {tags.map((tag) => (
           <button
@@ -55,9 +60,7 @@ export default function Blog() {
       </div>
 
       {visible.length === 0 && (
-        <p className="mt-10 text-faint">
-          Aún no hay artículos con esta etiqueta.
-        </p>
+        <p className="mt-10 text-faint">{t.blog.empty}</p>
       )}
     </section>
   );

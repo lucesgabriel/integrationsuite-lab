@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { services } from "../data/services";
+import { useLang } from "../i18n";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -9,6 +10,7 @@ type Status = "idle" | "sending" | "success" | "error";
  */
 export default function NewsletterSignup() {
   const [status, setStatus] = useState<Status>("idle");
+  const { t } = useLang();
 
   if (!services.kitFormAction) return null;
 
@@ -43,16 +45,13 @@ export default function NewsletterSignup() {
       <div className="relative mx-auto max-w-xl text-center">
         <p className="text-2xl">📬</p>
         <h2 className="mt-2 text-2xl font-bold text-strong">
-          Nuevos casos en tu correo
+          {t.newsletter.heading}
         </h2>
-        <p className="mt-2 text-sm text-muted">
-          Recibe los nuevos casos resueltos y guías de SAP Integration Suite.
-          Sin spam, date de baja cuando quieras.
-        </p>
+        <p className="mt-2 text-sm text-muted">{t.newsletter.description}</p>
 
         {status === "success" ? (
           <p className="mt-6 rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-500">
-            ¡Casi listo! Revisa tu correo para confirmar la suscripción.
+            {t.newsletter.success}
           </p>
         ) : (
           <form
@@ -63,8 +62,8 @@ export default function NewsletterSignup() {
               type="email"
               name="email_address"
               required
-              placeholder="tu@correo.com"
-              aria-label="Tu email"
+              placeholder={t.newsletter.placeholder}
+              aria-label="Email"
               className="w-full flex-1 rounded-xl border border-line bg-base px-4 py-3 text-sm text-body placeholder:text-faint outline-none transition-colors focus:border-sap-blue"
             />
             <button
@@ -72,16 +71,13 @@ export default function NewsletterSignup() {
               disabled={status === "sending"}
               className="glow rounded-xl bg-sap-blue px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-sap-blue-light disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {status === "sending" ? "Enviando…" : "Suscribirme"}
+              {status === "sending" ? t.newsletter.sending : t.newsletter.subscribe}
             </button>
           </form>
         )}
 
         {status === "error" && (
-          <p className="mt-3 text-sm text-red-400">
-            No se pudo completar la suscripción. Inténtalo de nuevo en un
-            momento.
-          </p>
+          <p className="mt-3 text-sm text-red-400">{t.newsletter.error}</p>
         )}
       </div>
     </div>

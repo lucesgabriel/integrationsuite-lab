@@ -1,7 +1,7 @@
 /**
  * Fuente única de verdad para los datos personales que se muestran en el sitio.
- * Actualiza este archivo cuando cambie tu perfil (nuevas certificaciones,
- * experiencia, etc.) y todas las páginas se actualizan solas.
+ * Los campos con texto libre son bilingües ({ es, en }); los técnicos
+ * (skills, nombres de empresas, headline) se comparten entre idiomas.
  */
 
 export const profile = {
@@ -12,66 +12,99 @@ export const profile = {
   location: "Santiago, Chile",
   email: "LucesLab@gmail.com",
   linkedin: "https://www.linkedin.com/in/lucesgabriel",
-  about: [
-    "Consultor SAP Senior con más de 12 años de experiencia entregando soluciones empresariales SAP en los módulos MM y PM, y soportando operaciones de organizaciones de gran escala como Walmart Chile.",
-    "Durante el último año me he especializado en SAP Integration Suite (BTP/CPI), construyendo y soportando integraciones con Cloud Integration (iFlows), APIs y herramientas de conectividad SAP para fortalecer la automatización cross-system y las capacidades de integración empresarial.",
-    "Combino una profunda experiencia funcional SAP con especialización creciente en integración, para conectar procesos de negocio con arquitectura SAP moderna.",
-  ],
+  about: {
+    es: [
+      "Consultor SAP Senior con más de 12 años de experiencia entregando soluciones empresariales SAP en los módulos MM y PM, y soportando operaciones de organizaciones de gran escala como Walmart Chile.",
+      "Durante el último año me he especializado en SAP Integration Suite (BTP/CPI), construyendo y soportando integraciones con Cloud Integration (iFlows), APIs y herramientas de conectividad SAP para fortalecer la automatización cross-system y las capacidades de integración empresarial.",
+      "Combino una profunda experiencia funcional SAP con especialización creciente en integración, para conectar procesos de negocio con arquitectura SAP moderna.",
+    ],
+    en: [
+      "Senior SAP Consultant with 12+ years of experience delivering enterprise SAP solutions across the MM and PM modules, supporting operations for large-scale organizations such as Walmart Chile.",
+      "Over the last year I have specialized in SAP Integration Suite (BTP/CPI), building and supporting integrations with Cloud Integration (iFlows), APIs and SAP connectivity tools to strengthen cross-system automation and enterprise integration capabilities.",
+      "I combine deep functional SAP expertise with growing integration specialization to bridge business processes and modern SAP architecture.",
+    ],
+  },
   stats: [
-    { value: "+12", label: "Años de experiencia SAP" },
-    { value: "21", label: "Licencias y certificaciones" },
-    { value: "3", label: "Áreas: MM · PM · CPI" },
+    {
+      value: "+12",
+      label: { es: "Años de experiencia SAP", en: "Years of SAP experience" },
+    },
+    {
+      value: "21",
+      label: { es: "Licencias y certificaciones", en: "Licenses & certifications" },
+    },
+    {
+      value: "3",
+      label: { es: "Áreas: MM · PM · CPI", en: "Areas: MM · PM · CPI" },
+    },
   ],
   experience: [
     {
       role: "Senior SAP Consultant",
       company: "Infosys",
-      period: "Abr 2023 — Presente",
-      location: "Santiago, Chile · Remoto",
-      summary:
-        "Cliente: Walmart Chile. Soporte funcional SAP MM/PM e integraciones con SAP Integration Suite (CPI, APIs, conectividad SAP).",
+      period: { es: "Abr 2023 — Presente", en: "Apr 2023 — Present" },
+      location: { es: "Santiago, Chile · Remoto", en: "Santiago, Chile · Remote" },
+      summary: {
+        es: "Cliente: Walmart Chile. Soporte funcional SAP MM/PM e integraciones con SAP Integration Suite (CPI, APIs, conectividad SAP).",
+        en: "Client: Walmart Chile. SAP MM/PM functional support and integrations with SAP Integration Suite (CPI, APIs, SAP connectivity).",
+      },
     },
     {
       role: "SAP MM Functional Consultant",
       company: "SNP Group",
-      period: "Ene 2022 — Feb 2023",
-      location: "Santiago, Chile",
-      summary:
-        "Transformación digital y migraciones SAP con enfoque automatizado sobre el ecosistema ERP.",
+      period: { es: "Ene 2022 — Feb 2023", en: "Jan 2022 — Feb 2023" },
+      location: { es: "Santiago, Chile", en: "Santiago, Chile" },
+      summary: {
+        es: "Transformación digital y migraciones SAP con enfoque automatizado sobre el ecosistema ERP.",
+        en: "Digital transformation and SAP migrations with an automated approach across the ERP ecosystem.",
+      },
     },
     {
       role: "SAP PM MM Functional Consultant",
       company: "Infosys",
-      period: "Jul 2019 — Ene 2022",
-      location: "Santiago, Chile",
-      summary:
-        "Cliente: Walmart Chile. Soporte funcional, planes de trabajo detallados y mejora continua de procesos logísticos y de mantenimiento.",
+      period: { es: "Jul 2019 — Ene 2022", en: "Jul 2019 — Jan 2022" },
+      location: { es: "Santiago, Chile", en: "Santiago, Chile" },
+      summary: {
+        es: "Cliente: Walmart Chile. Soporte funcional, planes de trabajo detallados y mejora continua de procesos logísticos y de mantenimiento.",
+        en: "Client: Walmart Chile. Functional support, detailed work plans and continuous improvement of logistics and maintenance processes.",
+      },
     },
     {
       role: "SAP Functional Consultant",
       company: "BC Tecnología",
-      period: "Ene 2019 — Jun 2019",
-      location: "Huechuraba, Chile",
-      summary: "Cliente: Walmart Chile. Soporte funcional SAP.",
+      period: { es: "Ene 2019 — Jun 2019", en: "Jan 2019 — Jun 2019" },
+      location: { es: "Huechuraba, Chile", en: "Huechuraba, Chile" },
+      summary: {
+        es: "Cliente: Walmart Chile. Soporte funcional SAP.",
+        en: "Client: Walmart Chile. SAP functional support.",
+      },
     },
     {
       role: "SAP Functional Consultant PM, MM",
       company: "VMCA (Valor Máximo Consultores y Asesores)",
-      period: "Abr 2017 — Ene 2019",
-      location: "Santiago, Chile",
-      summary:
-        "Configuraciones base, ABAP y soporte funcional en proyectos de implementación.",
+      period: { es: "Abr 2017 — Ene 2019", en: "Apr 2017 — Jan 2019" },
+      location: { es: "Santiago, Chile", en: "Santiago, Chile" },
+      summary: {
+        es: "Configuraciones base, ABAP y soporte funcional en proyectos de implementación.",
+        en: "Baseline configuration, ABAP and functional support on implementation projects.",
+      },
     },
   ],
   education: [
     {
       school: "Universidad de Chile",
-      degree: "Ingeniero Civil en Electricidad (Revalida de Título)",
+      degree: {
+        es: "Ingeniero Civil en Electricidad (Revalida de Título)",
+        en: "Civil Electrical Engineer (degree revalidation)",
+      },
       period: "2017",
     },
     {
       school: "Universidad del Zulia",
-      degree: "Ingeniero Electricista, Electrical and Electronics Engineering",
+      degree: {
+        es: "Ingeniero Electricista, Electrical and Electronics Engineering",
+        en: "Electrical Engineer, Electrical and Electronics Engineering",
+      },
       period: "2004 — 2011",
     },
   ],
@@ -100,8 +133,14 @@ export const profile = {
     "AI & Automation",
   ],
   languages: [
-    { name: "Español", level: "Nativo" },
-    { name: "Inglés", level: "Profesional completo" },
+    {
+      name: { es: "Español", en: "Spanish" },
+      level: { es: "Nativo", en: "Native" },
+    },
+    {
+      name: { es: "Inglés", en: "English" },
+      level: { es: "Profesional completo", en: "Full professional" },
+    },
   ],
 };
 

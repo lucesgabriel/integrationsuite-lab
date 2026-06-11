@@ -72,12 +72,11 @@ export function getPost(slug: string): Post | undefined {
   return posts.find((p) => p.slug === slug);
 }
 
-export function formatDate(iso: string): string {
+export function formatDate(iso: string, lang: "es" | "en" = "es"): string {
   if (!iso) return "";
   const [y, m, d] = iso.split("-").map(Number);
-  return new Date(y, m - 1, d).toLocaleDateString("es-CL", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  return new Date(y, m - 1, d).toLocaleDateString(
+    lang === "es" ? "es-CL" : "en-US",
+    { day: "numeric", month: "long", year: "numeric" }
+  );
 }

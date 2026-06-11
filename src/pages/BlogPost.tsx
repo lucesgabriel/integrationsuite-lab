@@ -4,23 +4,23 @@ import ReactMarkdown from "react-markdown";
 import { getPost, formatDate } from "../lib/posts";
 import Lightbox from "../components/Lightbox";
 import NewsletterSignup from "../components/NewsletterSignup";
+import { useLang } from "../i18n";
 
 export default function BlogPost() {
   const { slug } = useParams();
   const post = slug ? getPost(slug) : undefined;
   const [zoom, setZoom] = useState<{ src: string; alt?: string } | null>(null);
+  const { t, lang } = useLang();
 
   if (!post) {
     return (
       <section className="mx-auto max-w-3xl px-4 py-24 text-center">
-        <h1 className="text-3xl font-bold text-strong">
-          Artículo no encontrado
-        </h1>
+        <h1 className="text-3xl font-bold text-strong">{t.blog.notFound}</h1>
         <Link
           to="/blog"
           className="mt-6 inline-block text-accent-text hover:text-sap-blue"
         >
-          ← Volver a artículos
+          {t.blog.back}
         </Link>
       </section>
     );
@@ -32,7 +32,7 @@ export default function BlogPost() {
         to="/blog"
         className="text-sm text-accent-text hover:text-sap-blue"
       >
-        ← Volver a artículos
+        {t.blog.back}
       </Link>
 
       <header className="mt-6">
@@ -49,7 +49,12 @@ export default function BlogPost() {
         <h1 className="mt-4 text-4xl font-extrabold leading-tight text-strong">
           {post.title}
         </h1>
-        <p className="mt-4 text-sm text-faint">{formatDate(post.date)}</p>
+        <p className="mt-4 text-sm text-faint">{formatDate(post.date, lang)}</p>
+        {lang === "en" && (
+          <p className="mt-4 rounded-xl border border-sap-blue/30 bg-sap-blue/10 px-4 py-3 text-sm text-accent-text">
+            {t.blog.spanishOnly}
+          </p>
+        )}
       </header>
 
       <div className="prose-post mt-10">

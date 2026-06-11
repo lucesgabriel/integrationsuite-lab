@@ -73,7 +73,7 @@ Estas keys están diseñadas para ser públicas en el front-end (no son secretos
 - [ ] Sección de recursos/descargas (cheatsheets, colecciones Postman)
 - [ ] Resaltado de sintaxis en bloques de código (shiki / prism)
 - [ ] SEO por página (react-helmet o meta tags dinámicos) + sitemap
-- [ ] Versión en inglés (i18n)
+- [x] Versión en inglés (i18n) — UI y perfil bilingües; los artículos siguen en español (soporte para traducirlos pendiente)
 - [x] Newsletter (Kit) / formulario de contacto (Web3Forms) — ver "Activar contacto y newsletter"
 - [x] Deploy automático (GitHub Pages + Actions)
 - [x] Dark/light mode toggle

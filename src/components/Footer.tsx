@@ -1,10 +1,20 @@
 import { Link } from "react-router-dom";
 import { profile } from "../data/profile";
 import { posts } from "../lib/posts";
+import { useLang } from "../i18n";
 
 const topTags = [...new Set(posts.flatMap((p) => p.tags))].slice(0, 6);
 
 export default function Footer() {
+  const { t } = useLang();
+
+  const navLinks = [
+    { to: "/", label: t.nav.home },
+    { to: "/blog", label: t.nav.blog },
+    { to: "/sobre-mi", label: t.nav.about },
+    { to: "/contacto", label: t.nav.contact },
+  ];
+
   return (
     <footer className="relative bg-card">
       {/* Línea superior de gradiente animado */}
@@ -19,10 +29,7 @@ export default function Footer() {
             </span>
             SAPIntegration<span className="text-accent-text">Lab</span>
           </p>
-          <p className="mt-3 text-sm text-muted">
-            Contenido práctico sobre SAP Integration Suite: casos reales,
-            errores documentados y patrones de integración empresarial.
-          </p>
+          <p className="mt-3 text-sm text-muted">{t.footer.tagline}</p>
           <p className="mt-4 flex items-center gap-1.5 text-sm text-faint">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z" />
@@ -35,15 +42,10 @@ export default function Footer() {
         {/* Navegación */}
         <div>
           <p className="text-sm font-semibold uppercase tracking-wider text-faint">
-            Navegación
+            {t.footer.navigation}
           </p>
           <ul className="mt-4 space-y-2.5 text-sm">
-            {[
-              { to: "/", label: "Inicio" },
-              { to: "/blog", label: "Artículos" },
-              { to: "/sobre-mi", label: "Sobre mí" },
-              { to: "/contacto", label: "Contacto" },
-            ].map((l) => (
+            {navLinks.map((l) => (
               <li key={l.to}>
                 <Link
                   to={l.to}
@@ -60,7 +62,7 @@ export default function Footer() {
         {/* Temas (tags reales de los posts) */}
         <div>
           <p className="text-sm font-semibold uppercase tracking-wider text-faint">
-            Temas
+            {t.footer.topics}
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {topTags.map((tag) => (
@@ -78,7 +80,7 @@ export default function Footer() {
         {/* Contacto */}
         <div>
           <p className="text-sm font-semibold uppercase tracking-wider text-faint">
-            Contacto
+            {t.footer.contact}
           </p>
           <div className="mt-4 flex flex-col gap-3">
             <a
@@ -108,11 +110,7 @@ export default function Footer() {
 
       {/* Disclaimer de marca */}
       <div className="mx-auto max-w-6xl px-4 pb-6">
-        <p className="text-center text-xs text-faint">
-          Sitio independiente de la comunidad — no afiliado, asociado ni
-          respaldado por SAP SE. SAP, SAP BTP y SAP Integration Suite son
-          marcas registradas de SAP SE en Alemania y otros países.
-        </p>
+        <p className="text-center text-xs text-faint">{t.footer.disclaimer}</p>
       </div>
 
       {/* Status bar estilo terminal */}

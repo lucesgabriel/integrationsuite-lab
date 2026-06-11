@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme";
-
-const links = [
-  { to: "/", label: "Inicio" },
-  { to: "/blog", label: "Artículos" },
-  { to: "/sobre-mi", label: "Sobre mí" },
-  { to: "/contacto", label: "Contacto" },
-];
+import { useLang } from "../i18n";
 
 function ThemeToggle({
   theme,
@@ -38,9 +32,31 @@ function ThemeToggle({
   );
 }
 
+function LangToggle() {
+  const { lang, setLang } = useLang();
+  const next = lang === "es" ? "en" : "es";
+  return (
+    <button
+      onClick={() => setLang(next)}
+      aria-label={lang === "es" ? "Switch to English" : "Cambiar a español"}
+      className="flex h-9 items-center justify-center rounded-lg border border-line px-2.5 text-xs font-bold tracking-wide text-muted transition-colors hover:border-sap-blue hover:text-strong"
+    >
+      {next.toUpperCase()}
+    </button>
+  );
+}
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { theme, toggle } = useTheme();
+  const { t } = useLang();
+
+  const links = [
+    { to: "/", label: t.nav.home },
+    { to: "/blog", label: t.nav.blog },
+    { to: "/sobre-mi", label: t.nav.about },
+    { to: "/contacto", label: t.nav.contact },
+  ];
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `relative px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
@@ -68,6 +84,7 @@ export default function Navbar() {
             </NavLink>
           ))}
           <div className="ml-2 flex items-center gap-2">
+            <LangToggle />
             <ThemeToggle theme={theme} toggle={toggle} />
             <a
               href="https://www.linkedin.com/in/lucesgabriel"
@@ -81,6 +98,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
+          <LangToggle />
           <ThemeToggle theme={theme} toggle={toggle} />
           <button
             onClick={() => setOpen(!open)}

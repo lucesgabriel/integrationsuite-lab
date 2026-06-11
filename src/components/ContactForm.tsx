@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { profile } from "../data/profile";
 import { services } from "../data/services";
+import { useLang } from "../i18n";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -9,15 +10,14 @@ const inputClass =
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
+  const { t } = useLang();
+  const f = t.contact.form;
 
   // Sin access key configurado: fallback al correo directo
   if (!services.web3formsAccessKey) {
     return (
       <div className="rounded-2xl border border-line bg-card p-8 text-center">
-        <p className="text-muted">
-          El formulario estará disponible pronto. Mientras tanto, escríbeme
-          directamente:
-        </p>
+        <p className="text-muted">{f.pending}</p>
         <a
           href={`mailto:${profile.email}`}
           className="glow mt-6 inline-block rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-all hover:bg-sap-blue-light"
@@ -59,15 +59,13 @@ export default function ContactForm() {
     return (
       <div className="rounded-2xl border border-emerald-500/40 bg-card p-8 text-center">
         <p className="text-3xl">✅</p>
-        <h3 className="mt-3 text-xl font-bold text-strong">¡Mensaje enviado!</h3>
-        <p className="mt-2 text-muted">
-          Gracias por escribir — te responderé pronto a tu correo.
-        </p>
+        <h3 className="mt-3 text-xl font-bold text-strong">{f.successTitle}</h3>
+        <p className="mt-2 text-muted">{f.successText}</p>
         <button
           onClick={() => setStatus("idle")}
           className="mt-6 rounded-xl border border-line px-5 py-2.5 text-sm font-semibold text-body transition-colors hover:border-sap-blue hover:text-strong"
         >
-          Enviar otro mensaje
+          {f.sendAnother}
         </button>
       </div>
     );
@@ -86,44 +84,44 @@ export default function ContactForm() {
       />
 
       <label className="block text-sm font-semibold text-strong" htmlFor="ct-name">
-        Nombre
+        {f.name}
       </label>
       <input
         id="ct-name"
         name="name"
         type="text"
         required
-        placeholder="Tu nombre"
+        placeholder={f.namePlaceholder}
         className={`${inputClass} mt-2`}
       />
 
       <label className="mt-5 block text-sm font-semibold text-strong" htmlFor="ct-email">
-        Email
+        {f.email}
       </label>
       <input
         id="ct-email"
         name="email"
         type="email"
         required
-        placeholder="tu@correo.com"
+        placeholder={f.emailPlaceholder}
         className={`${inputClass} mt-2`}
       />
 
       <label className="mt-5 block text-sm font-semibold text-strong" htmlFor="ct-message">
-        Mensaje
+        {f.message}
       </label>
       <textarea
         id="ct-message"
         name="message"
         required
         rows={5}
-        placeholder="Cuéntame sobre tu proyecto de integración, duda o propuesta…"
+        placeholder={f.messagePlaceholder}
         className={`${inputClass} mt-2 resize-y`}
       />
 
       {status === "error" && (
         <p className="mt-4 rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-400">
-          No se pudo enviar el mensaje. Inténtalo de nuevo o escríbeme a{" "}
+          {f.error}{" "}
           <a href={`mailto:${profile.email}`} className="underline">
             {profile.email}
           </a>
@@ -136,7 +134,7 @@ export default function ContactForm() {
         disabled={status === "sending"}
         className="glow mt-6 w-full rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-all hover:bg-sap-blue-light disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {status === "sending" ? "Enviando…" : "Enviar mensaje"}
+        {status === "sending" ? f.sending : f.send}
       </button>
     </form>
   );

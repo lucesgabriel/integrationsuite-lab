@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
 import { profile } from "../data/profile";
 import { useReveal } from "../hooks/useReveal";
+import { useLang } from "../i18n";
 
 export default function About() {
   const expRef = useReveal<HTMLDivElement>();
   const certRef = useReveal<HTMLDivElement>();
   const contactRef = useReveal<HTMLDivElement>();
+  const { t, lang } = useLang();
 
   return (
     <section className="mx-auto max-w-4xl px-4 py-16">
-      {/* Header con avatar */}
+      {/* Header con foto */}
       <div className="relative overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-raised to-card p-8 md:p-10">
         <div
           className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full blur-3xl"
@@ -18,10 +20,9 @@ export default function About() {
         <div className="relative flex flex-col items-start gap-6 md:flex-row md:items-center">
           <img
             src={profile.photo}
-            alt={`Foto de ${profile.name}`}
+            alt={`${t.about.photoAlt} ${profile.name}`}
             className="glow-strong h-28 w-28 shrink-0 rounded-full border-2 border-sap-blue/50 object-cover object-top"
           />
-
           <div>
             <h1 className="text-3xl font-extrabold text-strong md:text-4xl">
               {profile.name}
@@ -39,13 +40,13 @@ export default function About() {
       </div>
 
       <div className="mt-10 space-y-4 leading-relaxed text-body">
-        {profile.about.map((paragraph) => (
+        {profile.about[lang].map((paragraph) => (
           <p key={paragraph.slice(0, 30)}>{paragraph}</p>
         ))}
       </div>
 
       {/* Skills */}
-      <h2 className="mt-14 text-2xl font-bold text-strong">Especialidades</h2>
+      <h2 className="mt-14 text-2xl font-bold text-strong">{t.about.skills}</h2>
       <div className="mt-5 flex flex-wrap gap-2">
         {profile.skills.map((skill) => (
           <span
@@ -58,18 +59,20 @@ export default function About() {
       </div>
 
       {/* Experiencia */}
-      <h2 className="mt-14 text-2xl font-bold text-strong">Experiencia</h2>
+      <h2 className="mt-14 text-2xl font-bold text-strong">
+        {t.about.experience}
+      </h2>
       <div ref={expRef} className="reveal mt-6 space-y-0 border-l-2 border-line">
         {profile.experience.map((job) => (
-          <div key={`${job.company}-${job.period}`} className="relative pb-8 pl-8">
+          <div key={`${job.company}-${job.period.es}`} className="relative pb-8 pl-8">
             <span className="absolute -left-[9px] top-2 h-4 w-4 rounded-full border-2 border-base bg-sap-blue shadow-[0_0_12px_var(--glow-strong)]" />
             <div className="hover-glow rounded-2xl border border-line bg-card/60 p-5 hover:border-sap-blue/50">
-              <p className="text-sm text-faint">{job.period}</p>
+              <p className="text-sm text-faint">{job.period[lang]}</p>
               <h3 className="mt-1 font-bold text-strong">{job.role}</h3>
               <p className="text-sm text-accent-text">
-                {job.company} · {job.location}
+                {job.company} · {job.location[lang]}
               </p>
-              <p className="mt-2 text-sm text-muted">{job.summary}</p>
+              <p className="mt-2 text-sm text-muted">{job.summary[lang]}</p>
             </div>
           </div>
         ))}
@@ -77,7 +80,7 @@ export default function About() {
 
       {/* Certificaciones */}
       <h2 className="mt-6 text-2xl font-bold text-strong">
-        Certificaciones destacadas
+        {t.about.certifications}
       </h2>
       <div ref={certRef} className="reveal mt-6 grid gap-4 sm:grid-cols-2">
         {profile.certifications.map((cert) => (
@@ -104,24 +107,33 @@ export default function About() {
       {/* Educación e idiomas */}
       <div className="mt-14 grid gap-10 md:grid-cols-2">
         <div>
-          <h2 className="text-2xl font-bold text-strong">Educación</h2>
+          <h2 className="text-2xl font-bold text-strong">
+            {t.about.education}
+          </h2>
           <ul className="mt-5 space-y-4">
             {profile.education.map((edu) => (
               <li key={edu.school}>
                 <p className="font-semibold text-strong">{edu.school}</p>
-                <p className="text-sm text-muted">{edu.degree}</p>
+                <p className="text-sm text-muted">{edu.degree[lang]}</p>
                 <p className="text-sm text-faint">{edu.period}</p>
               </li>
             ))}
           </ul>
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-strong">Idiomas</h2>
+          <h2 className="text-2xl font-bold text-strong">
+            {t.about.languages}
+          </h2>
           <ul className="mt-5 space-y-3">
-            {profile.languages.map((lang) => (
-              <li key={lang.name} className="flex justify-between border-b border-line pb-2">
-                <span className="text-body">{lang.name}</span>
-                <span className="text-sm text-faint">{lang.level}</span>
+            {profile.languages.map((language) => (
+              <li
+                key={language.name.es}
+                className="flex justify-between border-b border-line pb-2"
+              >
+                <span className="text-body">{language.name[lang]}</span>
+                <span className="text-sm text-faint">
+                  {language.level[lang]}
+                </span>
               </li>
             ))}
           </ul>
@@ -135,16 +147,16 @@ export default function About() {
           style={{ background: "var(--orb)" }}
         />
         <div className="relative">
-          <h2 className="text-2xl font-bold text-strong">Contacto</h2>
-          <p className="mt-2 text-muted">
-            ¿Tienes un proyecto de integración o quieres intercambiar ideas?
-          </p>
+          <h2 className="text-2xl font-bold text-strong">
+            {t.about.contactHeading}
+          </h2>
+          <p className="mt-2 text-muted">{t.about.contactText}</p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
             <Link
               to="/contacto"
               className="glow rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-all hover:bg-sap-blue-light"
             >
-              Enviar mensaje
+              {t.about.sendMessage}
             </Link>
             <a
               href={profile.linkedin}

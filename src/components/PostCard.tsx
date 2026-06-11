@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import type { Post } from "../lib/posts";
 import { formatDate } from "../lib/posts";
 import { trackSpotlight } from "../lib/spotlight";
+import { useLang } from "../i18n";
 
 export default function PostCard({ post }: { post: Post }) {
+  const { t, lang } = useLang();
+
   return (
     <Link
       to={`/blog/${post.slug}`}
@@ -26,9 +29,9 @@ export default function PostCard({ post }: { post: Post }) {
       </h3>
       <p className="mt-2 flex-1 text-sm text-muted">{post.description}</p>
       <div className="mt-4 flex items-center justify-between">
-        <p className="text-xs text-faint">{formatDate(post.date)}</p>
+        <p className="text-xs text-faint">{formatDate(post.date, lang)}</p>
         <span className="text-sm font-semibold text-accent-text opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100 md:-translate-x-2">
-          Leer →
+          {t.posts.read}
         </span>
       </div>
     </Link>

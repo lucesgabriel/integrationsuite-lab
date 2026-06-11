@@ -1,16 +1,14 @@
 import { profile } from "../data/profile";
 import ContactForm from "../components/ContactForm";
+import { useLang } from "../i18n";
 
 export default function Contact() {
+  const { t } = useLang();
+
   return (
     <section className="mx-auto max-w-5xl px-4 py-16">
-      <h1 className="text-4xl font-extrabold text-strong">
-        ¿Hablamos de integración SAP?
-      </h1>
-      <p className="mt-3 max-w-2xl text-muted">
-        Proyectos de integración, dudas técnicas sobre SAP Integration Suite,
-        propuestas o simplemente intercambiar ideas — escríbeme y te respondo.
-      </p>
+      <h1 className="text-4xl font-extrabold text-strong">{t.contact.title}</h1>
+      <p className="mt-3 max-w-2xl text-muted">{t.contact.description}</p>
 
       <div className="mt-10 grid gap-8 md:grid-cols-[3fr_2fr]">
         <ContactForm />
@@ -29,9 +27,7 @@ export default function Contact() {
             </span>
             <div>
               <p className="font-semibold text-strong">LinkedIn</p>
-              <p className="mt-1 text-sm text-muted">
-                La vía más rápida — suelo responder el mismo día.
-              </p>
+              <p className="mt-1 text-sm text-muted">{t.contact.linkedinNote}</p>
             </div>
           </a>
 
@@ -46,7 +42,7 @@ export default function Contact() {
               </svg>
             </span>
             <div>
-              <p className="font-semibold text-strong">Email</p>
+              <p className="font-semibold text-strong">{t.contact.emailLabel}</p>
               <p className="mt-1 text-sm text-muted">{profile.email}</p>
             </div>
           </a>
@@ -59,9 +55,11 @@ export default function Contact() {
               </svg>
             </span>
             <div>
-              <p className="font-semibold text-strong">Ubicación</p>
+              <p className="font-semibold text-strong">
+                {t.contact.locationLabel}
+              </p>
               <p className="mt-1 text-sm text-muted">
-                {profile.location} · Trabajo remoto con toda LATAM
+                {profile.location} · {t.contact.locationNote}
               </p>
             </div>
           </div>
