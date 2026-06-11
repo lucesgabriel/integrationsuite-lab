@@ -17,14 +17,10 @@
   </head>
   <body>
     <script>
-      // Anti-FOUC: aplica el tema antes del primer paint
+      // Anti-FOUC: aplica el tema antes del primer paint (claro por defecto)
       (function () {
-        var t = localStorage.getItem("theme");
-        if (!t)
-          t = window.matchMedia("(prefers-color-scheme: light)").matches
-            ? "light"
-            : "dark";
-        if (t === "dark") document.documentElement.classList.add("dark");
+        if (localStorage.getItem("theme") === "dark")
+          document.documentElement.classList.add("dark");
       })();
     </script>
     <div id="root"></div>

@@ -105,6 +105,15 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* Disclaimer de marca */}
+      <div className="mx-auto max-w-6xl px-4 pb-6">
+        <p className="text-center text-xs text-faint">
+          Sitio independiente de la comunidad — no afiliado, asociado ni
+          respaldado por SAP SE. SAP, SAP BTP y SAP Integration Suite son
+          marcas registradas de SAP SE en Alemania y otros países.
+        </p>
+      </div>
+
       {/* Status bar estilo terminal */}
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 font-mono text-xs text-faint">
