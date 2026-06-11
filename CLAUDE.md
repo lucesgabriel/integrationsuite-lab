@@ -1,4 +1,6 @@
-# IntegrationSuite LAB — Guía para Claude
+# SAPIntegrationLab — Guía para Claude
+
+La marca del sitio es **SAPIntegrationLab** (dominio sapintegrationlab.com); en la UI se renderiza como `SAPIntegration` + `Lab` en azul acento, con el chip "SIL".
 
 Página personal de Gabriel Luces (consultor SAP, Chile) enfocada en contenido sobre **SAP Integration Suite**. El objetivo es publicar artículos mientras se prepara para la certificación SAP Integration Developer (C_CPI_15) y posicionar su marca personal.
 

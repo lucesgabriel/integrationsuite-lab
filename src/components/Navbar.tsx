@@ -52,11 +52,11 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-line bg-base/90 backdrop-blur">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link to="/" className="flex items-center gap-2 font-bold text-strong">
-          <span className="glow flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-sap-blue to-sap-blue-light text-sm text-white">
-            IS
+          <span className="glow flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-sap-blue to-sap-blue-light text-xs text-white">
+            SIL
           </span>
           <span className="font-display">
-            IntegrationSuite<span className="text-accent-text"> LAB</span>
+            SAPIntegration<span className="text-accent-text">Lab</span>
           </span>
         </Link>
 

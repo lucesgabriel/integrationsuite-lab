@@ -1,4 +1,4 @@
-# IntegrationSuite LAB
+# SAPIntegrationLab
 
 🌐 **En línea:** https://sapintegrationlab.com
 

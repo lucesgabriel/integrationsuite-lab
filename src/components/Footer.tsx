@@ -14,10 +14,10 @@ export default function Footer() {
         {/* Marca */}
         <div>
           <p className="flex items-center gap-2 font-display font-bold text-strong">
-            <span className="glow flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-sap-blue to-sap-blue-light text-xs text-white">
-              IS
+            <span className="glow flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-sap-blue to-sap-blue-light text-[10px] text-white">
+              SIL
             </span>
-            IntegrationSuite<span className="text-accent-text"> LAB</span>
+            SAPIntegration<span className="text-accent-text">Lab</span>
           </p>
           <p className="mt-3 text-sm text-muted">
             Contenido práctico sobre SAP Integration Suite: casos reales,
