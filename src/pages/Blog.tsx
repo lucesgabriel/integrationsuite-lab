@@ -16,11 +16,10 @@ export default function Blog() {
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-16">
-      <h1 className="text-4xl font-extrabold text-white">Artículos</h1>
-      <p className="mt-3 max-w-2xl text-slate-400">
-        Guías prácticas y notas de estudio sobre SAP Integration Suite,
-        escritas mientras construyo integraciones reales y me preparo para la
-        certificación.
+      <h1 className="text-4xl font-extrabold text-strong">Artículos</h1>
+      <p className="mt-3 max-w-2xl text-muted">
+        Guías prácticas y notas técnicas sobre SAP Integration Suite, escritas
+        desde proyectos de integración reales.
       </p>
 
       <div className="mt-8 flex flex-wrap gap-2">
@@ -29,7 +28,7 @@ export default function Blog() {
           className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
             activeTag === null
               ? "bg-sap-blue text-white"
-              : "bg-ink-800 text-slate-400 hover:text-white"
+              : "bg-raised text-muted hover:text-strong"
           }`}
         >
           Todos
@@ -41,7 +40,7 @@ export default function Blog() {
             className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
               activeTag === tag
                 ? "bg-sap-blue text-white"
-                : "bg-ink-800 text-slate-400 hover:text-white"
+                : "bg-raised text-muted hover:text-strong"
             }`}
           >
             {tag}
@@ -56,7 +55,7 @@ export default function Blog() {
       </div>
 
       {visible.length === 0 && (
-        <p className="mt-10 text-slate-500">
+        <p className="mt-10 text-faint">
           Aún no hay artículos con esta etiqueta.
         </p>
       )}

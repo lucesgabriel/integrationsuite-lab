@@ -40,7 +40,15 @@ function parseFrontmatter(raw: string): {
   for (const line of match[1].split(/\r?\n/)) {
     const idx = line.indexOf(":");
     if (idx === -1) continue;
-    meta[line.slice(0, idx).trim()] = line.slice(idx + 1).trim();
+    let value = line.slice(idx + 1).trim();
+    // Quitar comillas envolventes estilo YAML: title: "Mi título"
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+    meta[line.slice(0, idx).trim()] = value;
   }
   return { meta, body: raw.slice(match[0].length) };
 }

@@ -1,38 +1,57 @@
 import { profile } from "../data/profile";
+import { useReveal } from "../hooks/useReveal";
+
+const initials = profile.name
+  .split(" ")
+  .map((part) => part[0])
+  .join("");
 
 export default function About() {
+  const expRef = useReveal<HTMLDivElement>();
+  const certRef = useReveal<HTMLDivElement>();
+  const contactRef = useReveal<HTMLDivElement>();
+
   return (
     <section className="mx-auto max-w-4xl px-4 py-16">
-      <h1 className="text-4xl font-extrabold text-white">{profile.name}</h1>
-      <p className="mt-3 text-lg text-sap-blue-light">{profile.headline}</p>
-      <p className="mt-1 text-sm text-slate-500">{profile.location}</p>
+      {/* Header con avatar */}
+      <div className="relative overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-raised to-card p-8 md:p-10">
+        <div
+          className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full blur-3xl"
+          style={{ background: "var(--orb)" }}
+        />
+        <div className="relative flex flex-col items-start gap-6 md:flex-row md:items-center">
+          <span className="glow-strong flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sap-blue to-sap-blue-light font-display text-3xl font-extrabold text-white">
+            {initials}
+          </span>
+          <div>
+            <h1 className="text-3xl font-extrabold text-strong md:text-4xl">
+              {profile.name}
+            </h1>
+            <p className="mt-2 text-accent-text">{profile.headline}</p>
+            <p className="mt-1 flex items-center gap-1.5 text-sm text-faint">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z" />
+                <circle cx="12" cy="10" r="2.5" />
+              </svg>
+              {profile.location}
+            </p>
+          </div>
+        </div>
+      </div>
 
-      <div className="mt-8 space-y-4 text-slate-300 leading-relaxed">
+      <div className="mt-10 space-y-4 leading-relaxed text-body">
         {profile.about.map((paragraph) => (
           <p key={paragraph.slice(0, 30)}>{paragraph}</p>
         ))}
       </div>
 
-      {/* Objetivo de certificación */}
-      <div className="mt-10 rounded-2xl border border-sap-blue/40 bg-sap-blue/10 p-6">
-        <p className="text-sm font-semibold uppercase tracking-wider text-sap-blue-light">
-          🎯 Próximo objetivo
-        </p>
-        <p className="mt-2 text-lg font-bold text-white">
-          {profile.certificationGoal.name}
-        </p>
-        <p className="mt-1 text-sm text-slate-400">
-          {profile.certificationGoal.status}
-        </p>
-      </div>
-
       {/* Skills */}
-      <h2 className="mt-14 text-2xl font-bold text-white">Especialidades</h2>
+      <h2 className="mt-14 text-2xl font-bold text-strong">Especialidades</h2>
       <div className="mt-5 flex flex-wrap gap-2">
         {profile.skills.map((skill) => (
           <span
             key={skill}
-            className="rounded-full border border-ink-700 bg-ink-900 px-4 py-1.5 text-sm text-slate-300"
+            className="rounded-full border border-line bg-card px-4 py-1.5 text-sm text-body transition-colors hover:border-sap-blue/60 hover:text-strong"
           >
             {skill}
           </span>
@@ -40,35 +59,45 @@ export default function About() {
       </div>
 
       {/* Experiencia */}
-      <h2 className="mt-14 text-2xl font-bold text-white">Experiencia</h2>
-      <div className="mt-6 space-y-0 border-l-2 border-ink-700">
+      <h2 className="mt-14 text-2xl font-bold text-strong">Experiencia</h2>
+      <div ref={expRef} className="reveal mt-6 space-y-0 border-l-2 border-line">
         {profile.experience.map((job) => (
-          <div key={`${job.company}-${job.period}`} className="relative pb-10 pl-8">
-            <span className="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full bg-sap-blue" />
-            <p className="text-sm text-slate-500">{job.period}</p>
-            <h3 className="mt-1 font-bold text-white">{job.role}</h3>
-            <p className="text-sm text-sap-blue-light">
-              {job.company} · {job.location}
-            </p>
-            <p className="mt-2 text-sm text-slate-400">{job.summary}</p>
+          <div key={`${job.company}-${job.period}`} className="relative pb-8 pl-8">
+            <span className="absolute -left-[9px] top-2 h-4 w-4 rounded-full border-2 border-base bg-sap-blue shadow-[0_0_12px_var(--glow-strong)]" />
+            <div className="hover-glow rounded-2xl border border-line bg-card/60 p-5 hover:border-sap-blue/50">
+              <p className="text-sm text-faint">{job.period}</p>
+              <h3 className="mt-1 font-bold text-strong">{job.role}</h3>
+              <p className="text-sm text-accent-text">
+                {job.company} · {job.location}
+              </p>
+              <p className="mt-2 text-sm text-muted">{job.summary}</p>
+            </div>
           </div>
         ))}
       </div>
 
       {/* Certificaciones */}
-      <h2 className="mt-6 text-2xl font-bold text-white">
+      <h2 className="mt-6 text-2xl font-bold text-strong">
         Certificaciones destacadas
       </h2>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+      <div ref={certRef} className="reveal mt-6 grid gap-4 sm:grid-cols-2">
         {profile.certifications.map((cert) => (
           <div
             key={cert.name}
-            className="rounded-2xl border border-ink-700 bg-ink-900 p-5"
+            className="hover-glow flex items-start gap-4 rounded-2xl border border-line bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-sap-blue/60"
           >
-            <p className="font-semibold text-white">{cert.name}</p>
-            <p className="mt-1 text-sm text-slate-400">
-              {cert.issuer} · {cert.year}
-            </p>
+            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-sap-blue/30 bg-gradient-to-br from-sap-blue/25 to-sap-blue/5">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent-text)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="9" r="6" />
+                <path d="M9 14.5L7.5 21l4.5-2.5L16.5 21 15 14.5M10 9l1.5 1.5L14.5 7" />
+              </svg>
+            </span>
+            <div>
+              <p className="font-semibold text-strong">{cert.name}</p>
+              <p className="mt-1 text-sm text-muted">
+                {cert.issuer} · {cert.year}
+              </p>
+            </div>
           </div>
         ))}
       </div>
@@ -76,24 +105,24 @@ export default function About() {
       {/* Educación e idiomas */}
       <div className="mt-14 grid gap-10 md:grid-cols-2">
         <div>
-          <h2 className="text-2xl font-bold text-white">Educación</h2>
+          <h2 className="text-2xl font-bold text-strong">Educación</h2>
           <ul className="mt-5 space-y-4">
             {profile.education.map((edu) => (
               <li key={edu.school}>
-                <p className="font-semibold text-white">{edu.school}</p>
-                <p className="text-sm text-slate-400">{edu.degree}</p>
-                <p className="text-sm text-slate-500">{edu.period}</p>
+                <p className="font-semibold text-strong">{edu.school}</p>
+                <p className="text-sm text-muted">{edu.degree}</p>
+                <p className="text-sm text-faint">{edu.period}</p>
               </li>
             ))}
           </ul>
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-white">Idiomas</h2>
+          <h2 className="text-2xl font-bold text-strong">Idiomas</h2>
           <ul className="mt-5 space-y-3">
             {profile.languages.map((lang) => (
-              <li key={lang.name} className="flex justify-between border-b border-ink-800 pb-2">
-                <span className="text-slate-300">{lang.name}</span>
-                <span className="text-sm text-slate-500">{lang.level}</span>
+              <li key={lang.name} className="flex justify-between border-b border-line pb-2">
+                <span className="text-body">{lang.name}</span>
+                <span className="text-sm text-faint">{lang.level}</span>
               </li>
             ))}
           </ul>
@@ -101,26 +130,32 @@ export default function About() {
       </div>
 
       {/* Contacto */}
-      <div className="mt-16 rounded-3xl border border-ink-700 bg-ink-900 p-8 text-center">
-        <h2 className="text-2xl font-bold text-white">Contacto</h2>
-        <p className="mt-2 text-slate-400">
-          ¿Tienes un proyecto de integración o quieres intercambiar ideas?
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-4">
-          <a
-            href={profile.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-colors hover:bg-sap-blue-light"
-          >
-            LinkedIn
-          </a>
-          <a
-            href={`mailto:${profile.email}`}
-            className="rounded-xl border border-ink-700 px-6 py-3 font-semibold text-slate-300 transition-colors hover:border-sap-blue hover:text-white"
-          >
-            Enviar correo
-          </a>
+      <div ref={contactRef} className="reveal relative mt-16 overflow-hidden rounded-3xl border border-line bg-card p-8 text-center">
+        <div
+          className="pointer-events-none absolute -bottom-20 -right-16 h-48 w-48 rounded-full blur-3xl"
+          style={{ background: "var(--orb)" }}
+        />
+        <div className="relative">
+          <h2 className="text-2xl font-bold text-strong">Contacto</h2>
+          <p className="mt-2 text-muted">
+            ¿Tienes un proyecto de integración o quieres intercambiar ideas?
+          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-4">
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="glow rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-all hover:bg-sap-blue-light"
+            >
+              LinkedIn
+            </a>
+            <a
+              href={`mailto:${profile.email}`}
+              className="rounded-xl border border-line px-6 py-3 font-semibold text-body transition-colors hover:border-sap-blue hover:text-strong"
+            >
+              Enviar correo
+            </a>
+          </div>
         </div>
       </div>
     </section>

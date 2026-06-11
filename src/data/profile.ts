@@ -16,10 +16,11 @@ export const profile = {
     "Durante el último año me he especializado en SAP Integration Suite (BTP/CPI), construyendo y soportando integraciones con Cloud Integration (iFlows), APIs y herramientas de conectividad SAP para fortalecer la automatización cross-system y las capacidades de integración empresarial.",
     "Combino una profunda experiencia funcional SAP con especialización creciente en integración, para conectar procesos de negocio con arquitectura SAP moderna.",
   ],
-  certificationGoal: {
-    name: "SAP Certified Associate — Integration Developer (C_CPI_15)",
-    status: "En preparación — certificación próxima",
-  },
+  stats: [
+    { value: "+12", label: "Años de experiencia SAP" },
+    { value: "21", label: "Licencias y certificaciones" },
+    { value: "3", label: "Áreas: MM · PM · CPI" },
+  ],
   experience: [
     {
       role: "Senior SAP Consultant",

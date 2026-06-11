@@ -1,28 +1,36 @@
 import { Link } from "react-router-dom";
 import type { Post } from "../lib/posts";
 import { formatDate } from "../lib/posts";
+import { trackSpotlight } from "../lib/spotlight";
 
 export default function PostCard({ post }: { post: Post }) {
   return (
     <Link
       to={`/blog/${post.slug}`}
-      className="group flex flex-col rounded-2xl border border-ink-700 bg-ink-900 p-6 transition-all hover:-translate-y-1 hover:border-sap-blue"
+      onMouseMove={trackSpotlight}
+      className="spotlight-card hover-glow group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-card p-6 transition-all hover:-translate-y-1 hover:border-sap-blue"
     >
+      <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sap-blue to-sap-blue-light opacity-0 transition-opacity group-hover:opacity-100" />
       <div className="flex flex-wrap gap-2">
         {post.tags.map((tag) => (
           <span
             key={tag}
-            className="rounded-full bg-ink-800 px-3 py-1 text-xs font-medium text-sap-blue-light"
+            className="rounded-full bg-raised px-3 py-1 text-xs font-medium text-accent-text"
           >
             {tag}
           </span>
         ))}
       </div>
-      <h3 className="mt-4 text-lg font-bold text-white group-hover:text-sap-blue-light">
+      <h3 className="mt-4 text-lg font-bold text-strong group-hover:text-accent-text">
         {post.title}
       </h3>
-      <p className="mt-2 flex-1 text-sm text-slate-400">{post.description}</p>
-      <p className="mt-4 text-xs text-slate-500">{formatDate(post.date)}</p>
+      <p className="mt-2 flex-1 text-sm text-muted">{post.description}</p>
+      <div className="mt-4 flex items-center justify-between">
+        <p className="text-xs text-faint">{formatDate(post.date)}</p>
+        <span className="text-sm font-semibold text-accent-text opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100 md:-translate-x-2">
+          Leer →
+        </span>
+      </div>
     </Link>
   );
 }
