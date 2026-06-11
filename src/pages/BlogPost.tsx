@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { getPost, formatDate } from "../lib/posts";
 import Lightbox from "../components/Lightbox";
+import NewsletterSignup from "../components/NewsletterSignup";
 
 export default function BlogPost() {
   const { slug } = useParams();
@@ -67,6 +68,10 @@ export default function BlogPost() {
         >
           {post.content}
         </ReactMarkdown>
+      </div>
+
+      <div className="mt-16">
+        <NewsletterSignup />
       </div>
 
       {zoom && (

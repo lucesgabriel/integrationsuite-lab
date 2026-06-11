@@ -4,6 +4,7 @@ import { posts } from "../lib/posts";
 import PostCard from "../components/PostCard";
 import PipelineGraphic from "../components/PipelineGraphic";
 import TechTicker from "../components/TechTicker";
+import NewsletterSignup from "../components/NewsletterSignup";
 import { useReveal } from "../hooks/useReveal";
 import { trackSpotlight } from "../lib/spotlight";
 
@@ -87,6 +88,7 @@ export default function Home() {
   const featured = posts.slice(0, 3);
   const topicsRef = useReveal<HTMLElement>();
   const postsRef = useReveal<HTMLElement>();
+  const newsletterRef = useReveal<HTMLElement>();
   const ctaRef = useReveal<HTMLElement>();
 
   return (
@@ -215,6 +217,11 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Newsletter */}
+      <section ref={newsletterRef} className="reveal mx-auto max-w-6xl px-4 pt-16">
+        <NewsletterSignup />
       </section>
 
       {/* CTA */}

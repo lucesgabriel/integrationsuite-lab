@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { profile } from "../data/profile";
 import { useReveal } from "../hooks/useReveal";
 
@@ -139,19 +140,19 @@ export default function About() {
             ¿Tienes un proyecto de integración o quieres intercambiar ideas?
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
+            <Link
+              to="/contacto"
+              className="glow rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-all hover:bg-sap-blue-light"
+            >
+              Enviar mensaje
+            </Link>
             <a
               href={profile.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="glow rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-all hover:bg-sap-blue-light"
-            >
-              LinkedIn
-            </a>
-            <a
-              href={`mailto:${profile.email}`}
               className="rounded-xl border border-line px-6 py-3 font-semibold text-body transition-colors hover:border-sap-blue hover:text-strong"
             >
-              Enviar correo
+              LinkedIn
             </a>
           </div>
         </div>

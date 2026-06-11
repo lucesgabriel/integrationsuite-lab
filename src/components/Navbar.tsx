@@ -6,6 +6,7 @@ const links = [
   { to: "/", label: "Inicio" },
   { to: "/blog", label: "Artículos" },
   { to: "/sobre-mi", label: "Sobre mí" },
+  { to: "/contacto", label: "Contacto" },
 ];
 
 function ThemeToggle({

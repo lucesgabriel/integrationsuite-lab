@@ -57,6 +57,16 @@ El nombre del archivo se convierte en la URL (`mi-articulo.md` → `/blog/mi-art
 
 Editar [src/data/profile.ts](src/data/profile.ts) — experiencia, certificaciones, skills e idiomas se renderizan automáticamente en la página "Sobre mí" y el footer.
 
+## Activar contacto y newsletter
+
+El sitio es estático: el formulario de contacto y el newsletter usan servicios externos gratuitos. Ambos quedan **inactivos con fallback elegante** hasta configurar las keys en [src/data/services.ts](src/data/services.ts):
+
+1. **Formulario de contacto (Web3Forms)**: en https://web3forms.com pide un *Access Key* con tu email de contacto (30 segundos, sin cuenta) y pégalo en `web3formsAccessKey`. Gratis 250 mensajes/mes; los mensajes llegan a tu correo.
+2. **Newsletter (Kit / ConvertKit)**: crea cuenta gratis en https://kit.com → *Grow → Landing Pages & Forms* → crea un form **inline** → en el HTML de embed copia la action URL (`https://app.kit.com/forms/XXXXXXX/subscriptions`) y pégala en `kitFormAction`. Gratis hasta 10.000 suscriptores, con double opt-in.
+3. Commit + push — el deploy es automático.
+
+Estas keys están diseñadas para ser públicas en el front-end (no son secretos).
+
 ## Roadmap (ideas para futuras iteraciones)
 
 - [ ] Foto de perfil y assets de marca personal
@@ -64,6 +74,6 @@ Editar [src/data/profile.ts](src/data/profile.ts) — experiencia, certificacion
 - [ ] Resaltado de sintaxis en bloques de código (shiki / prism)
 - [ ] SEO por página (react-helmet o meta tags dinámicos) + sitemap
 - [ ] Versión en inglés (i18n)
-- [ ] Newsletter / formulario de contacto
+- [x] Newsletter (Kit) / formulario de contacto (Web3Forms) — ver "Activar contacto y newsletter"
 - [x] Deploy automático (GitHub Pages + Actions)
 - [x] Dark/light mode toggle
