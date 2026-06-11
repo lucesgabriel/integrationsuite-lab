@@ -27,7 +27,12 @@ Todo corre sobre una subaccount trial con **Integration Suite** suscrita y dos c
 ![Subaccount BTP](/images/posts/api-gobernada-cpi-api-management/01-btp-subaccount-instances.png)
 *La base: Integration Suite suscrita y las instancias con sus service keys para la conectividad.*
 
-> ⚠️ Del service key salen el usuario y secret con los que APIM se autenticará contra CPI. Trátalo como una credencial productiva: nunca lo pegues en texto plano ni lo dejes visible en capturas.
+Del **service key** de la instancia de proceso salen el `clientid` y `clientsecret` con los que APIM se autenticará contra el runtime de CPI:
+
+![Service key del tenant](/images/posts/api-gobernada-cpi-api-management/02-btp-service-key-redacted.png)
+*El diálogo Credentials del service key (valores redactados). De aquí salen las credenciales que luego viven cifradas en el KVM.*
+
+> ⚠️ Trata el service key como una credencial productiva: nunca lo pegues en texto plano en políticas ni lo dejes visible en capturas — por eso esta imagen va redactada.
 
 ## Capa 1: el iFlow en Cloud Integration
 
