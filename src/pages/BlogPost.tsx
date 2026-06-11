@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { getPost, formatDate } from "../lib/posts";
+import { rehypePrism } from "../lib/highlight";
 import Lightbox from "../components/Lightbox";
+import CodeBlock from "../components/CodeBlock";
 import NewsletterSignup from "../components/NewsletterSignup";
 import { useLang } from "../i18n";
 
@@ -59,7 +61,9 @@ export default function BlogPost() {
 
       <div className="prose-post mt-10">
         <ReactMarkdown
+          rehypePlugins={[[rehypePrism, { ignoreMissing: true }]]}
           components={{
+            pre: CodeBlock,
             img: ({ src, alt }) =>
               src ? (
                 <img

@@ -26,6 +26,17 @@
   --hero-glow-2: rgba(0, 112, 242, 0.07);
   --grad-a: #0061d1;
   --grad-b: #0091ff;
+
+  /* Tokens de sintaxis (paleta estilo GitHub Light) */
+  --tok-comment: #6a737d;
+  --tok-keyword: #d73a49;
+  --tok-string: #032f62;
+  --tok-function: #6f42c1;
+  --tok-number: #005cc5;
+  --tok-tag: #22863a;
+  --tok-attr: #6f42c1;
+  --tok-operator: #d73a49;
+  --tok-punctuation: #44506b;
 }
 
 .dark {
@@ -48,6 +59,17 @@
   --hero-glow-2: rgba(0, 112, 242, 0.14);
   --grad-a: #4db1ff;
   --grad-b: #0070f2;
+
+  /* Tokens de sintaxis (paleta estilo One Dark) */
+  --tok-comment: #5c6370;
+  --tok-keyword: #c678dd;
+  --tok-string: #98c379;
+  --tok-function: #61afef;
+  --tok-number: #d19a66;
+  --tok-tag: #e06c75;
+  --tok-attr: #d19a66;
+  --tok-operator: #56b6c2;
+  --tok-punctuation: #abb2bf;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -388,6 +410,58 @@ h3,
 }
 .prose-post pre code {
   @apply bg-transparent p-0 text-body;
+}
+
+/* ---------- Resaltado de sintaxis (tokens de Prism/refractor) ---------- */
+.prose-post .token.comment,
+.prose-post .token.prolog,
+.prose-post .token.cdata {
+  color: var(--tok-comment);
+  font-style: italic;
+}
+.prose-post .token.keyword,
+.prose-post .token.rule,
+.prose-post .token.important {
+  color: var(--tok-keyword);
+}
+.prose-post .token.string,
+.prose-post .token.char,
+.prose-post .token.attr-value,
+.prose-post .token.regex {
+  color: var(--tok-string);
+}
+.prose-post .token.function,
+.prose-post .token.class-name,
+.prose-post .token.selector {
+  color: var(--tok-function);
+}
+.prose-post .token.number,
+.prose-post .token.boolean,
+.prose-post .token.constant,
+.prose-post .token.symbol {
+  color: var(--tok-number);
+}
+.prose-post .token.tag,
+.prose-post .token.builtin,
+.prose-post .token.doctype {
+  color: var(--tok-tag);
+}
+.prose-post .token.attr-name,
+.prose-post .token.property,
+.prose-post .token.variable {
+  color: var(--tok-attr);
+}
+.prose-post .token.operator,
+.prose-post .token.entity,
+.prose-post .token.url {
+  color: var(--tok-operator);
+}
+.prose-post .token.punctuation {
+  color: var(--tok-punctuation);
+}
+/* JSON: las claves llegan como .token.property */
+.prose-post .language-json .token.property {
+  color: var(--tok-function);
 }
 .prose-post img {
   @apply my-6 w-full cursor-zoom-in rounded-xl border border-line shadow-lg transition-transform duration-300 hover:scale-[1.01];

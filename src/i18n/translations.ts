@@ -93,6 +93,8 @@ const es = {
     back: "← Volver a artículos",
     notFound: "Artículo no encontrado",
     spanishOnly: "",
+    copy: "Copiar",
+    copied: "¡Copiado!",
   },
   about: {
     skills: "Especialidades",
@@ -245,6 +247,8 @@ const en: Translation = {
     notFound: "Article not found",
     spanishOnly:
       "📝 This article is currently available in Spanish only. English versions are coming soon.",
+    copy: "Copy",
+    copied: "Copied!",
   },
   about: {
     skills: "Specialties",
