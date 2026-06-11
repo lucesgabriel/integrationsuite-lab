@@ -7,3 +7,6 @@ dist
 .vscode/*
 !.vscode/extensions.json
 .idea
+
+# Documentos personales de referencia (no publicar)
+context/
