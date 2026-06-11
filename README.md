@@ -1,6 +1,10 @@
 # IntegrationSuite LAB
 
-Página personal de **Gabriel Luces** — contenido práctico sobre **SAP Integration Suite** (Cloud Integration, API Management, Event Mesh) y bitácora de preparación para la certificación SAP Integration Developer.
+🌐 **En línea:** https://lucesgabriel.github.io/integrationsuite-lab/
+
+Página personal de **Gabriel Luces** — contenido práctico sobre **SAP Integration Suite** (Cloud Integration, API Management, Event Mesh): casos reales resueltos, errores documentados y patrones de integración.
+
+El deploy es automático: cada push a `master` publica a GitHub Pages vía [GitHub Actions](.github/workflows/deploy.yml).
 
 Inspirada en sitios de contenido como sapintegrationhub.com, construida con:
 
@@ -61,5 +65,5 @@ Editar [src/data/profile.ts](src/data/profile.ts) — experiencia, certificacion
 - [ ] SEO por página (react-helmet o meta tags dinámicos) + sitemap
 - [ ] Versión en inglés (i18n)
 - [ ] Newsletter / formulario de contacto
-- [ ] Deploy automático (Vercel / Netlify / GitHub Pages)
-- [ ] Dark/light mode toggle
+- [x] Deploy automático (GitHub Pages + Actions)
+- [x] Dark/light mode toggle
