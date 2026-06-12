@@ -148,7 +148,6 @@ export default function Home() {
 
       {/* Temas */}
       <section ref={topicsRef} className="reveal mx-auto max-w-6xl px-4 py-12 md:py-16">
-        <span className="eyebrow">01 · ./temas</span>
         <h2 className="text-3xl font-bold text-strong">{t.topics.heading}</h2>
         <p className="mt-2 text-muted">{t.topics.subheading}</p>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -179,7 +178,6 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
           <div className="flex items-end justify-between">
             <div>
-              <span className="eyebrow">02 · ./casos-reales</span>
               <h2 className="text-3xl font-bold text-strong">
                 {t.posts.heading}
               </h2>
@@ -217,7 +215,6 @@ export default function Home() {
             style={{ background: "var(--orb)" }}
           />
           <div className="relative">
-            <span className="eyebrow">03 · ./conectar</span>
             <h2 className="text-3xl font-bold text-strong">{t.cta.heading}</h2>
             <p className="mx-auto mt-4 max-w-xl text-muted">
               {t.cta.description}

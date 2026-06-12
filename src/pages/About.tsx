@@ -17,7 +17,6 @@ export default function About() {
         description={t.seo.aboutDesc}
         path="/sobre-mi/"
       />
-      <span className="eyebrow">~/sobre-mi</span>
       {/* Header con foto */}
       <div className="relative overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-raised to-card p-8 md:p-10">
         <div

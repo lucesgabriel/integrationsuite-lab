@@ -13,7 +13,6 @@ export default function Contact() {
         description={t.contact.description}
         path="/contacto/"
       />
-      <span className="eyebrow">~/contacto</span>
       <h1 className="text-4xl font-extrabold text-strong">{t.contact.title}</h1>
       <p className="mt-3 max-w-2xl text-muted">{t.contact.description}</p>
 

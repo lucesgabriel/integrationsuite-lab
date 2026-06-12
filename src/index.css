@@ -320,16 +320,6 @@ h3,
   background-size: 180px 180px;
 }
 
-/* ---------- Eyebrow técnico de sección (notación de ruta) ---------- */
-.eyebrow {
-  font-family: var(--font-mono);
-  @apply mb-3 block text-xs font-medium tracking-[0.18em] text-accent-text;
-}
-.eyebrow::before {
-  content: "// ";
-  opacity: 0.55;
-}
-
 /* ---------- Hero ---------- */
 .hero-bg {
   background:
