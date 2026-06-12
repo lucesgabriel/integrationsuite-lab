@@ -68,16 +68,18 @@ export default function BlogPost() {
           {post.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-raised px-3 py-1 text-xs font-medium text-accent-text"
+              className="rounded-full bg-raised px-3 py-1 font-mono text-[11px] font-medium text-accent-text"
             >
-              {tag}
+              #{tag}
             </span>
           ))}
         </div>
         <h1 className="mt-4 text-4xl font-extrabold leading-tight text-strong">
           {post.title}
         </h1>
-        <p className="mt-4 text-sm text-faint">{formatDate(post.date, lang)}</p>
+        <p className="mt-4 font-mono text-xs text-faint">
+          {formatDate(post.date, lang)}
+        </p>
         {lang === "en" && (
           <p className="mt-4 rounded-xl border border-sap-blue/30 bg-sap-blue/10 px-4 py-3 text-sm text-accent-text">
             {t.blog.spanishOnly}

@@ -126,7 +126,7 @@ export default function Home() {
                   key={stat.label.es}
                   className="rounded-2xl border border-line bg-card/60 px-4 py-5 text-center backdrop-blur"
                 >
-                  <p className="font-display text-2xl font-extrabold text-accent-text md:text-3xl">
+                  <p className="font-mono text-2xl font-bold text-accent-text md:text-3xl">
                     {stat.value}
                   </p>
                   <p className="mt-1 text-xs text-faint md:text-sm">
@@ -148,6 +148,7 @@ export default function Home() {
 
       {/* Temas */}
       <section ref={topicsRef} className="reveal mx-auto max-w-6xl px-4 py-16">
+        <span className="eyebrow">01 · ./temas</span>
         <h2 className="text-3xl font-bold text-strong">{t.topics.heading}</h2>
         <p className="mt-2 text-muted">{t.topics.subheading}</p>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -157,6 +158,12 @@ export default function Home() {
               onMouseMove={trackSpotlight}
               className="spotlight-card hover-glow group rounded-2xl border border-line bg-card p-6 transition-all hover:-translate-y-1 hover:border-sap-blue/60"
             >
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute right-3 top-1 font-mono text-6xl font-bold text-strong opacity-[0.06] transition-opacity duration-300 group-hover:opacity-[0.14]"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
               <TopicIcon>{topicIcons[i]}</TopicIcon>
               <h3 className="mt-4 text-lg font-bold text-strong group-hover:text-accent-text">
                 {topic.title}
@@ -172,6 +179,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 py-16">
           <div className="flex items-end justify-between">
             <div>
+              <span className="eyebrow">02 · ./casos-reales</span>
               <h2 className="text-3xl font-bold text-strong">
                 {t.posts.heading}
               </h2>
@@ -209,6 +217,7 @@ export default function Home() {
             style={{ background: "var(--orb)" }}
           />
           <div className="relative">
+            <span className="eyebrow">03 · ./conectar</span>
             <h2 className="text-3xl font-bold text-strong">{t.cta.heading}</h2>
             <p className="mx-auto mt-4 max-w-xl text-muted">
               {t.cta.description}

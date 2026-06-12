@@ -26,6 +26,7 @@
   --hero-glow-2: rgba(0, 112, 242, 0.07);
   --grad-a: #0061d1;
   --grad-b: #0091ff;
+  --grain-opacity: 0.03;
 
   /* Tokens de sintaxis (paleta estilo GitHub Light) */
   --tok-comment: #6a737d;
@@ -59,6 +60,7 @@
   --hero-glow-2: rgba(0, 112, 242, 0.14);
   --grad-a: #4db1ff;
   --grad-b: #0070f2;
+  --grain-opacity: 0.045;
 
   /* Tokens de sintaxis (paleta estilo One Dark) */
   --tok-comment: #5c6370;
@@ -93,7 +95,8 @@
   --color-accent-text: var(--c-accent-text);
 
   --font-display: "Sora", "Segoe UI", system-ui, sans-serif;
-  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Schibsted Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", monospace;
 }
 
 html {
@@ -298,6 +301,27 @@ h3,
   .node-pulse {
     animation: none;
   }
+}
+
+/* ---------- Grano de película (atmósfera sobre todo el sitio) ---------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ---------- Eyebrow técnico de sección (notación de ruta) ---------- */
+.eyebrow {
+  font-family: var(--font-mono);
+  @apply mb-3 block text-xs font-medium tracking-[0.18em] text-accent-text;
+}
+.eyebrow::before {
+  content: "// ";
+  opacity: 0.55;
 }
 
 /* ---------- Hero ---------- */

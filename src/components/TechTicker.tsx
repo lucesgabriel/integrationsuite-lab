@@ -22,7 +22,7 @@ export default function TechTicker() {
         {[...keywords, ...keywords].map((word, i) => (
           <span
             key={`${word}-${i}`}
-            className="flex items-center gap-10 whitespace-nowrap text-sm font-medium tracking-wide text-faint"
+            className="flex items-center gap-10 whitespace-nowrap font-mono text-xs font-medium tracking-wider text-faint"
           >
             {word}
             <span className="h-1 w-1 rounded-full bg-sap-blue" />

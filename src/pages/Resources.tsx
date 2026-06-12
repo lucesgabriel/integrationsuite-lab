@@ -37,6 +37,7 @@ export default function Resources() {
         description={t.resources.description}
         path="/recursos/"
       />
+      <span className="eyebrow">~/recursos</span>
       <h1 className="text-4xl font-extrabold text-strong">
         {t.resources.title}
       </h1>
