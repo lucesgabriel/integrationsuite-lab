@@ -18,7 +18,7 @@ export default function Blog() {
     : posts;
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16">
+    <section className="mx-auto max-w-6xl px-4 py-12 md:py-16">
       <Seo title={t.seo.blogTitle} description={t.blog.description} path="/blog/" />
       <span className="eyebrow">~/blog</span>
       <h1 className="text-4xl font-extrabold text-strong">{t.blog.title}</h1>

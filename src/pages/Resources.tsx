@@ -31,7 +31,7 @@ export default function Resources() {
   const { t, lang } = useLang();
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16">
+    <section className="mx-auto max-w-6xl px-4 py-12 md:py-16">
       <Seo
         title={t.seo.resourcesTitle}
         description={t.resources.description}

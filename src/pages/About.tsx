@@ -11,7 +11,7 @@ export default function About() {
   const { t, lang } = useLang();
 
   return (
-    <section className="mx-auto max-w-4xl px-4 py-16">
+    <section className="mx-auto max-w-4xl px-4 py-12 md:py-16">
       <Seo
         title={t.seo.aboutTitle}
         description={t.seo.aboutDesc}

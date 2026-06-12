@@ -32,7 +32,7 @@ export default function BlogPost() {
   const firstImage = /!\[[^\]]*\]\(([^)]+)\)/.exec(post.content)?.[1];
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-16">
+    <article className="mx-auto max-w-3xl px-4 py-12 md:py-16">
       <Seo
         title={`${post.title} | SAPIntegrationLab`}
         description={post.description}

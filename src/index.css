@@ -288,17 +288,23 @@ h3,
   transform: translateY(0);
 }
 
-/* Reduce motion: respetar accesibilidad */
+/* Reduce motion: respetar accesibilidad (y garantizar contenido visible) */
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
     transform: none;
     transition: none;
   }
+  .animate-fade-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
   .animate-marquee,
   .animate-float,
   .dash-flow,
-  .node-pulse {
+  .node-pulse,
+  .text-gradient {
     animation: none;
   }
 }
@@ -377,11 +383,18 @@ h3,
 
 /* ---------- Ticker tecnológico ---------- */
 .ticker-mask {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
   mask-image: linear-gradient(
     90deg,
     transparent,
-    black 8%,
-    black 92%,
+    black 15%,
+    black 85%,
     transparent
   );
 }

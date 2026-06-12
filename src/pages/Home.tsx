@@ -85,7 +85,7 @@ export default function Home() {
           style={{ background: "var(--orb)" }}
         />
 
-        <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-24 md:grid-cols-[3fr_2fr] md:py-28">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 py-14 md:grid-cols-[3fr_2fr] md:gap-10 md:py-28">
           <div>
             <span className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-sap-blue/40 bg-sap-blue/10 px-4 py-1.5 text-sm text-accent-text backdrop-blur">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -120,11 +120,11 @@ export default function Home() {
             </div>
 
             {/* Stats */}
-            <div className="animate-fade-up delay-400 mt-14 grid max-w-2xl grid-cols-3 gap-4">
+            <div className="animate-fade-up delay-400 mt-10 grid max-w-2xl grid-cols-3 gap-2.5 md:mt-14 md:gap-4">
               {profile.stats.map((stat) => (
                 <div
                   key={stat.label.es}
-                  className="rounded-2xl border border-line bg-card/60 px-4 py-5 text-center backdrop-blur"
+                  className="rounded-2xl border border-line bg-card/60 px-2 py-4 text-center backdrop-blur md:px-4 md:py-5"
                 >
                   <p className="font-mono text-2xl font-bold text-accent-text md:text-3xl">
                     {stat.value}
@@ -147,7 +147,7 @@ export default function Home() {
       <TechTicker />
 
       {/* Temas */}
-      <section ref={topicsRef} className="reveal mx-auto max-w-6xl px-4 py-16">
+      <section ref={topicsRef} className="reveal mx-auto max-w-6xl px-4 py-12 md:py-16">
         <span className="eyebrow">01 · ./temas</span>
         <h2 className="text-3xl font-bold text-strong">{t.topics.heading}</h2>
         <p className="mt-2 text-muted">{t.topics.subheading}</p>
@@ -160,7 +160,7 @@ export default function Home() {
             >
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute right-3 top-1 font-mono text-6xl font-bold text-strong opacity-[0.06] transition-opacity duration-300 group-hover:opacity-[0.14]"
+                className="pointer-events-none absolute right-4 top-3 font-mono text-5xl font-bold leading-none text-strong opacity-[0.06] transition-opacity duration-300 group-hover:opacity-[0.14] md:text-6xl"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -176,7 +176,7 @@ export default function Home() {
 
       {/* Artículos destacados */}
       <section ref={postsRef} className="reveal border-t border-line bg-card/40">
-        <div className="mx-auto max-w-6xl px-4 py-16">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
           <div className="flex items-end justify-between">
             <div>
               <span className="eyebrow">02 · ./casos-reales</span>
@@ -201,12 +201,12 @@ export default function Home() {
       </section>
 
       {/* Newsletter */}
-      <section ref={newsletterRef} className="reveal mx-auto max-w-6xl px-4 pt-16">
+      <section ref={newsletterRef} className="reveal mx-auto max-w-6xl px-4 pt-12 md:pt-16">
         <NewsletterSignup />
       </section>
 
       {/* CTA */}
-      <section ref={ctaRef} className="reveal mx-auto max-w-6xl px-4 py-20">
+      <section ref={ctaRef} className="reveal mx-auto max-w-6xl px-4 py-14 md:py-20">
         <div className="relative overflow-hidden rounded-3xl border border-sap-blue/30 bg-gradient-to-br from-raised to-card p-10 text-center md:p-16">
           <div
             className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full blur-3xl"

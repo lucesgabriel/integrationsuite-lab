@@ -7,7 +7,7 @@ export default function Contact() {
   const { t } = useLang();
 
   return (
-    <section className="mx-auto max-w-5xl px-4 py-16">
+    <section className="mx-auto max-w-5xl px-4 py-12 md:py-16">
       <Seo
         title={t.seo.contactTitle}
         description={t.contact.description}
