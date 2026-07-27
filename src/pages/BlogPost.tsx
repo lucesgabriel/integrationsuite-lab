@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { getPost, formatDate } from "../lib/posts";
 import { rehypePrism } from "../lib/highlight";
 import Lightbox from "../components/Lightbox";
@@ -89,6 +90,7 @@ export default function BlogPost() {
 
       <div className="prose-post mt-10">
         <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
           rehypePlugins={[[rehypePrism, { ignoreMissing: true }]]}
           components={{
             pre: CodeBlock,

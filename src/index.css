@@ -506,6 +506,10 @@ h3,
 .prose-post table {
   @apply w-full my-6 text-sm;
 }
+/* Tablas anchas: scroll horizontal sin romper el layout móvil */
+.prose-post {
+  overflow-wrap: break-word;
+}
 .prose-post th,
 .prose-post td {
   @apply border border-line px-3 py-2 text-left;
