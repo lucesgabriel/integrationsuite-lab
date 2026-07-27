@@ -27,7 +27,7 @@ const es = {
     },
   },
   hero: {
-    badge: "SAP Integration Suite · BTP/CPI Consultant",
+    badge: "SAP Certified — Integration Developer",
     titlePre: "Domina ",
     titleHighlight: "SAP Integration Suite",
     titlePost: " con contenido práctico",
@@ -191,7 +191,7 @@ const en: Translation = {
     },
   },
   hero: {
-    badge: "SAP Integration Suite · BTP/CPI Consultant",
+    badge: "SAP Certified — Integration Developer",
     titlePre: "Master ",
     titleHighlight: "SAP Integration Suite",
     titlePost: " with hands-on content",

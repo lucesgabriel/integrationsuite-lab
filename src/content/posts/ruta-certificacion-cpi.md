@@ -56,4 +56,4 @@ Aquí es donde se gana o se pierde el examen. Cada concepto se practica, no se m
 - Comunidad SAP Community para dudas puntuales.
 - Ejercicios prácticos tipo examen generados con IA, con rúbricas estrictas.
 
-Cuando apruebe el examen publicaré un análisis completo de la experiencia. Mientras tanto, sigo con un iFlow al día. 💪
+**Actualización (julio 2026):** ¡aprobado! ✅ Conté la experiencia completa del examen práctico en [este post](/blog/aprobe-certificacion-sap-integration-developer).

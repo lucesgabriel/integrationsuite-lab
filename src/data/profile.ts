@@ -30,7 +30,7 @@ export const profile = {
       label: { es: "Años de experiencia SAP", en: "Years of SAP experience" },
     },
     {
-      value: "21",
+      value: "22",
       label: { es: "Licencias y certificaciones", en: "Licenses & certifications" },
     },
     {
@@ -109,6 +109,11 @@ export const profile = {
     },
   ],
   certifications: [
+    {
+      name: "SAP Certified Associate — Integration Developer",
+      issuer: "SAP",
+      year: "2026",
+    },
     {
       name: "SAP Integration Suite",
       issuer: "Logali Group",
