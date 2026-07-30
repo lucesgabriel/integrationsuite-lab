@@ -8,20 +8,20 @@ export const profile = {
   name: "Gabriel Luces",
   photo: "/images/gabriel-luces.jpg",
   headline:
-    "SAP MM | PM | Integration Suite (BTP/CPI) Consultant — Passionate about AI, ML & Automation",
+    "SAP Certified — Integration Developer | SAP MM · PM Consultant — Passionate about AI, ML & Automation",
   location: "Santiago, Chile",
   email: "LucesLab@gmail.com",
   linkedin: "https://www.linkedin.com/in/lucesgabriel",
   about: {
     es: [
-      "Consultor SAP Senior con más de 12 años de experiencia entregando soluciones empresariales SAP en los módulos MM y PM, y soportando operaciones de organizaciones de gran escala como Walmart Chile.",
-      "Durante el último año me he especializado en SAP Integration Suite (BTP/CPI), construyendo y soportando integraciones con Cloud Integration (iFlows), APIs y herramientas de conectividad SAP para fortalecer la automatización cross-system y las capacidades de integración empresarial.",
-      "Combino una profunda experiencia funcional SAP con especialización creciente en integración, para conectar procesos de negocio con arquitectura SAP moderna.",
+      "Consultor SAP Senior con más de 12 años de experiencia entregando soluciones empresariales SAP en los módulos MM y PM, soportando operaciones de organizaciones retail de gran escala.",
+      "Soy SAP Certified Associate — Integration Developer (certificación oficial de SAP, 2026, aprobada con el examen práctico System-based Assessment). Me especializo en SAP Integration Suite (BTP/CPI): construyo y soporto integraciones con Cloud Integration (iFlows), API Management y herramientas de conectividad SAP para fortalecer la automatización cross-system.",
+      "Combino una profunda experiencia funcional SAP con especialización certificada en integración, para conectar procesos de negocio con arquitectura SAP moderna.",
     ],
     en: [
-      "Senior SAP Consultant with 12+ years of experience delivering enterprise SAP solutions across the MM and PM modules, supporting operations for large-scale organizations such as Walmart Chile.",
-      "Over the last year I have specialized in SAP Integration Suite (BTP/CPI), building and supporting integrations with Cloud Integration (iFlows), APIs and SAP connectivity tools to strengthen cross-system automation and enterprise integration capabilities.",
-      "I combine deep functional SAP expertise with growing integration specialization to bridge business processes and modern SAP architecture.",
+      "Senior SAP Consultant with 12+ years of experience delivering enterprise SAP solutions across the MM and PM modules, supporting operations for large-scale retail organizations.",
+      "I am a SAP Certified Associate — Integration Developer (official SAP certification, 2026, earned through the hands-on System-based Assessment). I specialize in SAP Integration Suite (BTP/CPI): building and supporting integrations with Cloud Integration (iFlows), API Management and SAP connectivity tools to strengthen cross-system automation.",
+      "I combine deep functional SAP expertise with certified integration specialization to bridge business processes and modern SAP architecture.",
     ],
   },
   stats: [
@@ -45,8 +45,8 @@ export const profile = {
       period: { es: "Abr 2023 — Presente", en: "Apr 2023 — Present" },
       location: { es: "Santiago, Chile · Remoto", en: "Santiago, Chile · Remote" },
       summary: {
-        es: "Cliente: Walmart Chile. Soporte funcional SAP MM/PM e integraciones con SAP Integration Suite (CPI, APIs, conectividad SAP).",
-        en: "Client: Walmart Chile. SAP MM/PM functional support and integrations with SAP Integration Suite (CPI, APIs, SAP connectivity).",
+        es: "Cliente: cadena de retail líder en Chile. Soporte funcional SAP MM/PM e integraciones con SAP Integration Suite (CPI, APIs, conectividad SAP).",
+        en: "Client: leading retail chain in Chile. SAP MM/PM functional support and integrations with SAP Integration Suite (CPI, APIs, SAP connectivity).",
       },
     },
     {
@@ -65,8 +65,8 @@ export const profile = {
       period: { es: "Jul 2019 — Ene 2022", en: "Jul 2019 — Jan 2022" },
       location: { es: "Santiago, Chile", en: "Santiago, Chile" },
       summary: {
-        es: "Cliente: Walmart Chile. Soporte funcional, planes de trabajo detallados y mejora continua de procesos logísticos y de mantenimiento.",
-        en: "Client: Walmart Chile. Functional support, detailed work plans and continuous improvement of logistics and maintenance processes.",
+        es: "Cliente: cadena de retail líder en Chile. Soporte funcional, planes de trabajo detallados y mejora continua de procesos logísticos y de mantenimiento.",
+        en: "Client: leading retail chain in Chile. Functional support, detailed work plans and continuous improvement of logistics and maintenance processes.",
       },
     },
     {
@@ -75,8 +75,8 @@ export const profile = {
       period: { es: "Ene 2019 — Jun 2019", en: "Jan 2019 — Jun 2019" },
       location: { es: "Huechuraba, Chile", en: "Huechuraba, Chile" },
       summary: {
-        es: "Cliente: Walmart Chile. Soporte funcional SAP.",
-        en: "Client: Walmart Chile. SAP functional support.",
+        es: "Cliente: cadena de retail líder en Chile. Soporte funcional SAP.",
+        en: "Client: leading retail chain in Chile. SAP functional support.",
       },
     },
     {
