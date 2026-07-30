@@ -14,14 +14,14 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/lucesgabriel",
   about: {
     es: [
-      "Consultor SAP Senior con más de 12 años de experiencia entregando soluciones empresariales SAP en los módulos MM y PM, soportando operaciones de organizaciones retail de gran escala.",
-      "Soy SAP Certified Associate — Integration Developer (certificación oficial de SAP, 2026, aprobada con el examen práctico System-based Assessment). Me especializo en SAP Integration Suite (BTP/CPI): construyo y soporto integraciones con Cloud Integration (iFlows), API Management y herramientas de conectividad SAP para fortalecer la automatización cross-system.",
-      "Combino una profunda experiencia funcional SAP con especialización certificada en integración, para conectar procesos de negocio con arquitectura SAP moderna.",
+      "Consultor SAP Senior con más de 12 años de trayectoria diseñando, implementando y soportando soluciones SAP en los módulos MM y PM para operaciones de retail de gran escala — entornos donde la continuidad operacional y la precisión de los procesos logísticos son críticas para el negocio.",
+      "SAP Certified Associate — Integration Developer (2026), certificación obtenida mediante el System-based Assessment: un examen 100% práctico, resuelto construyendo artefactos reales en un tenant de SAP Integration Suite. Mi foco actual es la integración empresarial sobre SAP BTP: diseño iFlows en Cloud Integration, publico y gobierno APIs con API Management, y conecto sistemas cloud y on-premise con la seguridad, trazabilidad y monitoreo que exige un entorno productivo.",
+      "Mi diferencial es una combinación poco frecuente: dominio funcional del negocio y especialización técnica certificada en integración. Entiendo el proceso que vive detrás de cada interfaz — y eso se traduce en integraciones que resuelven problemas reales, documentadas caso a caso en este sitio.",
     ],
     en: [
-      "Senior SAP Consultant with 12+ years of experience delivering enterprise SAP solutions across the MM and PM modules, supporting operations for large-scale retail organizations.",
-      "I am a SAP Certified Associate — Integration Developer (official SAP certification, 2026, earned through the hands-on System-based Assessment). I specialize in SAP Integration Suite (BTP/CPI): building and supporting integrations with Cloud Integration (iFlows), API Management and SAP connectivity tools to strengthen cross-system automation.",
-      "I combine deep functional SAP expertise with certified integration specialization to bridge business processes and modern SAP architecture.",
+      "Senior SAP Consultant with over 12 years of experience designing, implementing and supporting SAP solutions across the MM and PM modules for large-scale retail operations — environments where operational continuity and logistics process accuracy are business-critical.",
+      "SAP Certified Associate — Integration Developer (2026), earned through the System-based Assessment: a 100% hands-on exam solved by building real artifacts on a live SAP Integration Suite tenant. My current focus is enterprise integration on SAP BTP: designing iFlows in Cloud Integration, publishing and governing APIs with API Management, and connecting cloud and on-premise systems with the security, traceability and monitoring a productive landscape demands.",
+      "What sets me apart is an uncommon combination: functional command of the business and certified technical specialization in integration. I understand the process living behind every interface — and that translates into integrations that solve real problems, documented case by case on this site.",
     ],
   },
   stats: [
