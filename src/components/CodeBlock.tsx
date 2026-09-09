@@ -22,14 +22,14 @@ export default function CodeBlock(props: HTMLAttributes<HTMLPreElement>) {
   }
 
   return (
-    <div className="group relative">
+    <div className="code-panel group relative">
       <button
         onClick={copy}
         aria-label={t.blog.copy}
-        className={`absolute right-2.5 top-2.5 z-10 flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium backdrop-blur transition-all ${
+        className={`relative ml-auto flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium backdrop-blur transition-all ${
           copied
             ? "border-emerald-500/50 text-emerald-500"
-            : "border-line bg-card/80 text-faint opacity-0 hover:border-sap-blue hover:text-strong group-hover:opacity-100"
+            : "border-line bg-card text-muted hover:border-sap-blue hover:text-strong"
         }`}
       >
         {copied ? (

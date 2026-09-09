@@ -35,7 +35,7 @@ export default function BlogPost() {
   const firstImage = /!\[[^\]]*\]\(([^)]+)\)/.exec(post.content)?.[1];
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-12 md:py-16">
+    <article className="article-page site-shell page-section">
       <Seo
         title={`${post.title} | SAPIntegrationLab`}
         description={post.description}
@@ -66,7 +66,7 @@ export default function BlogPost() {
         {t.blog.back}
       </Link>
 
-      <header className="mt-6">
+      <header className="article-header mt-6">
         <div className="flex flex-wrap gap-2">
           {post.tags.map((tag) => (
             <span
@@ -77,10 +77,11 @@ export default function BlogPost() {
             </span>
           ))}
         </div>
-        <h1 className="mt-4 text-4xl font-extrabold leading-tight text-strong">
+        <h1 className="article-title mt-5 font-extrabold text-strong">
           {post.title}
         </h1>
-        <p className="mt-4 font-mono text-xs text-faint">
+        <p className="article-summary mt-5 text-lg text-muted">{post.description}</p>
+        <p className="mt-6 border-t border-line pt-5 text-sm text-muted">
           {formatDate(post.date, lang)} · {Math.max(1, Math.ceil(post.content.split(/\s+/).length / 200))} {t.blog.readingTime}
         </p>
         {lang === "en" && (
@@ -90,7 +91,7 @@ export default function BlogPost() {
         )}
       </header>
 
-      <div className="prose-post mt-10" lang="es">
+      <div className="prose-post article-body mt-9" lang="es">
         <ReactMarkdown
           remarkPlugins={[remarkGfm, headingIds]}
           rehypePlugins={[[rehypePrism, { ignoreMissing: true }]]}

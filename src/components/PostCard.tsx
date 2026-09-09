@@ -11,7 +11,7 @@ export default function PostCard({ post }: { post: Post }) {
     <Link
       to={`/blog/${post.slug}`}
       onMouseMove={trackSpotlight}
-      className="spotlight-card hover-glow group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-card p-6 transition-all hover:-translate-y-1 hover:border-sap-blue"
+      className="post-card spotlight-card hover-glow group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-card p-6 transition-all hover:-translate-y-1 hover:border-sap-blue"
     >
       <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sap-blue to-sap-blue-light opacity-0 transition-opacity group-hover:opacity-100" />
       <div className="flex flex-wrap gap-2">
@@ -24,12 +24,12 @@ export default function PostCard({ post }: { post: Post }) {
           </span>
         ))}
       </div>
-      <h3 className="mt-4 text-lg font-bold text-strong group-hover:text-accent-text">
+      <h3 className="mt-5 text-xl font-bold leading-snug text-strong group-hover:text-accent-text">
         {post.title}
       </h3>
-      <p className="mt-2 flex-1 text-sm text-muted">{post.description}</p>
-      <div className="mt-4 flex items-center justify-between">
-        <p className="font-mono text-xs text-muted">
+      <p className="mt-3 flex-1 text-base leading-relaxed text-muted">{post.description}</p>
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4">
+        <p className="text-sm text-muted">
           {formatDate(post.date, lang)}
         </p>
         <span className="text-sm font-semibold text-accent-text transition-colors">

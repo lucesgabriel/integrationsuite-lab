@@ -73,7 +73,7 @@ export default function Home() {
         }}
       />
       {/* Hero */}
-      <section className="relative overflow-hidden">
+      <section className="home-hero relative overflow-hidden">
         <div className="hero-bg pointer-events-none absolute inset-0" />
         <div className="bg-grid pointer-events-none absolute inset-0" />
         <div
@@ -85,7 +85,7 @@ export default function Home() {
           style={{ background: "var(--orb)" }}
         />
 
-        <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 py-14 md:grid-cols-[3fr_2fr] md:gap-10 md:py-28">
+        <div className="site-shell relative grid items-center gap-10 py-12 lg:grid-cols-[3fr_2fr] lg:gap-14 lg:py-20">
           <div>
             <span className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-sap-blue/40 bg-sap-blue/10 px-4 py-1.5 text-sm text-accent-text backdrop-blur">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -94,20 +94,20 @@ export default function Home() {
               {t.hero.badge}
             </span>
 
-            <h1 className="animate-fade-up delay-100 mt-6 text-4xl font-extrabold leading-tight text-strong md:text-6xl">
+            <h1 className="hero-title mt-5 font-extrabold text-strong">
               {t.hero.titlePre}
-              <span className="text-gradient">{t.hero.titleHighlight}</span>
+              <span className="hero-accent">{t.hero.titleHighlight}</span>
               {t.hero.titlePost}
             </h1>
 
-            <p className="animate-fade-up delay-200 mt-6 max-w-2xl text-lg text-muted">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
               {t.hero.description}
             </p>
 
             <div className="animate-fade-up delay-300 mt-8 flex flex-wrap gap-4">
               <Link
                 to="/blog"
-                className="glow rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-all hover:bg-sap-blue-light"
+                className="glow rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-all hover:bg-sap-blue/90"
               >
                 {t.hero.ctaBlog}
               </Link>
@@ -120,11 +120,11 @@ export default function Home() {
             </div>
 
             {/* Stats */}
-            <div className="animate-fade-up delay-400 mt-10 grid max-w-2xl grid-cols-3 gap-2.5 md:mt-14 md:gap-4">
+            <div className="mt-10 grid max-w-2xl grid-cols-3 gap-3">
               {profile.stats.map((stat) => (
                 <div
                   key={stat.label.es}
-                  className="rounded-2xl border border-line bg-card/60 px-2 py-4 text-center backdrop-blur md:px-4 md:py-5"
+                  className="hero-stat border-l-2 border-line px-3 py-1 text-left md:px-4"
                 >
                   <p className="font-mono text-2xl font-bold text-accent-text md:text-3xl">
                     {stat.value}
@@ -138,7 +138,7 @@ export default function Home() {
           </div>
 
           {/* Pipeline animado */}
-          <div className="animate-fade-up delay-300 hidden justify-center md:flex">
+          <div className="hero-pipeline hidden justify-center lg:flex">
             <PipelineGraphic />
           </div>
         </div>
@@ -146,8 +146,33 @@ export default function Home() {
 
       <TechTicker />
 
+      {/* Artículos destacados */}
+      <section ref={postsRef} className="reveal border-t border-line bg-card/40">
+        <div className="site-shell py-12 md:py-16">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h2 className="text-3xl font-bold text-strong">
+                {t.posts.heading}
+              </h2>
+              <p className="mt-2 text-muted">{t.posts.subheading}</p>
+            </div>
+            <Link
+              to="/blog"
+              className="text-sm font-semibold text-accent-text hover:text-sap-blue"
+            >
+              {t.posts.viewAll}
+            </Link>
+          </div>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {featured.map((post) => (
+              <PostCard key={post.slug} post={post} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Temas */}
-      <section ref={topicsRef} className="reveal mx-auto max-w-6xl px-4 py-12 md:py-16">
+      <section ref={topicsRef} className="reveal site-shell py-12 md:py-16">
         <h2 className="text-3xl font-bold text-strong">{t.topics.heading}</h2>
         <p className="mt-2 text-muted">{t.topics.subheading}</p>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -173,39 +198,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Artículos destacados */}
-      <section ref={postsRef} className="reveal border-t border-line bg-card/40">
-        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-          <div className="flex items-end justify-between">
-            <div>
-              <h2 className="text-3xl font-bold text-strong">
-                {t.posts.heading}
-              </h2>
-              <p className="mt-2 text-muted">{t.posts.subheading}</p>
-            </div>
-            <Link
-              to="/blog"
-              className="hidden text-sm font-semibold text-accent-text hover:text-sap-blue md:block"
-            >
-              {t.posts.viewAll}
-            </Link>
-          </div>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {featured.map((post) => (
-              <PostCard key={post.slug} post={post} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Newsletter */}
-      <section ref={newsletterRef} className="reveal mx-auto max-w-6xl px-4 pt-12 md:pt-16">
+      <section ref={newsletterRef} className="reveal site-shell pt-12 md:pt-16">
         <NewsletterSignup />
       </section>
 
       {/* CTA */}
-      <section ref={ctaRef} className="reveal mx-auto max-w-6xl px-4 py-14 md:py-20">
-        <div className="relative overflow-hidden rounded-3xl border border-sap-blue/30 bg-gradient-to-br from-raised to-card p-10 text-center md:p-16">
+      <section ref={ctaRef} className="reveal site-shell py-14 md:py-20">
+        <div className="relative overflow-hidden rounded-3xl border border-line bg-card p-7 text-center md:p-12">
           <div
             className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full blur-3xl"
             style={{ background: "var(--orb)" }}
@@ -223,7 +223,7 @@ export default function Home() {
               href={profile.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="glow mt-8 inline-block rounded-xl bg-sap-blue px-8 py-3 font-semibold text-white transition-all hover:bg-sap-blue-light"
+              className="glow mt-8 inline-block rounded-xl bg-sap-blue px-8 py-3 font-semibold text-white transition-all hover:bg-sap-blue/90"
             >
               {t.cta.button}
             </a>

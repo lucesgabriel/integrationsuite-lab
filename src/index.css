@@ -7,10 +7,10 @@
  * accent-text) — nunca colores fijos de paleta.
  */
 :root {
-  --c-base: #f4f7fc;
+  --c-base: #f7f9fc;
   --c-card: #ffffff;
   --c-raised: #e8eef7;
-  --c-line: #d7e0ee;
+  --c-line: #dfe5ee;
   --c-line-strong: #c2cfe3;
   --c-strong: #0b1526;
   --c-body: #2c3a52;
@@ -18,7 +18,7 @@
   --c-faint: #5e7089;
   --c-accent-text: #0061d1;
 
-  --glow: rgba(0, 112, 242, 0.14);
+  --glow: rgba(15, 40, 75, 0.06);
   --glow-strong: rgba(0, 112, 242, 0.22);
   --grid-line: rgba(0, 112, 242, 0.07);
   --orb: rgba(0, 112, 242, 0.1);
@@ -52,7 +52,7 @@
   --c-faint: #94a3b8;
   --c-accent-text: #4db1ff;
 
-  --glow: rgba(0, 112, 242, 0.25);
+  --glow: rgba(0, 0, 0, 0.16);
   --glow-strong: rgba(0, 112, 242, 0.45);
   --grid-line: rgba(77, 177, 255, 0.06);
   --orb: rgba(0, 112, 242, 0.2);
@@ -83,7 +83,7 @@
   --color-accent: #ffb300;
 
   /* Tokens semánticos (cambian con el tema) */
-  --color-base: var(--c-base);
+  --color-canvas: var(--c-base);
   --color-card: var(--c-card);
   --color-raised: var(--c-raised);
   --color-line: var(--c-line);
@@ -104,9 +104,8 @@ html {
 }
 
 body {
-  @apply bg-base text-body antialiased;
+  @apply bg-canvas text-body antialiased;
   font-family: var(--font-body);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1,
@@ -241,7 +240,7 @@ h3,
 }
 
 .animate-fade-up {
-  animation: fade-up 0.7s ease-out both;
+  animation: none;
 }
 .animate-float {
   animation: float 7s ease-in-out infinite;
@@ -279,9 +278,8 @@ h3,
 
 /* Reveal al hacer scroll */
 .reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  opacity: 1;
+  transform: none;
 }
 .reveal-visible {
   opacity: 1;
@@ -529,3 +527,68 @@ h3,
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1 !important; transform: none !important; }
 }
+
+/* Shared visual system: readable technical content at every viewport width. */
+html { scrollbar-gutter: stable; }
+body { line-height: 1.65; }
+#root { min-width: 0; }
+.site-shell { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: clamp(1.25rem, 4vw, 2.5rem); }
+.page-section { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+.page-title { font-size: clamp(2rem, 4.5vw, 3.25rem); line-height: 1.15; letter-spacing: -0.045em; text-wrap: balance; }
+.page-intro { font-size: 1.125rem; line-height: 1.8; }
+.site-header { box-shadow: 0 1px 0 var(--c-line); }
+.site-brand { letter-spacing: -0.035em; line-height: 1.2; }
+.site-brand > span:first-child { box-shadow: none; }
+.brand-name { color: var(--c-strong); white-space: nowrap; }
+.mobile-navigation a { display: block; padding: .65rem .75rem; margin-top: .25rem; }
+.home-hero { border-bottom: 1px solid var(--c-line); }
+.home-hero .animate-float { display: none; }
+.home-hero .bg-grid { opacity: .3; }
+.hero-title { font-size: clamp(2.25rem, 4.3vw, 3.65rem); line-height: 1.14; letter-spacing: -.055em; text-wrap: balance; }
+.hero-accent { color: var(--c-accent-text); }
+.hero-pipeline { border: 1px solid var(--c-line); border-radius: 1.5rem; background: var(--c-card); padding: 1.5rem .75rem; }
+.hero-pipeline svg { max-width: 100%; height: auto; }
+.hero-stat p:last-child { line-height: 1.5; }
+.post-card { box-shadow: 0 3px 16px var(--glow); }
+.post-card h3 { letter-spacing: -.025em; }
+.post-card:hover { transform: translateY(-3px); }
+.spotlight-card::before { display: none; }
+.search-panel input { background: var(--c-card); min-height: 3.25rem; box-shadow: 0 2px 8px var(--glow); }
+.filter-list button { border: 1px solid var(--c-line); min-height: 2.5rem; }
+.article-page { max-width: 960px; }
+.article-header { border-left: 3px solid var(--c-accent-text); padding-left: clamp(1rem, 3vw, 2rem); }
+.article-title { font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.2; letter-spacing: -.04em; text-wrap: balance; overflow-wrap: anywhere; }
+.article-summary { max-width: 44rem; line-height: 1.75; }
+.article-body { border: 1px solid var(--c-line); border-radius: 1.5rem; background: var(--c-card); padding: clamp(1.25rem, 4vw, 3rem); box-shadow: 0 4px 24px var(--glow); }
+.prose-post { font-size: 1.0625rem; line-height: 1.85; min-width: 0; }
+.prose-post h1 { font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.2; color: var(--c-strong); margin-block: 1.5rem; }
+.prose-post h2 { border-top: 1px solid var(--c-line); padding-top: 1.5rem; margin-top: 3rem; font-size: clamp(1.45rem, 3vw, 1.8rem); line-height: 1.35; letter-spacing: -.025em; }
+.prose-post h3 { line-height: 1.45; font-size: 1.2rem; }
+.prose-post a { text-decoration-thickness: 1px; text-underline-offset: .2em; }
+.prose-post :not(pre) > code { overflow-wrap: anywhere; }
+.prose-post blockquote { background: var(--c-raised); padding: .5rem 1.25rem; border-radius: 0 .75rem .75rem 0; font-style: normal; }
+.prose-post li { padding-left: .25rem; }
+.table-scroll { border: 1px solid var(--c-line); border-radius: .75rem; }
+.table-scroll th, .table-scroll td { border: 0; border-bottom: 1px solid var(--c-line); padding: .85rem 1rem; vertical-align: top; }
+.table-scroll tr:last-child td { border-bottom: 0; }
+.table-scroll tbody tr:nth-child(even) { background: color-mix(in srgb, var(--c-raised) 45%, transparent); }
+.table-scroll th { font-weight: 600; }
+.code-panel { margin-block: 1.5rem; border: 1px solid var(--c-line); border-radius: .75rem; background: var(--c-raised); overflow: hidden; padding-top: .65rem; }
+.code-panel > button { margin-right: .75rem; font-size: .8rem; min-height: 2rem; }
+.prose-post .code-panel pre { border: 0; border-top: 1px solid var(--c-line); border-radius: 0; margin: .65rem 0 0; padding: 1.25rem; background: var(--c-base); line-height: 1.7; }
+.prose-post pre code { font-size: .8125rem; white-space: pre; }
+.about-page { max-width: 1040px; }
+footer a { overflow-wrap: anywhere; }
+footer .gradient-line { animation: none; background: var(--c-line); }
+footer p { line-height: 1.75; }
+input, textarea { font-size: 1rem; }
+@media (max-width: 639px) {
+  .site-header .site-shell { gap: .5rem; padding-inline: 1rem; min-height: 4.25rem; }
+  .brand-name { font-size: .75rem; }
+  .brand-name > span { display: block; }
+  .site-brand { gap: .5rem; }
+  .article-header { padding-left: 1rem; }
+  .article-body { padding: 1.15rem; border-radius: 1rem; }
+  .post-card { padding: 1.25rem; }
+}
+@media (max-width: 359px) { .site-brand > span:first-child { display: none; } }

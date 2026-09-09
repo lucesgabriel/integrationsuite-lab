@@ -36,3 +36,18 @@ Publicar mediante el flujo existente de GitHub Pages y comprobar su resultado. N
 ## Futuras iteraciones fuera de esta entrega
 
 Medir rendimiento real y accesibilidad visual en dispositivos antes de proponer un rediseño. Revisar métricas de búsqueda e indexación cuando se disponga de Search Console. La traducción de artículos y activación de servicios de contacto/newsletter requieren contenido o configuración adicionales.
+
+
+## Segunda entrega: revisión visual de todo el sitio
+
+A solicitud del propietario, a partir de la captura con la marca parcialmente invisible:
+
+- Corregida la colisión entre el color Tailwind `base` y la utilidad de tamaño `text-base`; el fondo utiliza ahora `canvas`.
+- Navegación de escritorio desde 1024 px y marca compacta en móvil, sin recortes.
+- Anchos, márgenes, tipografía y cabeceras compartidos para inicio, blog, recursos, perfil, contacto y artículos.
+- Portada más breve, artículos antes de temas y presentación más sobria del diagrama existente.
+- Artículos con superficie de lectura, jerarquía de encabezados, tablas contenidas y botón Copiar siempre visible.
+- Tarjetas, formulario, newsletter y pie consistentes en claro/oscuro; se retiró la información de implementación del pie.
+- Se eliminó el ocultamiento inicial de contenido por animaciones y la transición de fondo que producía estados intermedios de contraste bajo.
+
+Verificación con navegador: páginas principales a 320, 375 y 1440 px; diez artículos a 320 px sin desbordamiento horizontal de página; menú móvil; búsqueda con resultado único; interfaz ES/EN; tema claro y oscuro; anclas y contenedores de tablas. Sin envíos de contacto ni suscripciones durante las pruebas.

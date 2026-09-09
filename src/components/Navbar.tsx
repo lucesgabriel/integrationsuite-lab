@@ -1,3 +1,4 @@
+import { profile } from "../data/profile";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme";
@@ -10,11 +11,12 @@ function ThemeToggle({
   theme: "dark" | "light";
   toggle: () => void;
 }) {
+  const { lang } = useLang();
   return (
     <button
       onClick={toggle}
-      aria-label={theme === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-      className="flex h-9 w-9 items-center justify-center rounded-lg border border-line text-muted transition-colors hover:border-sap-blue hover:text-strong"
+      aria-label={lang === "es" ? (theme === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro") : (theme === "dark" ? "Switch to light mode" : "Switch to dark mode")}
+      className="flex h-10 w-10 items-center justify-center rounded-lg border border-line text-muted transition-colors hover:border-sap-blue hover:text-strong"
     >
       {theme === "dark" ? (
         // Sol
@@ -39,7 +41,7 @@ function LangToggle() {
     <button
       onClick={() => setLang(next)}
       aria-label={lang === "es" ? "Switch to English" : "Cambiar a español"}
-      className="flex h-9 items-center justify-center rounded-lg border border-line px-2.5 text-xs font-bold tracking-wide text-muted transition-colors hover:border-sap-blue hover:text-strong"
+      className="flex h-10 items-center justify-center rounded-lg border border-line px-2.5 text-xs font-bold tracking-wide text-muted transition-colors hover:border-sap-blue hover:text-strong"
     >
       {next.toUpperCase()}
     </button>
@@ -67,18 +69,18 @@ export default function Navbar() {
     }`;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-base/90 backdrop-blur">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link to="/" className="flex items-center gap-2 font-bold text-strong">
+    <header className="site-header sticky top-0 z-50 border-b border-line bg-card/95 backdrop-blur">
+      <nav className="site-shell flex min-h-20 items-center justify-between gap-4 py-3">
+        <Link to="/" className="site-brand flex shrink-0 items-center gap-2.5 font-bold text-strong">
           <span className="glow flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-sap-blue to-sap-blue-light text-xs text-white">
             SIL
           </span>
-          <span className="font-display text-sm sm:text-base">
+          <span className="brand-name font-display text-sm text-strong sm:text-base">
             SAPIntegration<span className="text-accent-text">Lab</span>
           </span>
         </Link>
 
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-1 lg:flex">
           {links.map((l) => (
             <NavLink key={l.to} to={l.to} end={l.to === "/"} className={linkClass}>
               {l.label}
@@ -88,22 +90,22 @@ export default function Navbar() {
             <LangToggle />
             <ThemeToggle theme={theme} toggle={toggle} />
             <a
-              href="https://www.linkedin.com/in/lucesgabriel"
+              href={profile.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="rounded-lg bg-sap-blue px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-sap-blue-light"
+              className="rounded-lg bg-sap-blue px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-sap-blue/90"
             >
               LinkedIn
             </a>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <LangToggle />
           <ThemeToggle theme={theme} toggle={toggle} />
           <button
             onClick={() => setOpen(!open)}
-            className="rounded-lg p-2 text-muted hover:bg-raised"
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-line text-muted hover:bg-raised"
             aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={open}
             aria-controls="mobile-navigation"
@@ -120,7 +122,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div id="mobile-navigation" className="border-t border-line px-4 pb-4 pt-2 md:hidden">
+        <div id="mobile-navigation" className="mobile-navigation border-t border-line bg-card px-5 pb-4 pt-2 lg:hidden">
           {links.map((l) => (
             <NavLink
               key={l.to}

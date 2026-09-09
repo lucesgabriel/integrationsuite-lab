@@ -11,7 +11,7 @@ export default function About() {
   const { t, lang } = useLang();
 
   return (
-    <section className="mx-auto max-w-4xl px-4 py-12 md:py-16">
+    <section className="site-shell page-section about-page">
       <Seo
         title={t.seo.aboutTitle}
         description={t.seo.aboutDesc}
@@ -71,7 +71,7 @@ export default function About() {
       <div ref={expRef} className="reveal mt-6 space-y-0 border-l-2 border-line">
         {profile.experience.map((job) => (
           <div key={`${job.company}-${job.period.es}`} className="relative pb-8 pl-8">
-            <span className="absolute -left-[9px] top-2 h-4 w-4 rounded-full border-2 border-base bg-sap-blue shadow-[0_0_12px_var(--glow-strong)]" />
+            <span className="absolute -left-[9px] top-2 h-4 w-4 rounded-full border-2 border-canvas bg-sap-blue shadow-[0_0_12px_var(--glow-strong)]" />
             <div className="hover-glow rounded-2xl border border-line bg-card/60 p-5 hover:border-sap-blue/50">
               <p className="text-sm text-faint">{job.period[lang]}</p>
               <h3 className="mt-1 font-bold text-strong">{job.role}</h3>
@@ -160,7 +160,7 @@ export default function About() {
           <div className="mt-6 flex flex-wrap justify-center gap-4">
             <Link
               to="/contacto"
-              className="glow rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-all hover:bg-sap-blue-light"
+              className="glow rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-all hover:bg-sap-blue/90"
             >
               {t.about.sendMessage}
             </Link>

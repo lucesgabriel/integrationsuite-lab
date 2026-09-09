@@ -21,14 +21,14 @@ export default function Footer() {
       {/* Línea superior de gradiente animado */}
       <div className="gradient-line h-px w-full" />
 
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-4">
+      <div className="site-shell grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.7fr_1fr_1fr]">
         {/* Marca */}
         <div>
           <p className="flex items-center gap-2 font-display font-bold text-strong">
-            <span className="glow flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-sap-blue to-sap-blue-light text-[10px] text-white">
+            <span className="glow flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-sap-blue to-sap-blue-light text-xs text-white">
               SIL
             </span>
-            SAPIntegration<span className="text-accent-text">Lab</span>
+            <span>SAPIntegration<span className="text-accent-text">Lab</span></span>
           </p>
           <p className="mt-3 text-sm text-muted">{t.footer.tagline}</p>
           <p className="mt-4 flex items-center gap-1.5 text-sm text-faint">
@@ -69,7 +69,7 @@ export default function Footer() {
             {topTags.map((tag) => (
               <Link
                 key={tag}
-                to="/blog"
+                to={`/blog?tag=${encodeURIComponent(tag)}`}
                 className="rounded-full border border-line bg-raised/50 px-3 py-1 text-xs text-muted transition-colors hover:border-sap-blue hover:text-strong"
               >
                 {tag}
@@ -110,33 +110,27 @@ export default function Footer() {
       </div>
 
       {/* Disclaimer de marca */}
-      <div className="mx-auto max-w-6xl px-4 pb-6">
+      <div className="site-shell pb-6">
         <p className="text-center text-xs text-faint">{t.footer.disclaimer}</p>
       </div>
 
-      {/* Status bar estilo terminal */}
+      {/* Copyright y regreso al inicio */}
       <div className="border-t border-line">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 font-mono text-xs text-faint">
+        <div className="site-shell flex flex-wrap items-center justify-between gap-3 py-5 font-mono text-xs text-faint">
           <div className="flex flex-wrap items-center gap-4">
-            <span className="flex items-center gap-1.5">
-              <span className="animate-blink h-2 w-2 rounded-full bg-emerald-500" />
-              operational
-            </span>
-            <span>v0.1.0</span>
-            <span className="hidden sm:inline">React · Vite · Tailwind</span>
             <span>
               © {new Date().getFullYear()} {profile.name}
             </span>
           </div>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            aria-label="Volver arriba"
+            aria-label={t.footer.backTop}
             className="flex items-center gap-1.5 rounded-lg border border-line px-3 py-1.5 transition-colors hover:border-sap-blue hover:text-strong"
           >
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 19V5M5 12l7-7 7 7" />
             </svg>
-            top
+            {t.footer.backTop}
           </button>
         </div>
       </div>

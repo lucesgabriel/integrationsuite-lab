@@ -6,7 +6,7 @@ import { useLang } from "../i18n";
 type Status = "idle" | "sending" | "success" | "error";
 
 const inputClass =
-  "w-full rounded-xl border border-line bg-base px-4 py-3 text-sm text-body placeholder:text-faint outline-none transition-colors focus:border-sap-blue";
+  "w-full rounded-xl border border-line bg-canvas px-4 py-3 text-sm text-body placeholder:text-faint outline-none transition-colors focus:border-sap-blue";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -20,7 +20,7 @@ export default function ContactForm() {
         <p className="text-muted">{f.pending}</p>
         <a
           href={`mailto:${profile.email}`}
-          className="glow mt-6 inline-block rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-all hover:bg-sap-blue-light"
+          className="glow mt-6 inline-block rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-all hover:bg-sap-blue/90"
         >
           {profile.email}
         </a>
@@ -132,7 +132,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="glow mt-6 w-full rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-all hover:bg-sap-blue-light disabled:cursor-not-allowed disabled:opacity-60"
+        className="glow mt-6 w-full rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-all hover:bg-sap-blue/90 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "sending" ? f.sending : f.send}
       </button>

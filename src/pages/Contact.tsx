@@ -7,14 +7,14 @@ export default function Contact() {
   const { t } = useLang();
 
   return (
-    <section className="mx-auto max-w-5xl px-4 py-12 md:py-16">
+    <section className="site-shell page-section">
       <Seo
         title={t.seo.contactTitle}
         description={t.contact.description}
         path="/contacto/"
       />
-      <h1 className="text-4xl font-extrabold text-strong">{t.contact.title}</h1>
-      <p className="mt-3 max-w-2xl text-muted">{t.contact.description}</p>
+      <h1 className="page-title font-extrabold text-strong">{t.contact.title}</h1>
+      <p className="page-intro mt-4 max-w-2xl text-muted">{t.contact.description}</p>
 
       <div className="mt-10 grid gap-8 md:grid-cols-[3fr_2fr]">
         <ContactForm />

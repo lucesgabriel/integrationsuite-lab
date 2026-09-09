@@ -31,9 +31,9 @@ const es = {
   },
   hero: {
     badge: "SAP Certified — Integration Developer",
-    titlePre: "Domina ",
+    titlePre: "",
     titleHighlight: "SAP Integration Suite",
-    titlePost: " con contenido práctico",
+    titlePost: ", en la práctica.",
     description:
       "Soy Gabriel Luces, consultor SAP con +12 años de experiencia. Comparto guías, ejercicios y lecciones reales sobre Cloud Integration, API Management y arquitectura de integración en SAP BTP.",
     ctaBlog: "Ver artículos",
@@ -152,6 +152,7 @@ const es = {
     error: "No se pudo completar la suscripción. Inténtalo de nuevo en un momento.",
   },
   footer: {
+    backTop: "Volver arriba",
     tagline:
       "Contenido práctico sobre SAP Integration Suite: casos reales, errores documentados y patrones de integración empresarial.",
     navigation: "Navegación",
@@ -205,9 +206,9 @@ const en: Translation = {
   },
   hero: {
     badge: "SAP Certified — Integration Developer",
-    titlePre: "Master ",
+    titlePre: "",
     titleHighlight: "SAP Integration Suite",
-    titlePost: " with hands-on content",
+    titlePost: ", in practice.",
     description:
       "I'm Gabriel Luces, an SAP consultant with 12+ years of experience. I share guides, exercises and real-world lessons on Cloud Integration, API Management and integration architecture on SAP BTP.",
     ctaBlog: "Browse articles",
@@ -327,6 +328,7 @@ const en: Translation = {
     error: "The subscription could not be completed. Please try again shortly.",
   },
   footer: {
+    backTop: "Back to top",
     tagline:
       "Hands-on content about SAP Integration Suite: real cases, documented errors and enterprise integration patterns.",
     navigation: "Navigation",

@@ -28,10 +28,10 @@ export default function Blog() {
   const visible = posts.filter((p) => (!activeTag || p.tags.includes(activeTag)) && matchesSearch(p, query));
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <section className="site-shell page-section">
       <Seo title={t.seo.blogTitle} description={t.blog.description} path="/blog/" />
-      <h1 className="text-4xl font-extrabold text-strong">{t.blog.title}</h1>
-      <p className="mt-3 max-w-2xl text-muted">{t.blog.description}</p>
+      <h1 className="page-title font-extrabold text-strong">{t.blog.title}</h1>
+      <p className="page-intro mt-4 max-w-2xl text-muted">{t.blog.description}</p>
 
       {lang === "en" && (
         <p className="mt-4 max-w-2xl rounded-xl border border-sap-blue/30 bg-sap-blue/10 px-4 py-3 text-sm text-accent-text">
@@ -39,14 +39,14 @@ export default function Blog() {
         </p>
       )}
 
-      <div className="mt-8 max-w-2xl">
+      <div className="search-panel mt-8 max-w-2xl">
         <label htmlFor="article-search" className="block text-sm font-semibold text-strong">{t.blog.search}</label>
         <input id="article-search" type="search" value={query}
           onChange={(event) => updateFilter("q", event.target.value)}
           placeholder={t.blog.searchPlaceholder}
           className="mt-2 w-full rounded-xl border border-line bg-card px-4 py-3 text-base text-strong" />
       </div>
-      <div className="mt-6 flex flex-wrap gap-2" role="group" aria-label={t.blog.filterLabel}>
+      <div className="filter-list mt-6 flex flex-wrap gap-2" role="group" aria-label={t.blog.filterLabel}>
         <button
           onClick={() => updateFilter("tag", "")}
           aria-pressed={activeTag === null}

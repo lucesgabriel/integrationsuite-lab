@@ -64,12 +64,12 @@ export default function NewsletterSignup() {
               required
               placeholder={t.newsletter.placeholder}
               aria-label="Email"
-              className="w-full flex-1 rounded-xl border border-line bg-base px-4 py-3 text-sm text-body placeholder:text-faint outline-none transition-colors focus:border-sap-blue"
+              className="w-full flex-1 rounded-xl border border-line bg-canvas px-4 py-3 text-sm text-body placeholder:text-faint outline-none transition-colors focus:border-sap-blue"
             />
             <button
               type="submit"
               disabled={status === "sending"}
-              className="glow rounded-xl bg-sap-blue px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-sap-blue-light disabled:cursor-not-allowed disabled:opacity-60"
+              className="glow rounded-xl bg-sap-blue px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-sap-blue/90 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {status === "sending" ? t.newsletter.sending : t.newsletter.subscribe}
             </button>

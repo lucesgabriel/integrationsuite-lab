@@ -31,16 +31,16 @@ export default function Resources() {
   const { t, lang } = useLang();
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <section className="site-shell page-section">
       <Seo
         title={t.seo.resourcesTitle}
         description={t.resources.description}
         path="/recursos/"
       />
-      <h1 className="text-4xl font-extrabold text-strong">
+      <h1 className="page-title font-extrabold text-strong">
         {t.resources.title}
       </h1>
-      <p className="mt-3 max-w-2xl text-muted">{t.resources.description}</p>
+      <p className="page-intro mt-4 max-w-2xl text-muted">{t.resources.description}</p>
       <p className="mt-4 inline-flex max-w-2xl items-center gap-2 rounded-xl border border-line bg-card px-4 py-2.5 text-sm text-faint">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z" />
@@ -78,7 +78,7 @@ export default function Resources() {
                         {categoryIcons[res.category]}
                       </svg>
                     </span>
-                    <div className="flex-1">
+                    <div className="min-w-0 flex-1">
                       <h3 className="font-bold text-strong">
                         {res.title[lang]}
                       </h3>
@@ -90,11 +90,11 @@ export default function Resources() {
                   <p className="mt-4 flex-1 text-sm text-muted">
                     {res.description[lang]}
                   </p>
-                  <div className="mt-5 flex items-center justify-between gap-3">
+                  <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
                     <a
                       href={res.file}
                       download
-                      className="glow inline-flex items-center gap-2 rounded-xl bg-sap-blue px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-sap-blue-light"
+                      className="glow inline-flex items-center gap-2 rounded-xl bg-sap-blue px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-sap-blue/90"
                     >
                       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M12 3v12M6 11l6 6 6-6M4 21h16" />

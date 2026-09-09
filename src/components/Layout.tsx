@@ -20,7 +20,6 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="grain" aria-hidden="true" />
       <a className="skip-link" href="#main-content">{t.nav.skip}</a>
       <Navbar />
       <main id="main-content" tabIndex={-1} className="min-w-0 flex-1">
