@@ -21,6 +21,17 @@ export interface Resource {
 export const resources: Resource[] = [
   {
     category: "postman",
+    file: "/downloads/maintenance-order-simple-postman.zip",
+    size: "2 KB",
+    title: { es: "Orden de mantenimiento — versión simple", en: "Maintenance order — simple version" },
+    description: {
+      es: "Caso MIX-002: CPI directo, APIM, prueba sin API key y diagnósticos. Incluye environment y comprobaciones del JSON de ocho campos.",
+      en: "MIX-002: direct CPI, APIM, missing API key and diagnostic requests. Includes an environment and eight-field JSON checks.",
+    },
+    post: "maintenance-order-lookup-simple-postman",
+  },
+  {
+    category: "postman",
     file: "/downloads/globex-catalog-postman.zip",
     size: "4 KB",
     title: {

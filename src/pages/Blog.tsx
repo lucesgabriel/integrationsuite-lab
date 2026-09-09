@@ -1,11 +1,23 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
+import { matchesSearch } from "../lib/search";
 import { posts } from "../lib/posts";
 import PostCard from "../components/PostCard";
 import Seo from "../components/Seo";
 import { useLang } from "../i18n";
 
 export default function Blog() {
-  const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [params, setParams] = useSearchParams();
+  const activeTag = params.get("tag");
+  const query = params.get("q") ?? "";
+  function updateFilter(key: string, value: string) {
+    setParams((previous) => {
+      const next = new URLSearchParams(previous);
+      if (value) next.set(key, value);
+      else next.delete(key);
+      return next;
+    }, { replace: true });
+  }
   const { t, lang } = useLang();
 
   const tags = useMemo(
@@ -13,9 +25,7 @@ export default function Blog() {
     []
   );
 
-  const visible = activeTag
-    ? posts.filter((p) => p.tags.includes(activeTag))
-    : posts;
+  const visible = posts.filter((p) => (!activeTag || p.tags.includes(activeTag)) && matchesSearch(p, query));
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-12 md:py-16">
@@ -29,9 +39,17 @@ export default function Blog() {
         </p>
       )}
 
-      <div className="mt-8 flex flex-wrap gap-2">
+      <div className="mt-8 max-w-2xl">
+        <label htmlFor="article-search" className="block text-sm font-semibold text-strong">{t.blog.search}</label>
+        <input id="article-search" type="search" value={query}
+          onChange={(event) => updateFilter("q", event.target.value)}
+          placeholder={t.blog.searchPlaceholder}
+          className="mt-2 w-full rounded-xl border border-line bg-card px-4 py-3 text-base text-strong" />
+      </div>
+      <div className="mt-6 flex flex-wrap gap-2" role="group" aria-label={t.blog.filterLabel}>
         <button
-          onClick={() => setActiveTag(null)}
+          onClick={() => updateFilter("tag", "")}
+          aria-pressed={activeTag === null}
           className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
             activeTag === null
               ? "bg-sap-blue text-white"
@@ -43,7 +61,8 @@ export default function Blog() {
         {tags.map((tag) => (
           <button
             key={tag}
-            onClick={() => setActiveTag(tag)}
+            onClick={() => updateFilter("tag", tag)}
+            aria-pressed={activeTag === tag}
             className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
               activeTag === tag
                 ? "bg-sap-blue text-white"
@@ -55,7 +74,11 @@ export default function Blog() {
         ))}
       </div>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+        <p role="status" className="text-sm text-muted">{visible.length} {t.blog.results}</p>
+        {(query || activeTag) && <button onClick={() => setParams({})} className="text-sm font-semibold text-accent-text">{t.blog.clear}</button>}
+      </div>
+      <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {visible.map((post) => (
           <PostCard key={post.slug} post={post} />
         ))}

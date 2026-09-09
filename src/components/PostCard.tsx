@@ -18,7 +18,7 @@ export default function PostCard({ post }: { post: Post }) {
         {post.tags.map((tag) => (
           <span
             key={tag}
-            className="rounded-full bg-raised px-3 py-1 font-mono text-[11px] font-medium text-accent-text"
+            className="rounded-full bg-raised px-3 py-1 font-mono text-xs font-medium text-accent-text"
           >
             #{tag}
           </span>
@@ -29,10 +29,10 @@ export default function PostCard({ post }: { post: Post }) {
       </h3>
       <p className="mt-2 flex-1 text-sm text-muted">{post.description}</p>
       <div className="mt-4 flex items-center justify-between">
-        <p className="font-mono text-[11px] text-faint">
+        <p className="font-mono text-xs text-muted">
           {formatDate(post.date, lang)}
         </p>
-        <span className="text-sm font-semibold text-accent-text opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100 md:-translate-x-2">
+        <span className="text-sm font-semibold text-accent-text transition-colors">
           {t.posts.read}
         </span>
       </div>

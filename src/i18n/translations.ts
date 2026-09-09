@@ -7,6 +7,9 @@
 const es = {
   nav: {
     home: "Inicio",
+    skip: "Saltar al contenido",
+    openMenu: "Abrir menú",
+    closeMenu: "Cerrar menú",
     blog: "Artículos",
     resources: "Recursos",
     about: "Sobre mí",
@@ -89,7 +92,14 @@ const es = {
     description:
       "Guías prácticas y notas técnicas sobre SAP Integration Suite, escritas desde proyectos de integración reales.",
     all: "Todos",
-    empty: "Aún no hay artículos con esta etiqueta.",
+    search: "Buscar artículos",
+    searchPlaceholder: "Ej.: OData, mantenimiento, API Management…",
+    filterLabel: "Filtrar por tema",
+    results: "artículos encontrados",
+    clear: "Limpiar filtros",
+    readingTime: "min de lectura",
+    tableLabel: "Tabla del artículo: desplaza horizontalmente para ver más columnas",
+    empty: "No hay artículos que coincidan. Prueba otra búsqueda o limpia los filtros.",
     back: "← Volver a artículos",
     notFound: "Artículo no encontrado",
     spanishOnly: "",
@@ -171,6 +181,9 @@ const es = {
 const en: Translation = {
   nav: {
     home: "Home",
+    skip: "Skip to content",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
     blog: "Articles",
     resources: "Resources",
     about: "About",
@@ -253,7 +266,14 @@ const en: Translation = {
     description:
       "Practical guides and technical notes on SAP Integration Suite, written from real integration projects.",
     all: "All",
-    empty: "No articles with this tag yet.",
+    search: "Search articles",
+    searchPlaceholder: "E.g. OData, maintenance, API Management…",
+    filterLabel: "Filter by topic",
+    results: "articles found",
+    clear: "Clear filters",
+    readingTime: "min read",
+    tableLabel: "Article table: scroll horizontally for more columns",
+    empty: "No matching articles. Try another search or clear the filters.",
     back: "← Back to articles",
     notFound: "Article not found",
     spanishOnly:

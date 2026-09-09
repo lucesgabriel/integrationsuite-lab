@@ -73,7 +73,7 @@ export default function Navbar() {
           <span className="glow flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-sap-blue to-sap-blue-light text-xs text-white">
             SIL
           </span>
-          <span className="font-display">
+          <span className="font-display text-sm sm:text-base">
             SAPIntegration<span className="text-accent-text">Lab</span>
           </span>
         </Link>
@@ -104,7 +104,9 @@ export default function Navbar() {
           <button
             onClick={() => setOpen(!open)}
             className="rounded-lg p-2 text-muted hover:bg-raised"
-            aria-label="Abrir menú"
+            aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               {open ? (
@@ -118,7 +120,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-line px-4 pb-4 pt-2 md:hidden">
+        <div id="mobile-navigation" className="border-t border-line px-4 pb-4 pt-2 md:hidden">
           {links.map((l) => (
             <NavLink
               key={l.to}

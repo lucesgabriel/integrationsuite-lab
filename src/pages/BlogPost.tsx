@@ -1,7 +1,9 @@
+import { profile } from "../data/profile";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import headingIds from "../lib/heading-ids.mjs";
 import { getPost, formatDate } from "../lib/posts";
 import { rehypePrism } from "../lib/highlight";
 import Lightbox from "../components/Lightbox";
@@ -52,7 +54,7 @@ export default function BlogPost() {
             : undefined,
           author: {
             "@type": "Person",
-            name: "Gabriel Luces",
+            name: profile.name,
             url: "https://sapintegrationlab.com/sobre-mi/",
           },
         }}
@@ -69,7 +71,7 @@ export default function BlogPost() {
           {post.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-raised px-3 py-1 font-mono text-[11px] font-medium text-accent-text"
+              className="rounded-full bg-raised px-3 py-1 font-mono text-xs font-medium text-accent-text"
             >
               #{tag}
             </span>
@@ -79,7 +81,7 @@ export default function BlogPost() {
           {post.title}
         </h1>
         <p className="mt-4 font-mono text-xs text-faint">
-          {formatDate(post.date, lang)}
+          {formatDate(post.date, lang)} · {Math.max(1, Math.ceil(post.content.split(/\s+/).length / 200))} {t.blog.readingTime}
         </p>
         {lang === "en" && (
           <p className="mt-4 rounded-xl border border-sap-blue/30 bg-sap-blue/10 px-4 py-3 text-sm text-accent-text">
@@ -88,12 +90,13 @@ export default function BlogPost() {
         )}
       </header>
 
-      <div className="prose-post mt-10">
+      <div className="prose-post mt-10" lang="es">
         <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
+          remarkPlugins={[remarkGfm, headingIds]}
           rehypePlugins={[[rehypePrism, { ignoreMissing: true }]]}
           components={{
             pre: CodeBlock,
+            table: ({ children }) => <div className="table-scroll" role="region" tabIndex={0} aria-label={t.blog.tableLabel}><table>{children}</table></div>,
             img: ({ src, alt }) =>
               src ? (
                 <img

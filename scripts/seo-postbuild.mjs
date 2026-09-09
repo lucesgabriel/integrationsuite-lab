@@ -14,6 +14,11 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import headingIds from "../src/lib/heading-ids.mjs";
 
 const SITE = "https://sapintegrationlab.com";
 const DIST = "dist";
@@ -39,6 +44,7 @@ function parsePost(file) {
     title: meta.title ?? file,
     description: meta.description ?? "",
     date: meta.date ?? "",
+    content: fm ? raw.slice(fm[0].length).trim() : raw,
     image: firstImage ? `${SITE}${firstImage}` : undefined,
   };
 }
@@ -102,6 +108,7 @@ const routes = [
     priority: "0.8",
     image: p.image,
     type: "article",
+    post: p,
   })),
 ];
 
@@ -110,6 +117,24 @@ const esc = (s) =>
   s.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll('"', "&quot;");
 
 const template = fs.readFileSync(path.join(DIST, "index.html"), "utf8");
+
+// Useful content and real links even before JavaScript runs. createRoot replaces
+// this initial HTML once the interactive app is ready (no hydration mismatch).
+function staticContent(route) {
+  const nav = '<nav aria-label="Navegación"><a href="/">Inicio</a> · <a href="/blog/">Artículos</a> · <a href="/recursos/">Recursos</a> · <a href="/sobre-mi/">Sobre mí</a> · <a href="/contacto/">Contacto</a></nav>';
+  let body = `<h1>${esc(route.title.replace(" | SAPIntegrationLab", ""))}</h1><p>${esc(route.description)}</p>`;
+  if (route.post) {
+    body += renderToStaticMarkup(React.createElement(ReactMarkdown, {
+      remarkPlugins: [remarkGfm, headingIds],
+      components: {
+        table: ({ children }) => React.createElement("div", { className: "table-scroll", tabIndex: 0, role: "region", "aria-label": "Tabla del artículo" }, React.createElement("table", null, children)),
+      },
+    }, route.post.content));
+  } else if (route.path === "/" || route.path === "/blog/") {
+    body += posts.map((post) => `<section><h2><a href="/blog/${post.slug}/">${esc(post.title)}</a></h2><p>${esc(post.description)}</p></section>`).join("");
+  }
+  return `<main id="main-content" class="prose-post mx-auto max-w-3xl px-4 py-12" lang="es">${nav}${body}</main>`;
+}
 
 function htmlFor(route) {
   const url = `${SITE}${route.path}`;
@@ -135,7 +160,8 @@ function htmlFor(route) {
       /<meta\s+name="description"[\s\S]*?\/>/,
       `<meta name="description" content="${esc(route.description)}" />`
     )
-    .replace("</head>", `    ${head}\n  </head>`);
+    .replace("</head>", `    ${head}\n  </head>`)
+    .replace('<div id="root"></div>', () => `<div id="root">${staticContent(route)}</div>`);
 }
 
 for (const route of routes) {
