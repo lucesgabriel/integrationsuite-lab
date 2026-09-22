@@ -21,6 +21,20 @@ export interface Resource {
 export const resources: Resource[] = [
   {
     category: "postman",
+    file: "/downloads/maintenance-notification-postman.zip",
+    size: "3 KB",
+    title: {
+      es: "Avisos de mantenimiento — crear y consultar",
+      en: "Maintenance notifications — create and query",
+    },
+    description: {
+      es: "Caso MIX-003 de SAP PM: POST con respuesta JSON y GET con XML, vía CPI y APIM. Incluye environment sin secretos y comprobación del número creado.",
+      en: "SAP PM case MIX-003: POST with a JSON response and GET with XML, through CPI and APIM. Includes a secret-free environment and created notification ID checks.",
+    },
+    post: "maintenance-notification-create-query-postman",
+  },
+  {
+    category: "postman",
     file: "/downloads/maintenance-order-simple-postman.zip",
     size: "2 KB",
     title: { es: "Orden de mantenimiento — versión simple", en: "Maintenance order — simple version" },
