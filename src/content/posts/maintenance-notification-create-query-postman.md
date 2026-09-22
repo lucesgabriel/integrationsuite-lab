@@ -13,6 +13,8 @@ El caso **SIS-CASE-MIX-003** conecta ese proceso de **Plant Maintenance (PM)** c
 
 [Descargar colección Postman y environment del caso MIX-003](/downloads/maintenance-notification-postman.zip)
 
+**Manual del caso en PDF (11 páginas):** [Español](/downloads/maintenance-notification-guide-es.pdf) · [English](/downloads/maintenance-notification-guide-en.pdf). Incluye arquitectura, capturas, pruebas y lecciones de la implementación inicial. También disponible en [Recursos](/recursos/).
+
 ## Qué está probado y qué queda pendiente
 
 Las evidencias del laboratorio del **22 de septiembre de 2026**, tomadas con Bruno, muestran creación directa por CPI y a través de APIM, más consultas posteriores. La colección Postman de esta publicación adapta esas operaciones para reproducirlas en tu entorno.

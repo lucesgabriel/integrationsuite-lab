@@ -6,11 +6,12 @@ import type { Localized } from "../i18n";
  * (placeholders en lugar de tenants, usuarios o API keys reales).
  */
 
-export type ResourceCategory = "postman" | "schemas" | "groovy" | "diagrams";
+export type ResourceCategory = "guides" | "postman" | "schemas" | "groovy" | "diagrams";
 
 export interface Resource {
   category: ResourceCategory;
   file: string;
+  format?: "ZIP" | "PDF";
   size: string;
   title: Localized;
   description: Localized;
@@ -19,6 +20,36 @@ export interface Resource {
 }
 
 export const resources: Resource[] = [
+  {
+    category: "guides",
+    file: "/downloads/maintenance-notification-guide-es.pdf",
+    format: "PDF",
+    size: "3.64 MB",
+    title: {
+      es: "Avisos de mantenimiento — guía en español",
+      en: "Maintenance notifications — Spanish guide",
+    },
+    description: {
+      es: "Manual MIX-003 de SAP PM: arquitectura, iFlow, API Management, pruebas y lecciones del laboratorio. 11 páginas en español; incluye el alcance probado y los siguientes pasos.",
+      en: "SAP PM MIX-003 manual: architecture, iFlow, API Management, tests and lab lessons. 11 pages in Spanish, including the tested scope and next steps.",
+    },
+    post: "maintenance-notification-create-query-postman",
+  },
+  {
+    category: "guides",
+    file: "/downloads/maintenance-notification-guide-en.pdf",
+    format: "PDF",
+    size: "3.64 MB",
+    title: {
+      es: "Avisos de mantenimiento — guía en inglés",
+      en: "Maintenance notifications — English guide",
+    },
+    description: {
+      es: "Versión en inglés del manual MIX-003: crear y consultar avisos en S/4HANA con CPI, APIM y Cloud Connector. 11 páginas con diagramas, capturas y lecciones del laboratorio.",
+      en: "English MIX-003 manual: create and query S/4HANA notifications with CPI, APIM and Cloud Connector. 11 pages with diagrams, screenshots and lab lessons.",
+    },
+    post: "maintenance-notification-create-query-postman",
+  },
   {
     category: "postman",
     file: "/downloads/maintenance-notification-postman.zip",

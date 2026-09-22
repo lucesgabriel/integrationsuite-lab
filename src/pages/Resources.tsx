@@ -6,6 +6,9 @@ import { trackSpotlight } from "../lib/spotlight";
 
 /** Iconos por categoría */
 const categoryIcons: Record<ResourceCategory, React.ReactNode> = {
+  guides: (
+    <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6zM14 3v6h6M8 13h8M8 17h6" />
+  ),
   // Avión de papel (Postman)
   postman: <path d="M21 3L3 10.5l6.5 2.5L12 21l3-6.5L21 3zM9.5 13L21 3" />,
   // Documento con etiquetas (XSD)
@@ -21,6 +24,7 @@ const categoryIcons: Record<ResourceCategory, React.ReactNode> = {
 };
 
 const categoryOrder: ResourceCategory[] = [
+  "guides",
   "postman",
   "groovy",
   "schemas",
@@ -83,7 +87,7 @@ export default function Resources() {
                         {res.title[lang]}
                       </h3>
                       <p className="mt-1 text-xs text-faint">
-                        ZIP · {res.size}
+                        {res.format ?? "ZIP"} · {res.size}
                       </p>
                     </div>
                   </div>

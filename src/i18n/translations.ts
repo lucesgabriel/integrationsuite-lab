@@ -18,11 +18,12 @@ const es = {
   resources: {
     title: "Recursos",
     description:
-      "Colecciones Postman, esquemas, plantillas y diagramas listos para descargar — los mismos artefactos de los casos resueltos del laboratorio.",
-    note: "Todos los archivos usan placeholders (<tenant>, <TU_APIKEY>…) — sin credenciales ni datos de sistemas reales.",
+      "Guías PDF, colecciones Postman, esquemas, plantillas y diagramas para descargar y acompañar los casos prácticos del laboratorio.",
+    note: "Los ejemplos y capturas omiten credenciales y hosts internos. Configura las conexiones y los datos de prueba de tu propio laboratorio.",
     download: "Descargar",
     fromCase: "Ver el caso →",
     categories: {
+      guides: "Guías PDF",
       postman: "Colecciones Postman",
       schemas: "Esquemas XSD",
       groovy: "Plantillas Groovy",
@@ -193,11 +194,12 @@ const en: Translation = {
   resources: {
     title: "Resources",
     description:
-      "Postman collections, schemas, templates and diagrams ready to download — the same artifacts from the lab's solved cases.",
-    note: "All files use placeholders (<tenant>, <YOUR_APIKEY>…) — no credentials or real system data.",
+      "Download PDF guides, Postman collections, schemas, templates and diagrams to accompany the lab's practical cases.",
+    note: "Examples and screenshots omit credentials and internal hosts. Configure the connections and test data for your own lab.",
     download: "Download",
     fromCase: "Read the case →",
     categories: {
+      guides: "PDF Guides",
       postman: "Postman Collections",
       schemas: "XSD Schemas",
       groovy: "Groovy Templates",

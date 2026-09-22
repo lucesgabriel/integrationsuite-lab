@@ -80,7 +80,7 @@ const routes = [
     path: "/recursos/",
     title: "Recursos | SAPIntegrationLab",
     description:
-      "Colecciones Postman, esquemas XSD, plantillas Groovy y diagramas listos para descargar — artefactos de casos resueltos de SAP Integration Suite.",
+      "Guías PDF, colecciones Postman, esquemas XSD, plantillas Groovy y diagramas para descargar — recursos de casos prácticos de SAP Integration Suite.",
     lastmod: today,
     priority: "0.8",
   },
