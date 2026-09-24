@@ -22,12 +22,27 @@ export interface Resource {
 export const resources: Resource[] = [
   {
     category: "guides",
+    file: "/downloads/maintenance-notification-part-2-guide-en-v2.pdf",
+    format: "PDF",
+    size: "2.74 MB",
+    title: {
+      es: "Avisos de mantenimiento — parte 2, inglés (v2)",
+      en: "Maintenance notifications — Part 2, English (v2)",
+    },
+    description: {
+      es: "MIX-003, Bloque 1: validación, contrato de errores y GET con JSON plano. Manual actualizado de 12 páginas, con el re-test del 24 de septiembre y los siguientes bloques pendientes.",
+      en: "MIX-003, Block 1: validation, an error contract and GET with flat JSON. Updated 12-page manual with the September 24 retest and the remaining blocks.",
+    },
+    post: "maintenance-notification-error-handling-part-2",
+  },
+  {
+    category: "guides",
     file: "/downloads/maintenance-notification-guide-es.pdf",
     format: "PDF",
     size: "3.64 MB",
     title: {
-      es: "Avisos de mantenimiento — guía en español",
-      en: "Maintenance notifications — Spanish guide",
+      es: "Avisos de mantenimiento — parte 1, español",
+      en: "Maintenance notifications — Part 1, Spanish",
     },
     description: {
       es: "Manual MIX-003 de SAP PM: arquitectura, iFlow, API Management, pruebas y lecciones del laboratorio. 11 páginas en español; incluye el alcance probado y los siguientes pasos.",
@@ -41,8 +56,8 @@ export const resources: Resource[] = [
     format: "PDF",
     size: "3.64 MB",
     title: {
-      es: "Avisos de mantenimiento — guía en inglés",
-      en: "Maintenance notifications — English guide",
+      es: "Avisos de mantenimiento — parte 1, inglés",
+      en: "Maintenance notifications — Part 1, English",
     },
     description: {
       es: "Versión en inglés del manual MIX-003: crear y consultar avisos en S/4HANA con CPI, APIM y Cloud Connector. 11 páginas con diagramas, capturas y lecciones del laboratorio.",

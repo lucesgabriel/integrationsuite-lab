@@ -17,6 +17,8 @@ El caso **SIS-CASE-MIX-003** conecta ese proceso de **Plant Maintenance (PM)** c
 
 ## Qué está probado y qué queda pendiente
 
+**Actualización del 24 de septiembre de 2026:** ya está publicada la [parte 2: validación y contrato de errores](/blog/maintenance-notification-error-handling-part-2/), con el Bloque 1 cerrado, GET en JSON plano y las pruebas de error. Este artículo y sus descargas conservan la implementación inicial de la parte 1 descrita a continuación.
+
 Las evidencias del laboratorio del **22 de septiembre de 2026**, tomadas con Bruno, muestran creación directa por CPI y a través de APIM, más consultas posteriores. La colección Postman de esta publicación adapta esas operaciones para reproducirlas en tu entorno.
 
 | Operación | Comportamiento de la prueba inicial |
