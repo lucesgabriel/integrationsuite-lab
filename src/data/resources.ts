@@ -22,6 +22,21 @@ export interface Resource {
 export const resources: Resource[] = [
   {
     category: "guides",
+    file: "/downloads/mix-004-servicenow-open-connectors-guide-es.pdf",
+    format: "PDF",
+    size: "390 KB",
+    title: {
+      es: "MIX-004 — incidentes ServiceNow ante falla de Cloud Connector",
+      en: "MIX-004 — ServiceNow incidents when Cloud Connector fails",
+    },
+    description: {
+      es: "Ficha pública en español: arquitectura, deduplicación y evidencia disponible. Indica qué pruebas de integración siguen pendientes.",
+      en: "Spanish public brief: architecture, deduplication and available evidence. Identifies the remaining integration tests.",
+    },
+    post: "servicenow-incident-open-connectors-cloud-connector",
+  },
+  {
+    category: "guides",
     file: "/downloads/maintenance-notification-part-2-guide-en-v2.pdf",
     format: "PDF",
     size: "2.74 MB",
