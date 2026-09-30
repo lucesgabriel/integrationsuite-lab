@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "./LocalizedLink";
 import { profile } from "../data/profile";
 import { posts } from "../lib/posts";
 import { useLang } from "../i18n";
+import { tagLabel } from "../i18n/tags";
 
 const topTags = [...new Set(posts.flatMap((p) => p.tags))].slice(0, 6);
 
 export default function Footer() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
 
   const navLinks = [
     { to: "/", label: t.nav.home },
@@ -72,7 +73,7 @@ export default function Footer() {
                 to={`/blog?tag=${encodeURIComponent(tag)}`}
                 className="rounded-full border border-line bg-raised/50 px-3 py-1 text-xs text-muted transition-colors hover:border-sap-blue hover:text-strong"
               >
-                {tag}
+                {tagLabel(tag, lang)}
               </Link>
             ))}
           </div>

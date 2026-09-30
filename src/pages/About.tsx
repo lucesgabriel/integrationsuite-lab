@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "../components/LocalizedLink";
 import { profile } from "../data/profile";
 import Seo from "../components/Seo";
 import { useReveal } from "../hooks/useReveal";

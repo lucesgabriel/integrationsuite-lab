@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "../components/LocalizedLink";
 import { useLang } from "../i18n";
 
 export default function NotFound() {

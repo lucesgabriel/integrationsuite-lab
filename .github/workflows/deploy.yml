@@ -25,6 +25,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      - run: node scripts/check-content.mjs --dist
       # Fallback SPA: rutas profundas (/blog/...) sirven la app
       - run: cp dist/index.html dist/404.html
       - uses: actions/configure-pages@v5

@@ -1,6 +1,6 @@
 import { profile } from "../data/profile";
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { LocalizedLink as Link, LocalizedNavLink as NavLink } from "./LocalizedLink";
 import { useTheme } from "../hooks/useTheme";
 import { useLang } from "../i18n";
 

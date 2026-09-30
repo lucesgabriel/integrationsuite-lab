@@ -1,4 +1,6 @@
 const SITE = "https://sapintegrationlab.com";
+import { useLang } from "../i18n";
+import { localePath } from "../i18n/paths.mjs";
 
 interface SeoProps {
   title: string;
@@ -25,7 +27,8 @@ export default function Seo({
   type = "website",
   jsonLd,
 }: SeoProps) {
-  const url = `${SITE}${path}`;
+  const { lang } = useLang();
+  const url = `${SITE}${localePath(path, lang)}`;
   const img = image ? `${SITE}${image}` : `${SITE}/og-default.png`;
 
   return (
@@ -33,6 +36,10 @@ export default function Seo({
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
+      <link rel="alternate" hrefLang="es" href={`${SITE}${localePath(path, "es")}`} />
+      <link rel="alternate" hrefLang="en" href={`${SITE}${localePath(path, "en")}`} />
+      <link rel="alternate" hrefLang="x-default" href={`${SITE}${localePath(path, "es")}`} />
+      <meta property="og:locale" content={lang === "es" ? "es_CL" : "en_US"} />
       <meta property="og:site_name" content="SAPIntegrationLab" />
       <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />

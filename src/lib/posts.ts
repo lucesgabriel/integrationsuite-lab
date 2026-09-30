@@ -28,6 +28,9 @@ const rawPosts = import.meta.glob("../content/posts/*.md", {
   import: "default",
   eager: true,
 }) as Record<string, string>;
+const rawEnglishPosts = import.meta.glob("../content/posts/en/*.md", {
+  query: "?raw", import: "default", eager: true,
+}) as Record<string, string>;
 
 function parseFrontmatter(raw: string): {
   meta: Record<string, string>;
@@ -53,7 +56,7 @@ function parseFrontmatter(raw: string): {
   return { meta, body: raw.slice(match[0].length) };
 }
 
-export const posts: Post[] = Object.entries(rawPosts)
+function loadPosts(raw: Record<string, string>): Post[] { return Object.entries(raw)
   .map(([path, raw]) => {
     const slug = path.split("/").pop()!.replace(/\.md$/, "");
     const { meta, body } = parseFrontmatter(raw);
@@ -66,10 +69,16 @@ export const posts: Post[] = Object.entries(rawPosts)
       content: body,
     };
   })
-  .sort((a, b) => b.date.localeCompare(a.date));
+  .sort((a, b) => b.date.localeCompare(a.date)); }
 
-export function getPost(slug: string): Post | undefined {
-  return posts.find((p) => p.slug === slug);
+export const posts = loadPosts(rawPosts);
+const englishPosts = loadPosts(rawEnglishPosts);
+export function getPosts(lang: "es" | "en" = "es"): Post[] {
+  return lang === "en" ? englishPosts : posts;
+}
+
+export function getPost(slug: string, lang: "es" | "en" = "es"): Post | undefined {
+  return getPosts(lang).find((p) => p.slug === slug);
 }
 
 export function formatDate(iso: string, lang: "es" | "en" = "es"): string {

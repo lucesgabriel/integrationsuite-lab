@@ -19,14 +19,15 @@ import { renderToStaticMarkup } from "react-dom/server";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import headingIds from "../src/lib/heading-ids.mjs";
+import { localePath } from "../src/i18n/paths.mjs";
 
 const SITE = "https://sapintegrationlab.com";
 const DIST = "dist";
 const POSTS_DIR = "src/content/posts";
 
 // --- Posts: parsear frontmatter (mismo formato que src/lib/posts.ts)
-function parsePost(file) {
-  const raw = fs.readFileSync(path.join(POSTS_DIR, file), "utf8");
+function parsePost(file, lang = "es") {
+  const raw = fs.readFileSync(path.join(POSTS_DIR, lang === "en" ? "en" : "", file), "utf8");
   const fm = /^---\r?\n([\s\S]*?)\r?\n---/.exec(raw);
   const meta = {};
   if (fm) {
@@ -52,7 +53,7 @@ function parsePost(file) {
 const posts = fs
   .readdirSync(POSTS_DIR)
   .filter((f) => f.endsWith(".md"))
-  .map(parsePost)
+  .map(file => parsePost(file))
   .sort((a, b) => b.date.localeCompare(a.date));
 
 // --- Rutas del sitio (canónicas con slash final: así las sirve Pages con 200)
@@ -60,7 +61,7 @@ const today = new Date().toISOString().slice(0, 10);
 const DEFAULT_DESC =
   "Casos reales de SAP Integration Suite: Cloud Integration (CPI), API Management y SAP BTP, documentados pantalla a pantalla por Gabriel Luces.";
 
-const routes = [
+const spanishRoutes = [
   {
     path: "/",
     title: "SAPIntegrationLab | SAP Integration Suite en la práctica",
@@ -112,6 +113,29 @@ const routes = [
   })),
 ];
 
+const englishPosts = fs.readdirSync(path.join(POSTS_DIR, "en"))
+  .filter(file => file.endsWith(".md")).map(file => parsePost(file, "en"))
+  .sort((a, b) => b.date.localeCompare(a.date));
+if (posts.length !== englishPosts.length || posts.some(post => !englishPosts.some(en => en.slug === post.slug))) {
+  throw new Error("Every article must have an English counterpart.");
+}
+const englishPages = [
+  ["SAPIntegrationLab | Hands-on SAP Integration Suite", "Real SAP Integration Suite cases: Cloud Integration (CPI), API Management and SAP BTP, documented screen by screen by Gabriel Luces."],
+  ["Articles | SAPIntegrationLab", "Practical guides and technical notes on SAP Integration Suite, written from real integration projects."],
+  ["Resources | SAPIntegrationLab", "Download PDF guides, Postman collections, XSD schemas, Groovy templates and diagrams from hands-on SAP Integration Suite cases."],
+  ["About | SAPIntegrationLab", "Gabriel Luces — SAP consultant with 12+ years of experience in MM, PM and Integration Suite (BTP/CPI). Experience, certifications and specialties."],
+  ["Contact | SAPIntegrationLab", "Let's talk SAP integration: projects, technical questions about SAP Integration Suite and collaboration."],
+];
+const routes = [
+  ...spanishRoutes.map(route => ({ ...route, basePath: route.path, lang: "es" })),
+  ...spanishRoutes.map((route, index) => {
+    const post = route.post ? englishPosts.find(post => post.slug === route.post.slug) : undefined;
+    return { ...route, path: localePath(route.path, "en"), basePath: route.path, lang: "en",
+      title: post ? `${post.title} | SAPIntegrationLab` : englishPages[index][0],
+      description: post ? post.description : englishPages[index][1], post };
+  }),
+];
+
 // --- Inyección de meta tags en el HTML
 const esc = (s) =>
   s.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll('"', "&quot;");
@@ -121,19 +145,21 @@ const template = fs.readFileSync(path.join(DIST, "index.html"), "utf8");
 // Useful content and real links even before JavaScript runs. createRoot replaces
 // this initial HTML once the interactive app is ready (no hydration mismatch).
 function staticContent(route) {
-  const nav = '<nav aria-label="Navegación"><a href="/">Inicio</a> · <a href="/blog/">Artículos</a> · <a href="/recursos/">Recursos</a> · <a href="/sobre-mi/">Sobre mí</a> · <a href="/contacto/">Contacto</a></nav>';
+  const labels = route.lang === "es" ? ["Inicio", "Artículos", "Recursos", "Sobre mí", "Contacto"] : ["Home", "Articles", "Resources", "About", "Contact"];
+  const nav = `<nav aria-label="${route.lang === "es" ? "Navegación" : "Navigation"}">${["/", "/blog/", "/recursos/", "/sobre-mi/", "/contacto/"].map((href, index) => `<a href="${localePath(href, route.lang)}">${labels[index]}</a>`).join(" · ")}</nav>`;
   let body = `<h1>${esc(route.title.replace(" | SAPIntegrationLab", ""))}</h1><p>${esc(route.description)}</p>`;
   if (route.post) {
     body += renderToStaticMarkup(React.createElement(ReactMarkdown, {
       remarkPlugins: [remarkGfm, headingIds],
       components: {
-        table: ({ children }) => React.createElement("div", { className: "table-scroll", tabIndex: 0, role: "region", "aria-label": "Tabla del artículo" }, React.createElement("table", null, children)),
+        a: ({ href, children }) => React.createElement("a", { href: href ? localePath(href, route.lang) : undefined }, children),
+        table: ({ children }) => React.createElement("div", { className: "table-scroll", tabIndex: 0, role: "region", "aria-label": route.lang === "es" ? "Tabla del artículo" : "Article table" }, React.createElement("table", null, children)),
       },
     }, route.post.content));
-  } else if (route.path === "/" || route.path === "/blog/") {
-    body += posts.map((post) => `<section><h2><a href="/blog/${post.slug}/">${esc(post.title)}</a></h2><p>${esc(post.description)}</p></section>`).join("");
+  } else if (route.basePath === "/" || route.basePath === "/blog/") {
+    body += (route.lang === "en" ? englishPosts : posts).map((post) => `<section><h2><a href="${localePath(`/blog/${post.slug}/`, route.lang)}">${esc(post.title)}</a></h2><p>${esc(post.description)}</p></section>`).join("");
   }
-  return `<main id="main-content" class="prose-post mx-auto max-w-3xl px-4 py-12" lang="es">${nav}${body}</main>`;
+  return `<main id="main-content" class="prose-post mx-auto max-w-3xl px-4 py-12" lang="${route.lang}">${nav}${body}</main>`;
 }
 
 function htmlFor(route) {
@@ -147,18 +173,25 @@ function htmlFor(route) {
     `<meta property="og:description" content="${esc(route.description)}" />`,
     `<meta property="og:url" content="${url}" />`,
     `<meta property="og:image" content="${image}" />`,
-    `<meta property="og:locale" content="es_CL" />`,
+    `<meta property="og:locale" content="${route.lang === "es" ? "es_CL" : "en_US"}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${esc(route.title)}" />`,
     `<meta name="twitter:description" content="${esc(route.description)}" />`,
     `<meta name="twitter:image" content="${image}" />`,
-  ].join("\n    ");
+    ...["es", "en", "x-default"].map(lang => `<link rel="alternate" hreflang="${lang}" href="${SITE}${localePath(route.basePath, lang === "en" ? "en" : "es")}" />`),
+    ...(route.post ? [`<script type="application/ld+json">${JSON.stringify({
+      "@context": "https://schema.org", "@type": "BlogPosting", headline: route.post.title,
+      description: route.description, datePublished: route.post.date, inLanguage: route.lang,
+      image, author: { "@type": "Person", name: "Gabriel Luces", url: `${SITE}${localePath("/sobre-mi/", route.lang)}` },
+    }).replaceAll("<", "\\u003c")}</script>`] : []),
+  ].map(tag => tag.replace(/^<(link|meta|script) /, "<$1 data-seo-static ")).join("\n    ");
 
   return template
-    .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(route.title)}</title>`)
+    .replace('<html lang="es">', `<html lang="${route.lang}">`)
+    .replace(/<title[^>]*>[\s\S]*?<\/title>/, `<title data-seo-static>${esc(route.title)}</title>`)
     .replace(
-      /<meta\s+name="description"[\s\S]*?\/>/,
-      `<meta name="description" content="${esc(route.description)}" />`
+      /<meta\s+data-seo-static\s+name="description"[\s\S]*?\/>/,
+      `<meta data-seo-static name="description" content="${esc(route.description)}" />`
     )
     .replace("</head>", `    ${head}\n  </head>`)
     .replace('<div id="root"></div>', () => `<div id="root">${staticContent(route)}</div>`);
@@ -172,13 +205,14 @@ for (const route of routes) {
 
 // --- sitemap.xml
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${routes
   .map(
     (r) => `  <url>
     <loc>${SITE}${r.path}</loc>
     <lastmod>${r.lastmod}</lastmod>
     <priority>${r.priority}</priority>
+${["es", "en", "x-default"].map(lang => `    <xhtml:link rel="alternate" hreflang="${lang}" href="${SITE}${localePath(r.basePath, lang === "en" ? "en" : "es")}" />`).join("\n")}
   </url>`
   )
   .join("\n")}

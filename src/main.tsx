@@ -5,6 +5,10 @@ import App from "./App";
 import { LanguageProvider } from "./i18n";
 import "./index.css";
 
+// The generated HTML serves crawlers and readers before React loads. Replace
+// its route metadata so React 19 maintains a single set during SPA navigation.
+document.querySelectorAll("[data-seo-static]").forEach(node => node.remove());
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter basename={import.meta.env.BASE_URL}>

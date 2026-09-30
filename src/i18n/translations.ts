@@ -1,11 +1,11 @@
 /**
- * Diccionario de traducciones de la UI. Los artículos (.md) se publican en
- * español; en inglés se muestra un aviso (ver blog.spanishOnly).
+ * Diccionario de traducciones de la UI. Los artículos tienen versiones ES/EN.
  * Para agregar un idioma: añadir la clave y completar el mismo objeto.
  */
 
 const es = {
   nav: {
+    loading: "Cargando página…",
     home: "Inicio",
     skip: "Saltar al contenido",
     openMenu: "Abrir menú",
@@ -16,6 +16,16 @@ const es = {
     contact: "Contacto",
   },
   resources: {
+    eyebrow: "EL KIT DEL LABORATORIO",
+    all: "Todos",
+    search: "Buscar recursos",
+    searchPlaceholder: "Ej.: ServiceNow, SAP PM, Postman…",
+    count: "recursos disponibles",
+    results: "recursos encontrados",
+    empty: "No hay recursos que coincidan. Prueba otra búsqueda.",
+    clear: "Limpiar filtros",
+    language: "Idioma del archivo",
+    fileLanguages: { es: "Español", en: "Inglés", technical: "Artefacto técnico" },
     title: "Recursos",
     description:
       "Guías PDF, colecciones Postman, esquemas, plantillas y diagramas para descargar y acompañar los casos prácticos del laboratorio.",
@@ -40,6 +50,20 @@ const es = {
     ctaBlog: "Ver artículos",
     ctaAbout: "Sobre mí",
   },
+  integrationMap: {
+    eyebrow: "EXPLORA EL RECORRIDO",
+    title: "Del proceso de negocio a la integración",
+    pause: "Pausar animación",
+    play: "Reanudar animación",
+    readCase: "Explorar este caso →",
+    canvasLabel: "Mapa visual del recorrido de integración seleccionado",
+    scenarios: [
+      { name: "SAP PM", description: "Una aplicación consulta una orden de mantenimiento en S/4HANA mediante CPI y Cloud Connector." },
+      { name: "API gobernada", description: "API Management controla el acceso; Cloud Integration valida y consulta el catálogo." },
+      { name: "Alertas operativas", description: "El diseño de MIX-004 deriva una falla técnica a un iFlow de alertas, Open Connectors y ServiceNow." },
+    ],
+  },
+  media: { close: "Cerrar imagen", title: "Imagen ampliada", zoom: "Ampliar detalles", fit: "Ajustar a pantalla", original: "Abrir imagen original" },
   topics: {
     heading: "¿Qué encontrarás aquí?",
     subheading: "Los pilares de SAP Integration Suite, explicados desde la práctica.",
@@ -103,7 +127,6 @@ const es = {
     empty: "No hay artículos que coincidan. Prueba otra búsqueda o limpia los filtros.",
     back: "← Volver a artículos",
     notFound: "Artículo no encontrado",
-    spanishOnly: "",
     copy: "Copiar",
     copied: "¡Copiado!",
   },
@@ -182,6 +205,7 @@ const es = {
 
 const en: Translation = {
   nav: {
+    loading: "Loading page…",
     home: "Home",
     skip: "Skip to content",
     openMenu: "Open menu",
@@ -192,6 +216,16 @@ const en: Translation = {
     contact: "Contact",
   },
   resources: {
+    eyebrow: "THE LAB TOOLKIT",
+    all: "All",
+    search: "Search resources",
+    searchPlaceholder: "E.g. ServiceNow, SAP PM, Postman…",
+    count: "resources available",
+    results: "resources found",
+    empty: "No matching resources. Try a different search.",
+    clear: "Clear filters",
+    language: "File language",
+    fileLanguages: { es: "Spanish", en: "English", technical: "Technical artifact" },
     title: "Resources",
     description:
       "Download PDF guides, Postman collections, schemas, templates and diagrams to accompany the lab's practical cases.",
@@ -216,6 +250,20 @@ const en: Translation = {
     ctaBlog: "Browse articles",
     ctaAbout: "About me",
   },
+  integrationMap: {
+    eyebrow: "EXPLORE THE FLOW",
+    title: "From business process to integration",
+    pause: "Pause animation",
+    play: "Resume animation",
+    readCase: "Explore this case →",
+    canvasLabel: "Visual map of the selected integration flow",
+    scenarios: [
+      { name: "SAP PM", description: "An application queries a maintenance order in S/4HANA through CPI and Cloud Connector." },
+      { name: "Governed API", description: "API Management controls access; Cloud Integration validates the request and queries the catalog." },
+      { name: "Operational alerts", description: "The MIX-004 design sends a technical failure to an alerting iFlow, Open Connectors and ServiceNow." },
+    ],
+  },
+  media: { close: "Close image", title: "Enlarged image", zoom: "Zoom into details", fit: "Fit to screen", original: "Open original image" },
   topics: {
     heading: "What you'll find here",
     subheading: "The pillars of SAP Integration Suite, explained from real practice.",
@@ -279,8 +327,6 @@ const en: Translation = {
     empty: "No matching articles. Try another search or clear the filters.",
     back: "← Back to articles",
     notFound: "Article not found",
-    spanishOnly:
-      "📝 This article is currently available in Spanish only. English versions are coming soon.",
     copy: "Copy",
     copied: "Copied!",
   },

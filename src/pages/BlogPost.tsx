@@ -1,7 +1,9 @@
 import { profile } from "../data/profile";
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
+import { useMemo, useState } from "react";
+import { useParams } from "react-router-dom";
+import { LocalizedLink as Link } from "../components/LocalizedLink";
+import { localePath } from "../i18n/paths.mjs";
+import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import headingIds from "../lib/heading-ids.mjs";
 import { getPost, formatDate } from "../lib/posts";
@@ -11,12 +13,24 @@ import CodeBlock from "../components/CodeBlock";
 import NewsletterSignup from "../components/NewsletterSignup";
 import Seo from "../components/Seo";
 import { useLang } from "../i18n";
+import { tagLabel } from "../i18n/tags";
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const post = slug ? getPost(slug) : undefined;
   const [zoom, setZoom] = useState<{ src: string; alt?: string } | null>(null);
   const { t, lang } = useLang();
+  const post = slug ? getPost(slug, lang) : undefined;
+  // Stable component types keep image DOM nodes and keyboard focus intact
+  // when the lightbox opens or closes.
+  const markdownComponents = useMemo<Components>(() => ({
+    a: ({ href, children, ...props }) => <a href={href ? localePath(href, lang) : undefined} {...props}>{children}</a>,
+    pre: CodeBlock,
+    table: ({ children }) => <div className="table-scroll" role="region" tabIndex={0} aria-label={t.blog.tableLabel}><table>{children}</table></div>,
+    img: ({ src, alt }) => src ? <img src={src} alt={alt ?? ""} loading="lazy"
+      role="button" tabIndex={0} aria-label={`${t.media.zoom}: ${alt ?? ""}`}
+      onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setZoom({ src, alt }); } }}
+      onClick={() => setZoom({ src, alt })} /> : null,
+  }), [lang, t.blog.tableLabel, t.media.zoom]);
 
   if (!post) {
     return (
@@ -48,14 +62,14 @@ export default function BlogPost() {
           headline: post.title,
           description: post.description,
           datePublished: post.date,
-          inLanguage: "es",
+          inLanguage: lang,
           image: firstImage
             ? `https://sapintegrationlab.com${firstImage}`
             : undefined,
           author: {
             "@type": "Person",
             name: profile.name,
-            url: "https://sapintegrationlab.com/sobre-mi/",
+            url: `https://sapintegrationlab.com${localePath("/sobre-mi/", lang)}`,
           },
         }}
       />
@@ -73,7 +87,7 @@ export default function BlogPost() {
               key={tag}
               className="rounded-full bg-raised px-3 py-1 font-mono text-xs font-medium text-accent-text"
             >
-              #{tag}
+              {tagLabel(tag, lang)}
             </span>
           ))}
         </div>
@@ -84,30 +98,13 @@ export default function BlogPost() {
         <p className="mt-6 border-t border-line pt-5 text-sm text-muted">
           {formatDate(post.date, lang)} · {Math.max(1, Math.ceil(post.content.split(/\s+/).length / 200))} {t.blog.readingTime}
         </p>
-        {lang === "en" && (
-          <p className="mt-4 rounded-xl border border-sap-blue/30 bg-sap-blue/10 px-4 py-3 text-sm text-accent-text">
-            {t.blog.spanishOnly}
-          </p>
-        )}
       </header>
 
-      <div className="prose-post article-body mt-9" lang="es">
+      <div className="prose-post article-body mt-9" lang={lang}>
         <ReactMarkdown
           remarkPlugins={[remarkGfm, headingIds]}
           rehypePlugins={[[rehypePrism, { ignoreMissing: true }]]}
-          components={{
-            pre: CodeBlock,
-            table: ({ children }) => <div className="table-scroll" role="region" tabIndex={0} aria-label={t.blog.tableLabel}><table>{children}</table></div>,
-            img: ({ src, alt }) =>
-              src ? (
-                <img
-                  src={src}
-                  alt={alt ?? ""}
-                  loading="lazy"
-                  onClick={() => setZoom({ src, alt })}
-                />
-              ) : null,
-          }}
+          components={markdownComponents}
         >
           {post.content}
         </ReactMarkdown>

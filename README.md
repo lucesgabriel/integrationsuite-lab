@@ -13,6 +13,8 @@ Inspirada en sitios de contenido como sapintegrationhub.com, construida con:
 - 🎨 **Tailwind CSS 4**
 - 🧭 **React Router 7**
 - 📝 Artículos en **Markdown** (render con react-markdown)
+- 🌐 Web y artículos completos en **español e inglés**, con URL por idioma
+- ◇ Mapa de integración en **Three.js**, carga diferida y alternativa SVG
 
 ## Comandos
 
@@ -29,6 +31,7 @@ npm run preview  # previsualizar el build
 src/
 ├── data/profile.ts       # Datos personales (experiencia, certs, skills) — única fuente de verdad
 ├── content/posts/*.md    # Artículos del blog (Markdown + frontmatter)
+├── content/posts/en/*.md # Traducciones completas, mismo nombre que el original
 ├── lib/posts.ts          # Cargador de posts (import.meta.glob + frontmatter parser)
 ├── components/           # Navbar, Footer, Layout, PostCard
 ├── pages/                # Home, Blog, BlogPost, About, NotFound
@@ -51,7 +54,11 @@ tags: cloud-integration, tutorial
 Contenido en Markdown...
 ```
 
-El nombre del archivo se convierte en la URL (`mi-articulo.md` → `/blog/mi-articulo`). No hay que tocar código.
+El nombre del archivo se convierte en la URL (`mi-articulo.md` → `/blog/mi-articulo/`). Añadir la traducción completa en `src/content/posts/en/mi-articulo.md` con la misma fecha y tags: se publica en `/en/blog/mi-articulo/`. Traducir título, resumen, texto, tablas, alt, captions y anclas; conservar los contratos técnicos y el alcance de las pruebas. La compilación exige que todos los artículos tengan su traducción.
+
+El selector cambia a la misma página del otro idioma. Las URL inglesas principales son `/en/`, `/en/blog/`, `/en/resources/`, `/en/about/` y `/en/contact/`. Los PDF conservan su idioma original y lo indican en Recursos.
+
+El [plan visual y bilingüe](docs/visual-bilingual-plan.md) documenta el alcance. `node scripts/check-content.mjs` comprueba traducciones, imágenes y enlaces; después de compilar, `node scripts/check-content.mjs --dist` verifica también HTML estático, anclas y SEO.
 
 ## Cómo actualizar el perfil
 
@@ -73,7 +80,9 @@ Estas keys están diseñadas para ser públicas en el front-end (no son secretos
 - [x] Sección de recursos/descargas (`/recursos`: Postman, XSDs, plantillas Groovy, diagramas)
 - [x] Resaltado de sintaxis en bloques de código (rehype-prism-plus, paleta por tema, botón copiar)
 - [x] SEO por página (meta tags nativos de React 19 + HTML estático por ruta vía `scripts/seo-postbuild.mjs`) + sitemap.xml + robots.txt + JSON-LD
-- [x] Versión en inglés (i18n) — UI y perfil bilingües; los artículos siguen en español (soporte para traducirlos pendiente)
+- [x] Versión en inglés — UI, perfil, catálogo y los 13 artículos; rutas propias, HTML estático y hreflang
+- [x] Portada Three.js: tres recorridos, pausa, movimiento reducido y alternativa SVG
+- [x] Recursos con búsqueda, filtros, conteos e idioma del archivo; visor de imágenes con zoom
 - [x] Newsletter (Kit) / formulario de contacto (Web3Forms) — ver "Activar contacto y newsletter"
 - [x] Deploy automático (GitHub Pages + Actions)
 - [x] Dark/light mode toggle

@@ -1,10 +1,11 @@
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { matchesSearch } from "../lib/search";
-import { posts } from "../lib/posts";
+import { getPosts } from "../lib/posts";
 import PostCard from "../components/PostCard";
 import Seo from "../components/Seo";
 import { useLang } from "../i18n";
+import { tagLabel } from "../i18n/tags";
 
 export default function Blog() {
   const [params, setParams] = useSearchParams();
@@ -19,25 +20,20 @@ export default function Blog() {
     }, { replace: true });
   }
   const { t, lang } = useLang();
+  const posts = getPosts(lang);
 
   const tags = useMemo(
     () => [...new Set(posts.flatMap((p) => p.tags))].sort(),
-    []
+    [posts]
   );
 
-  const visible = posts.filter((p) => (!activeTag || p.tags.includes(activeTag)) && matchesSearch(p, query));
+  const visible = posts.filter((p) => (!activeTag || p.tags.includes(activeTag)) && matchesSearch({ ...p, tags: p.tags.map(tag => tagLabel(tag, lang)) }, query));
 
   return (
     <section className="site-shell page-section">
       <Seo title={t.seo.blogTitle} description={t.blog.description} path="/blog/" />
       <h1 className="page-title font-extrabold text-strong">{t.blog.title}</h1>
       <p className="page-intro mt-4 max-w-2xl text-muted">{t.blog.description}</p>
-
-      {lang === "en" && (
-        <p className="mt-4 max-w-2xl rounded-xl border border-sap-blue/30 bg-sap-blue/10 px-4 py-3 text-sm text-accent-text">
-          {t.blog.spanishOnly}
-        </p>
-      )}
 
       <div className="search-panel mt-8 max-w-2xl">
         <label htmlFor="article-search" className="block text-sm font-semibold text-strong">{t.blog.search}</label>
@@ -69,7 +65,7 @@ export default function Blog() {
                 : "bg-raised text-muted hover:text-strong"
             }`}
           >
-            {tag}
+            {tagLabel(tag, lang)}
           </button>
         ))}
       </div>

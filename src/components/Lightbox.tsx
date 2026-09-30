@@ -1,56 +1,37 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useLang } from "../i18n";
 
-interface LightboxProps {
-  src: string;
-  alt?: string;
-  onClose: () => void;
-}
-
-/**
- * Visor de imagen a pantalla completa. Cierra con clic (en imagen u
- * overlay), botón ✕ o tecla Escape. Bloquea el scroll mientras está abierto.
- */
-export default function Lightbox({ src, alt, onClose }: LightboxProps) {
+export default function Lightbox({ src, alt, onClose }: { src: string; alt?: string; onClose: () => void }) {
+  const { t } = useLang();
+  const [zoomed, setZoomed] = useState(false);
+  const dialog = useRef<HTMLDivElement>(null);
+  const close = useRef<HTMLButtonElement>(null);
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+    const previous = document.activeElement as HTMLElement | null;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden"; close.current?.focus();
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+      if (event.key !== "Tab") return;
+      const controls = dialog.current?.querySelectorAll<HTMLElement>("button, a[href], [tabindex='0']");
+      if (!controls?.length) return;
+      const first = controls[0], last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
     };
     document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
+    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = overflow; previous?.focus(); };
   }, [onClose]);
 
-  return (
-    <div
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-label={alt ?? "Imagen ampliada"}
-    >
-      <button
-        onClick={onClose}
-        aria-label="Cerrar imagen"
-        className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25"
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-          <path d="M6 6l12 12M18 6L6 18" />
-        </svg>
-      </button>
-
-      <img
-        src={src}
-        alt={alt ?? ""}
-        className="animate-zoom-in max-h-[90vh] max-w-[95vw] cursor-zoom-out rounded-xl object-contain shadow-2xl"
-      />
-      {alt && (
-        <p className="mt-4 max-w-3xl text-center text-sm text-slate-300">
-          {alt}
-        </p>
-      )}
+  return <div ref={dialog} className="lightbox" role="dialog" aria-modal="true" aria-label={t.media.title} onClick={event => { if (event.target === event.currentTarget) onClose(); }}>
+    <div className="lightbox-toolbar">
+      <button onClick={() => setZoomed(!zoomed)}>{zoomed ? t.media.fit : t.media.zoom}</button>
+      <a href={src} target="_blank" rel="noreferrer">{t.media.original} ↗</a>
+      <button ref={close} onClick={onClose} aria-label={t.media.close}>✕</button>
     </div>
-  );
+    <div className={`lightbox-viewport ${zoomed ? "is-zoomed" : ""}`} tabIndex={0} onClick={event => { if (event.target === event.currentTarget) onClose(); }}>
+      <img src={src} alt={alt ?? ""} onClick={() => setZoomed(!zoomed)} />
+    </div>
+    {alt && <p>{alt}</p>}
+  </div>;
 }

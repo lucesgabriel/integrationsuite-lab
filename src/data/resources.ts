@@ -13,6 +13,7 @@ export interface Resource {
   file: string;
   format?: "ZIP" | "PDF";
   size: string;
+  language?: "es" | "en";
   title: Localized;
   description: Localized;
   /** Slug del artículo relacionado (opcional) */
@@ -23,6 +24,7 @@ export const resources: Resource[] = [
   {
     category: "guides",
     file: "/downloads/mix-004-servicenow-open-connectors-guide-es.pdf",
+    language: "es",
     format: "PDF",
     size: "390 KB",
     title: {
@@ -38,6 +40,7 @@ export const resources: Resource[] = [
   {
     category: "guides",
     file: "/downloads/maintenance-notification-part-2-guide-en-v2.pdf",
+    language: "en",
     format: "PDF",
     size: "2.74 MB",
     title: {
@@ -53,6 +56,7 @@ export const resources: Resource[] = [
   {
     category: "guides",
     file: "/downloads/maintenance-notification-guide-es.pdf",
+    language: "es",
     format: "PDF",
     size: "3.64 MB",
     title: {
@@ -68,6 +72,7 @@ export const resources: Resource[] = [
   {
     category: "guides",
     file: "/downloads/maintenance-notification-guide-en.pdf",
+    language: "en",
     format: "PDF",
     size: "3.64 MB",
     title: {

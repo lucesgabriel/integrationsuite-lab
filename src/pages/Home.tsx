@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "../components/LocalizedLink";
 import { profile } from "../data/profile";
-import { posts } from "../lib/posts";
+import { getPosts } from "../lib/posts";
 import PostCard from "../components/PostCard";
-import PipelineGraphic from "../components/PipelineGraphic";
+import IntegrationMap from "../components/IntegrationMap";
 import TechTicker from "../components/TechTicker";
 import NewsletterSignup from "../components/NewsletterSignup";
 import Seo from "../components/Seo";
@@ -46,12 +46,12 @@ function TopicIcon({ children }: { children: React.ReactNode }) {
 }
 
 export default function Home() {
-  const featured = posts.slice(0, 3);
   const topicsRef = useReveal<HTMLElement>();
   const postsRef = useReveal<HTMLElement>();
   const newsletterRef = useReveal<HTMLElement>();
   const ctaRef = useReveal<HTMLElement>();
   const { t, lang } = useLang();
+  const featured = getPosts(lang).slice(0, 3);
 
   return (
     <>
@@ -138,9 +138,7 @@ export default function Home() {
           </div>
 
           {/* Pipeline animado */}
-          <div className="hero-pipeline hidden justify-center lg:flex">
-            <PipelineGraphic />
-          </div>
+          <IntegrationMap />
         </div>
       </section>
 

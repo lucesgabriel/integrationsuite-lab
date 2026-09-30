@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 type Theme = "dark" | "light";
 
 function initialTheme(): Theme {
-  const stored = localStorage.getItem("theme");
-  if (stored === "dark" || stored === "light") return stored;
+  try {
+    const stored = localStorage.getItem("theme");
+    if (stored === "dark" || stored === "light") return stored;
+  } catch {}
   // Claro por defecto; el visitante puede cambiarlo con el toggle
   return "light";
 }
@@ -14,7 +16,7 @@ export function useTheme() {
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
-    localStorage.setItem("theme", theme);
+    try { localStorage.setItem("theme", theme); } catch {}
   }, [theme]);
 
   return {

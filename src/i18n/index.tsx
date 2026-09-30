@@ -2,10 +2,11 @@ import {
   createContext,
   useContext,
   useEffect,
-  useState,
   type ReactNode,
 } from "react";
 import { translations, type Translation } from "./translations";
+import { useLocation, useNavigate } from "react-router-dom";
+import { languageFromPath, localePath } from "./paths.mjs";
 
 export type Lang = "es" | "en";
 
@@ -20,18 +21,16 @@ interface LanguageContextValue {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-function initialLang(): Lang {
-  const stored = localStorage.getItem("lang");
-  if (stored === "es" || stored === "en") return stored;
-  // Español por defecto (audiencia principal LATAM)
-  return "es";
-}
-
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>(initialLang);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const lang = languageFromPath(location.pathname);
+  function setLang(next: Lang) {
+    navigate(localePath(location.pathname, next) + location.search);
+  }
 
   useEffect(() => {
-    localStorage.setItem("lang", lang);
+    try { localStorage.setItem("lang", lang); } catch { /* URL is authoritative. */ }
     document.documentElement.lang = lang;
   }, [lang]);
 
