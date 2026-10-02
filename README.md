@@ -80,7 +80,7 @@ Estas keys están diseñadas para ser públicas en el front-end (no son secretos
 - [x] Sección de recursos/descargas (`/recursos`: Postman, XSDs, plantillas Groovy, diagramas)
 - [x] Resaltado de sintaxis en bloques de código (rehype-prism-plus, paleta por tema, botón copiar)
 - [x] SEO por página (meta tags nativos de React 19 + HTML estático por ruta vía `scripts/seo-postbuild.mjs`) + sitemap.xml + robots.txt + JSON-LD
-- [x] Versión en inglés — UI, perfil, catálogo y los 13 artículos; rutas propias, HTML estático y hreflang
+- [x] Versión en inglés — UI, perfil, catálogo y los 14 artículos; rutas propias, HTML estático y hreflang
 - [x] Portada Three.js: tres recorridos, pausa, movimiento reducido y alternativa SVG
 - [x] Recursos con búsqueda, filtros, conteos e idioma del archivo; visor de imágenes con zoom
 - [x] Newsletter (Kit) / formulario de contacto (Web3Forms) — ver "Activar contacto y newsletter"

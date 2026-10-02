@@ -23,6 +23,36 @@ export interface Resource {
 export const resources: Resource[] = [
   {
     category: "guides",
+    file: "/downloads/maintenance-notifications-mcp-guide-en.pdf",
+    language: "en",
+    format: "PDF",
+    size: "8.08 MB",
+    title: {
+      es: "MIX-005 — avisos SAP PM como tools MCP para un agente IA",
+      en: "MIX-005 — SAP PM notifications as MCP tools for an AI agent",
+    },
+    description: {
+      es: "Manual público en inglés de 23 páginas y 37 imágenes: Integration Cell, API Management, dos tools y pruebas con Claude Desktop. Lectura y creación verificadas en laboratorio; T09 y cierre operativo pendientes.",
+      en: "Public English manual with 23 pages and 37 images: Integration Cell, API Management, two tools and Claude Desktop tests. Read and create verified in the lab; T09 and operational closure pending.",
+    },
+    post: "maintenance-notifications-mcp-server-ai-agent",
+  },
+  {
+    category: "postman",
+    file: "/downloads/maintenance-notifications-mcp-postman.zip",
+    size: "13 KB",
+    title: {
+      es: "MIX-005 — Postman MCP, OpenAPI y policies APIM",
+      en: "MIX-005 — MCP Postman, OpenAPI and APIM policies",
+    },
+    description: {
+      es: "Colección T00–T12, environment sin credenciales, contrato OpenAPI y cuatro policies XML. Instrucciones ES/EN y límites del laboratorio; T11 crea un aviso real, ejecutar solo tras confirmar los datos.",
+      en: "T00–T12 collection, environment without credentials, OpenAPI contract and four XML policies. ES/EN instructions and lab boundaries; T11 creates a real notification, run only after confirming inputs.",
+    },
+    post: "maintenance-notifications-mcp-server-ai-agent",
+  },
+  {
+    category: "guides",
     file: "/downloads/mix-004-servicenow-open-connectors-guide-es.pdf",
     language: "es",
     format: "PDF",
