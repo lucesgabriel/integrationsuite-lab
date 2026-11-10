@@ -2,6 +2,8 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 
+let introPlayed = false;
+
 /** Small, self-contained scene. No models, textures or remote requests. */
 export default function ThreeFlowCanvas({ nodes, active, onFailure }: { nodes: string[]; active: boolean; onFailure: () => void }) {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -83,13 +85,25 @@ export default function ThreeFlowCanvas({ nodes, active, onFailure }: { nodes: s
     theme(); resize();
     const lost = (event: Event) => { event.preventDefault(); onFailure(); };
     canvas.addEventListener("webglcontextlost", lost);
+    // Entrada 3D: solo la primera vez que se monta la escena en esta carga.
+    let intro = introPlayed ? 1 : 0;
+    const pose = (progress: number) => {
+      if (progress >= 1) introPlayed = true;
+      const rest = Math.pow(1 - progress, 3);
+      group.rotation.y = rest * -1.25;
+      group.position.y = rest * -0.9;
+      group.scale.setScalar(1 - rest * 0.45);
+    };
+    pose(intro);
     let frame = 0, last = 0, time = 0;
     const draw = (now: number) => {
       frame = 0;
       if (!activeRef.current || document.hidden) return;
       frame = requestAnimationFrame(draw);
-      if (now - last < 33) return;
-      time += Math.min((now - last) / 1000, 0.1);
+      const delta = Math.min(Math.max(now - last, 0) / 1000, 0.1);
+      if (intro < 1) { intro = Math.min(1, intro + delta / 1.5); pose(intro); }
+      else if (now - last < 33) return;
+      time += delta;
       last = now;
       packets.forEach((packet, i) => packet.position.copy(curves[i].getPoint((time * 0.22 + i * 0.3) % 1)));
       renderer.render(scene, camera);

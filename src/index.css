@@ -702,6 +702,24 @@ h1, h2, h3, .font-display { font-stretch: 112%; letter-spacing: -0.02em; }
 .hero-stats dd { font-family: var(--font-display); font-stretch: 112%; font-size: 1.6rem; font-weight: 750; line-height: 1.2; color: var(--c-strong); font-variant-numeric: tabular-nums; }
 .hero-stats dt { font-size: .8125rem; line-height: 1.45; color: var(--c-muted); }
 
+/* Entrada 3D del hero: una sola secuencia al cargar la home */
+@keyframes hero-panel-in {
+  from { opacity: 0; transform: perspective(1400px) translate3d(70px, 24px, -220px) rotateY(-34deg) rotateX(12deg); }
+  to { opacity: 1; transform: perspective(1400px) translate3d(0, 0, 0) rotateY(0deg) rotateX(0deg); }
+}
+@keyframes hero-rise {
+  from { opacity: 0; transform: perspective(900px) translateY(26px) rotateX(-38deg); }
+  to { opacity: 1; transform: perspective(900px) translateY(0) rotateX(0deg); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-intro .integration-map { transform-origin: 0 50%; animation: hero-panel-in 1.15s cubic-bezier(.16, .8, .24, 1) .2s both; }
+  .hero-intro .hero-copy > * { transform-origin: 50% 100%; animation: hero-rise .75s cubic-bezier(.16, .8, .24, 1) both; }
+  .hero-intro .hero-copy > :nth-child(2) { animation-delay: .08s; }
+  .hero-intro .hero-copy > :nth-child(3) { animation-delay: .2s; }
+  .hero-intro .hero-copy > :nth-child(4) { animation-delay: .3s; }
+  .hero-intro .hero-copy > :nth-child(5) { animation-delay: .4s; }
+}
+
 /* Panel del mapa: marco de plano con escuadras en las esquinas */
 .integration-map { position: relative; overflow: visible; border-radius: .7rem; border-color: var(--c-line-strong); box-shadow: none; }
 .integration-map::before, .integration-map::after { content: ""; position: absolute; width: 16px; height: 16px; border: 2px solid var(--c-accent-text); pointer-events: none; }

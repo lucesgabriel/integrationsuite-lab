@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { LocalizedLink as Link } from "../components/LocalizedLink";
 import { profile } from "../data/profile";
 import { formatDate, getPosts, postCover } from "../lib/posts";
@@ -43,7 +44,14 @@ function TopicIcon({ children }: { children: React.ReactNode }) {
   );
 }
 
+/** La entrada 3D del hero se reproduce una vez por carga, no al volver desde otra ruta. */
+let heroIntroPlayed = false;
+
 export default function Home() {
+  const [intro] = useState(!heroIntroPlayed);
+  useEffect(() => {
+    heroIntroPlayed = true;
+  }, []);
   const topicsRef = useReveal<HTMLElement>();
   const postsRef = useReveal<HTMLElement>();
   const newsletterRef = useReveal<HTMLElement>();
@@ -76,12 +84,12 @@ export default function Home() {
         <span className="flow-token" aria-hidden="true" />
 
         {/* Hero */}
-        <section className="home-hero relative overflow-hidden">
+        <section className={`home-hero relative overflow-hidden ${intro ? "hero-intro" : ""}`}>
           <div className="bg-grid pointer-events-none absolute inset-0" />
 
           <div className="site-shell flow-first relative grid items-center gap-10 py-12 lg:grid-cols-[3fr_2fr] lg:gap-14 lg:py-20">
             <span className="flow-node" data-kind="start" aria-hidden="true" />
-            <div>
+            <div className="hero-copy">
               <p className="hero-credential">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3zM9 12l2 2 4-4" />
