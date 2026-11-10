@@ -51,7 +51,7 @@ const es = {
     ctaAbout: "Sobre mí",
   },
   integrationMap: {
-    eyebrow: "EXPLORA EL RECORRIDO",
+    eyebrow: "Explora el recorrido",
     title: "Del proceso de negocio a la integración",
     pause: "Pausar animación",
     play: "Reanudar animación",
@@ -251,7 +251,7 @@ const en: Translation = {
     ctaAbout: "About me",
   },
   integrationMap: {
-    eyebrow: "EXPLORE THE FLOW",
+    eyebrow: "Explore the flow",
     title: "From business process to integration",
     pause: "Pause animation",
     play: "Resume animation",

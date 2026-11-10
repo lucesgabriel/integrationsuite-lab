@@ -1,14 +1,12 @@
 import { LocalizedLink as Link } from "../components/LocalizedLink";
 import { profile } from "../data/profile";
-import { getPosts } from "../lib/posts";
-import PostCard from "../components/PostCard";
+import { formatDate, getPosts, postCover } from "../lib/posts";
 import IntegrationMap from "../components/IntegrationMap";
-import TechTicker from "../components/TechTicker";
 import NewsletterSignup from "../components/NewsletterSignup";
 import Seo from "../components/Seo";
 import { useReveal } from "../hooks/useReveal";
-import { trackSpotlight } from "../lib/spotlight";
 import { useLang } from "../i18n";
+import { tagLabel } from "../i18n/tags";
 
 /** Iconos SVG de los 6 temas (mismo orden que t.topics.items) */
 const topicIcons = [
@@ -28,20 +26,20 @@ const topicIcons = [
 
 function TopicIcon({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-sap-blue/30 bg-gradient-to-br from-sap-blue/25 to-sap-blue/5">
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="var(--c-accent-text)"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        {children}
-      </svg>
-    </span>
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="var(--c-accent-text)"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="shrink-0"
+    >
+      {children}
+    </svg>
   );
 }
 
@@ -51,7 +49,8 @@ export default function Home() {
   const newsletterRef = useReveal<HTMLElement>();
   const ctaRef = useReveal<HTMLElement>();
   const { t, lang } = useLang();
-  const featured = getPosts(lang).slice(0, 3);
+  const [lead, ...rest] = getPosts(lang).slice(0, 6);
+  const leadCover = lead ? postCover(lead) : undefined;
 
   return (
     <>
@@ -72,162 +71,162 @@ export default function Home() {
           },
         }}
       />
-      {/* Hero */}
-      <section className="home-hero relative overflow-hidden">
-        <div className="hero-bg pointer-events-none absolute inset-0" />
-        <div className="bg-grid pointer-events-none absolute inset-0" />
-        <div
-          className="animate-float pointer-events-none absolute -right-24 top-16 h-72 w-72 rounded-full blur-3xl"
-          style={{ background: "var(--orb)" }}
-        />
-        <div
-          className="animate-float pointer-events-none absolute -left-20 bottom-0 h-56 w-56 rounded-full blur-3xl [animation-delay:2s]"
-          style={{ background: "var(--orb)" }}
-        />
+      {/* La home se lee como un iFlow: evento de inicio → pasos → evento de fin */}
+      <div className="flow-page">
+        <span className="flow-token" aria-hidden="true" />
 
-        <div className="site-shell relative grid items-center gap-10 py-12 lg:grid-cols-[3fr_2fr] lg:gap-14 lg:py-20">
-          <div>
-            <span className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-sap-blue/40 bg-sap-blue/10 px-4 py-1.5 text-sm text-accent-text backdrop-blur">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z" />
-              </svg>
-              {t.hero.badge}
-            </span>
+        {/* Hero */}
+        <section className="home-hero relative overflow-hidden">
+          <div className="bg-grid pointer-events-none absolute inset-0" />
 
-            <h1 className="hero-title mt-5 font-extrabold text-strong">
-              {t.hero.titlePre}
-              <span className="hero-accent">{t.hero.titleHighlight}</span>
-              {t.hero.titlePost}
-            </h1>
+          <div className="site-shell flow-first relative grid items-center gap-10 py-12 lg:grid-cols-[3fr_2fr] lg:gap-14 lg:py-20">
+            <span className="flow-node" data-kind="start" aria-hidden="true" />
+            <div>
+              <p className="hero-credential">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3zM9 12l2 2 4-4" />
+                </svg>
+                {t.hero.badge}
+              </p>
 
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-              {t.hero.description}
-            </p>
+              <h1 className="hero-title mt-5 text-strong">
+                {t.hero.titlePre}
+                {t.hero.titleHighlight}
+                {t.hero.titlePost}
+              </h1>
 
-            <div className="animate-fade-up delay-300 mt-8 flex flex-wrap gap-4">
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+                {t.hero.description}
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  to="/blog"
+                  className="rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-colors hover:bg-sap-blue/90"
+                >
+                  {t.hero.ctaBlog}
+                </Link>
+                <Link
+                  to="/sobre-mi"
+                  className="rounded-xl border border-line-strong bg-card px-6 py-3 font-semibold text-body transition-colors hover:border-sap-blue hover:text-strong"
+                >
+                  {t.hero.ctaAbout}
+                </Link>
+              </div>
+
+              <dl className="hero-stats">
+                {profile.stats.map((stat) => (
+                  <div key={stat.label.es}>
+                    <dt>{stat.label[lang]}</dt>
+                    <dd>{stat.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
+            <IntegrationMap />
+          </div>
+        </section>
+
+        {/* Artículos: caso destacado + registro */}
+        <section ref={postsRef} className="reveal">
+          <div className="site-shell py-12 md:py-16">
+            <span className="flow-node" aria-hidden="true" />
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <h2 className="text-3xl font-bold text-strong">
+                  {t.posts.heading}
+                </h2>
+                <p className="mt-2 text-muted">{t.posts.subheading}</p>
+              </div>
               <Link
                 to="/blog"
-                className="glow rounded-xl bg-sap-blue px-6 py-3 font-semibold text-white transition-all hover:bg-sap-blue/90"
+                className="text-sm font-semibold text-accent-text hover:text-sap-blue"
               >
-                {t.hero.ctaBlog}
-              </Link>
-              <Link
-                to="/sobre-mi"
-                className="rounded-xl border border-line bg-card/60 px-6 py-3 font-semibold text-body backdrop-blur transition-colors hover:border-sap-blue hover:text-strong"
-              >
-                {t.hero.ctaAbout}
+                {t.posts.viewAll}
               </Link>
             </div>
 
-            {/* Stats */}
-            <div className="mt-10 grid max-w-2xl grid-cols-3 gap-3">
-              {profile.stats.map((stat) => (
-                <div
-                  key={stat.label.es}
-                  className="hero-stat border-l-2 border-line px-3 py-1 text-left md:px-4"
-                >
-                  <p className="font-mono text-2xl font-bold text-accent-text md:text-3xl">
-                    {stat.value}
+            {lead && (
+              <Link to={`/blog/${lead.slug}`} className="case-lead">
+                {leadCover && (
+                  <div className="case-lead-cover">
+                    <img src={leadCover} alt="" loading="lazy" />
+                  </div>
+                )}
+                <div className="case-lead-body">
+                  <p className="case-meta">
+                    <time dateTime={lead.date}>{formatDate(lead.date, lang)}</time>
+                    {lead.tags.slice(0, 2).map((tag) => (
+                      <span key={tag}>{tagLabel(tag, lang)}</span>
+                    ))}
                   </p>
-                  <p className="mt-1 text-xs text-faint md:text-sm">
-                    {stat.label[lang]}
-                  </p>
+                  <h3>{lead.title}</h3>
+                  <p className="case-lead-summary">{lead.description}</p>
+                  <span className="case-lead-link">{t.posts.read}</span>
+                </div>
+              </Link>
+            )}
+
+            <ol className="case-log">
+              {rest.map((post) => (
+                <li key={post.slug}>
+                  <Link to={`/blog/${post.slug}`}>
+                    <time dateTime={post.date}>{formatDate(post.date, lang)}</time>
+                    <span className="case-log-title">{post.title}</span>
+                    {post.tags[0] && (
+                      <span className="case-log-tag">{tagLabel(post.tags[0], lang)}</span>
+                    )}
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* Temas */}
+        <section ref={topicsRef} className="reveal border-t border-line">
+          <div className="site-shell py-12 md:py-16">
+            <span className="flow-node" aria-hidden="true" />
+            <h2 className="text-3xl font-bold text-strong">{t.topics.heading}</h2>
+            <p className="mt-2 text-muted">{t.topics.subheading}</p>
+            <div className="topic-sheet">
+              {t.topics.items.map((topic, i) => (
+                <div key={topic.title}>
+                  <h3>
+                    <TopicIcon>{topicIcons[i]}</TopicIcon>
+                    {topic.title}
+                  </h3>
+                  <p>{topic.description}</p>
                 </div>
               ))}
             </div>
           </div>
+        </section>
 
-          {/* Pipeline animado */}
-          <IntegrationMap />
-        </div>
-      </section>
+        {/* Newsletter */}
+        <section ref={newsletterRef} className="reveal">
+          <div className="site-shell">
+            <NewsletterSignup />
+          </div>
+        </section>
 
-      <TechTicker />
-
-      {/* Artículos destacados */}
-      <section ref={postsRef} className="reveal border-t border-line bg-card/40">
-        <div className="site-shell py-12 md:py-16">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <h2 className="text-3xl font-bold text-strong">
-                {t.posts.heading}
-              </h2>
-              <p className="mt-2 text-muted">{t.posts.subheading}</p>
+        {/* CTA: evento de fin del flujo */}
+        <section ref={ctaRef} className="reveal">
+          <div className="site-shell flow-last py-14 md:py-20">
+            <span className="flow-node" data-kind="end" aria-hidden="true" />
+            <div className="cta-band">
+              <div>
+                <h2>{t.cta.heading}</h2>
+                <p>{t.cta.description}</p>
+              </div>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer">
+                {t.cta.button}
+              </a>
             </div>
-            <Link
-              to="/blog"
-              className="text-sm font-semibold text-accent-text hover:text-sap-blue"
-            >
-              {t.posts.viewAll}
-            </Link>
           </div>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {featured.map((post) => (
-              <PostCard key={post.slug} post={post} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Temas */}
-      <section ref={topicsRef} className="reveal site-shell py-12 md:py-16">
-        <h2 className="text-3xl font-bold text-strong">{t.topics.heading}</h2>
-        <p className="mt-2 text-muted">{t.topics.subheading}</p>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {t.topics.items.map((topic, i) => (
-            <div
-              key={topic.title}
-              onMouseMove={trackSpotlight}
-              className="spotlight-card hover-glow group rounded-2xl border border-line bg-card p-6 transition-all hover:-translate-y-1 hover:border-sap-blue/60"
-            >
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute right-4 top-3 font-mono text-5xl font-bold leading-none text-strong opacity-[0.06] transition-opacity duration-300 group-hover:opacity-[0.14] md:text-6xl"
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <TopicIcon>{topicIcons[i]}</TopicIcon>
-              <h3 className="mt-4 text-lg font-bold text-strong group-hover:text-accent-text">
-                {topic.title}
-              </h3>
-              <p className="mt-2 text-sm text-muted">{topic.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Newsletter */}
-      <section ref={newsletterRef} className="reveal site-shell pt-12 md:pt-16">
-        <NewsletterSignup />
-      </section>
-
-      {/* CTA */}
-      <section ref={ctaRef} className="reveal site-shell py-14 md:py-20">
-        <div className="relative overflow-hidden rounded-3xl border border-line bg-card p-7 text-center md:p-12">
-          <div
-            className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full blur-3xl"
-            style={{ background: "var(--orb)" }}
-          />
-          <div
-            className="pointer-events-none absolute -bottom-24 -left-16 h-56 w-56 rounded-full blur-3xl"
-            style={{ background: "var(--orb)" }}
-          />
-          <div className="relative">
-            <h2 className="text-3xl font-bold text-strong">{t.cta.heading}</h2>
-            <p className="mx-auto mt-4 max-w-xl text-muted">
-              {t.cta.description}
-            </p>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="glow mt-8 inline-block rounded-xl bg-sap-blue px-8 py-3 font-semibold text-white transition-all hover:bg-sap-blue/90"
-            >
-              {t.cta.button}
-            </a>
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </>
   );
 }

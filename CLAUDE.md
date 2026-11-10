@@ -26,6 +26,8 @@ React 19 + TypeScript + Vite + Tailwind CSS 4 (plugin `@tailwindcss/vite`, tema 
 - **Prosa de artículos**: clases `.prose-post` en `index.css` (no usamos el plugin typography).
 - Páginas en `src/pages/`, componentes reutilizables en `src/components/`. Rutas declaradas en `App.tsx` dentro de `Layout` (navbar + footer + scroll-to-top).
 
+- **Identidad "iFlow" (home)**: `Home.tsx` envuelve las secciones en `.flow-page`; en escritorio una línea de secuencia recorre la página con `.flow-node` (`data-kind="start"` en el hero, cuadrado por sección, `data-kind="end"` en el CTA) y un `.flow-token` ámbar que avanza con el scroll (CSS scroll-driven, sin JS; oculto en móvil y con reduced-motion). Los artículos de la home son caso destacado (`.case-lead`) + registro (`.case-log`), los temas una ficha (`.topic-sheet`) y el CTA un bloque azul sólido (`.cta-band`). Display: Archivo con `font-stretch: 112%`. Radios pequeños definidos en `@theme` (`--radius-*`). `TechTicker` ya no se usa en la home.
+
 ## Contexto del dueño
 
 - Perfil LinkedIn de referencia en `context/` (PDFs).

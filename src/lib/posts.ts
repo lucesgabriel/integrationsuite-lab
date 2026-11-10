@@ -81,6 +81,11 @@ export function getPost(slug: string, lang: "es" | "en" = "es"): Post | undefine
   return getPosts(lang).find((p) => p.slug === slug);
 }
 
+/** Primera imagen del artículo, usada como portada en tarjetas y destacados. */
+export function postCover(post: Post): string | undefined {
+  return /!\[[^\]]*\]\(([^)]+)\)/.exec(post.content)?.[1];
+}
+
 export function formatDate(iso: string, lang: "es" | "en" = "es"): string {
   if (!iso) return "";
   const [y, m, d] = iso.split("-").map(Number);

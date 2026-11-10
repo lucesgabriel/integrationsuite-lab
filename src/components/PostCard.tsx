@@ -1,13 +1,13 @@
 import { LocalizedLink as Link } from "./LocalizedLink";
 import type { Post } from "../lib/posts";
-import { formatDate } from "../lib/posts";
+import { formatDate, postCover } from "../lib/posts";
 import { trackSpotlight } from "../lib/spotlight";
 import { useLang } from "../i18n";
 import { tagLabel } from "../i18n/tags";
 
 export default function PostCard({ post }: { post: Post }) {
   const { t, lang } = useLang();
-  const cover = /!\[[^\]]*\]\(([^)]+)\)/.exec(post.content)?.[1];
+  const cover = postCover(post);
 
   return (
     <Link
@@ -15,7 +15,6 @@ export default function PostCard({ post }: { post: Post }) {
       onMouseMove={trackSpotlight}
       className="post-card spotlight-card hover-glow group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-card p-6 transition-all hover:-translate-y-1 hover:border-sap-blue"
     >
-      <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sap-blue to-sap-blue-light opacity-0 transition-opacity group-hover:opacity-100" />
       <div className={`post-cover ${cover ? "has-image" : ""}`} aria-hidden="true">
         {cover ? <img src={cover} alt="" loading="lazy" /> : <><span className="cover-mark">SIL / LAB</span><span className="cover-topic">{tagLabel(post.tags[0] ?? "SAP BTP", lang)}</span><span className="cover-line" /></>}
       </div>
