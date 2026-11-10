@@ -716,7 +716,8 @@ h1, h2, h3, .font-display { font-stretch: 112%; letter-spacing: -0.02em; }
 .case-lead { margin-top: 2.25rem; display: grid; border: 1px solid var(--c-line-strong); border-radius: .7rem; background: var(--c-card); overflow: hidden; transition: border-color .2s; }
 .case-lead:hover { border-color: var(--c-accent-text); }
 .case-lead-cover { min-height: 13rem; background: var(--c-raised); border-bottom: 1px solid var(--c-line); overflow: hidden; }
-.case-lead-cover img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.case-lead-cover { display: flex; align-items: center; justify-content: center; padding: clamp(.75rem, 2vw, 1.25rem); }
+.case-lead-cover img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: .3rem; border: 1px solid var(--c-line); }
 .case-lead-body { padding: clamp(1.25rem, 3vw, 2.25rem); display: flex; flex-direction: column; align-items: flex-start; }
 .case-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .9rem; font-size: .8125rem; color: var(--c-muted); }
 .case-meta span { padding: .15rem .55rem; border-radius: .25rem; background: var(--c-raised); color: var(--c-accent-text); font-weight: 600; }
@@ -771,6 +772,19 @@ h1, h2, h3, .font-display { font-stretch: 112%; letter-spacing: -0.02em; }
   .flow-node[data-kind="start"] { top: var(--start-y); width: 20px; height: 20px; border-radius: 50%; }
   .flow-node[data-kind="end"] { top: auto; bottom: var(--end-y); width: 22px; height: 22px; border-width: 6px; border-radius: 50%; transform: translate(-50%, 50%); }
 }
+/* Pantallas anchas: la línea va por el margen y el contenido se alinea con el navbar */
+@media (min-width: 1340px) {
+  .flow-page { --rail-x: calc((100% - 1180px) / 2 - .5rem); }
+  .flow-page .site-shell { padding-left: 2.5rem; }
+  .flow-page .site-shell::before, .flow-node { left: -.5rem; }
+}
+
+/* Newsletter: mismo lenguaje que el resto (panel plano, texto a la izquierda) */
+.newsletter-panel { display: grid; gap: 1.5rem; align-items: center; padding: clamp(1.5rem, 4vw, 2.5rem); border: 1px solid var(--c-line-strong); border-radius: .7rem; background: var(--c-card); }
+.newsletter-panel h2 { font-size: 1.5rem; font-weight: 750; line-height: 1.25; color: var(--c-strong); }
+.newsletter-panel h2 + p { margin-top: .5rem; font-size: .9375rem; line-height: 1.65; color: var(--c-muted); }
+@media (min-width: 900px) { .newsletter-panel { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; } }
+
 @keyframes flow-token { to { top: calc(100% - var(--end-y)); } }
 @supports (animation-timeline: view()) {
   @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
